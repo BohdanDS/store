@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import Card from "../Card/CardComponent";
 import {ItemType} from "../../store/Catalog-reducer/catalog-reducer";
-import {AddItemToCard} from "../../store/Card-reducer/actions";
+import {AddItemToCard, RemoveItemFromCard} from "../../store/Card-reducer/actions";
 
 const Catalog = () => {
 
@@ -12,12 +12,11 @@ const Catalog = () => {
     const dispatch = useDispatch()
 
     const addToCard = (itemId: string) => {
-        console.log(itemId)
         dispatch(AddItemToCard(itemId))
     }
 
     const removeFromCard = (itemId:string) => {
-        console.log(itemId)
+        dispatch(RemoveItemFromCard(itemId))
     }
 
     return (

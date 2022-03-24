@@ -4,11 +4,11 @@ import {CardActionsType} from "./action-types";
 
 const initialState: InitialStateType = []
 
-export type ItemType = {
-    "id": string
+export type ItemCardType = {
+    'id': string
 }
 
-export type InitialStateType = ItemType[]
+export type InitialStateType = Array<ItemCardType>
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
@@ -16,9 +16,9 @@ type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 export const cardReducer = (state = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case CardActionsType.REMOVE_ITEM_FROM_CARD: {
-            const itemToRemove = state.find(item => item.id === action.itemId)
-            console.log(itemToRemove)
+            const stateCopy = state.filter((item) => item.id !== action.itemId)
             return [
+                ...stateCopy,
             ]
         }
         case CardActionsType.ADD_ITEM_TO_CARD:
