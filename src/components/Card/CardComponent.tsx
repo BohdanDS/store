@@ -38,7 +38,7 @@ const CardComponent = ({title, price, id, addToCard, removeFromCard}: CardPropsT
             >
                 {viewOnHover && <div style={{position: 'absolute', top: '120px', right: '70px'}}>
                     <Button onClick={addItemToCard}>Add to Card</Button>
-                    <Button onClick={removeItemFromCard}>Remove Item</Button>
+                    {/*<Button onClick={removeItemFromCard}>Remove Item</Button>*/}
                 </div>}
                 <Meta title={title} description={price + '$'}/>
             </Card>
