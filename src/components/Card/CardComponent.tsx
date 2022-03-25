@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Card} from "antd";
 import {Link, useHistory} from "react-router-dom";
+import {useCardHandlers} from "./card.hooks";
 
 type CardPropsType = {
     title: string,
@@ -14,15 +15,7 @@ const CardComponent = ({title, price, id, addToCard, removeFromCard}: CardPropsT
 
     const history = useHistory();
 
-    const [viewOnHover, setViewOnHover] = useState<boolean>(false)
-
-    const onFocus = () => {
-        setViewOnHover(true)
-    }
-
-    const onLooseFocus = () => {
-        setViewOnHover(false)
-    }
+    const {viewOnHover, onLooseFocus, onFocus} = useCardHandlers()
 
     const addItemToCard = () => {
         addToCard(id)
