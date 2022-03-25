@@ -3,13 +3,15 @@ import Login from "../Pages/Login/Login";
 import Registrations from "../Pages/Registrations/Registrations";
 import NotFound from "../Pages/NotFoundPage/NotFound";
 import SearchResult from "../Pages/SearchResultPage/SearchResult";
+import Item from "../Pages/ItemPage/Item";
 
 export enum PUBLIC_PATHS {
     APP = '/',
     LOGIN = '/login',
     NOT_FOUND = '/404',
     REGISTRATION = '/registration',
-    SEARCH_RESULT= '/result'
+    SEARCH_RESULT= '/result',
+    ITEM_PAGE = '/catalog/'
 }
 
 export type Routes = {
@@ -28,4 +30,5 @@ export const pageRoutes:Routes[] = [
     {path: PUBLIC_PATHS.REGISTRATION, Component: Registrations},
     {path: PUBLIC_PATHS.NOT_FOUND, Component: NotFound},
     {path: PUBLIC_PATHS.SEARCH_RESULT, Component: SearchResult},
+    {path: PUBLIC_PATHS.ITEM_PAGE, Component:Item}
 ]

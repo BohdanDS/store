@@ -1,13 +1,13 @@
 import {combineReducers, createStore} from 'redux'
-import {searchReducer} from "./search-reducer";
 import {cardReducer} from "./Card-reducer/card-reducer";
 import {catalogReducer} from "./Catalog-reducer/catalog-reducer";
+import {filterReducer} from "./Filter-reducer/filter-reducer";
 
 
-const rootReducer = combineReducers({
-        search: searchReducer,
+export const rootReducer = combineReducers({
         card: cardReducer,
-        catalog: catalogReducer
+        catalog: catalogReducer,
+        filter: filterReducer
     }
 )
 

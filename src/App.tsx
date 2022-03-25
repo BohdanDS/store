@@ -5,6 +5,7 @@ import {pageRoutes} from "./Routing/paths";
 import {Spin} from "antd";
 import Header from "./components/Header/Header";
 import Catalog from "./components/Catalog/Catalog";
+import Item from "./Pages/ItemPage/Item";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Header/>
                 <Catalog/>
                 <Switch>
+                    <Route path='path="/catalog/:id' component={Item} strict exact>{Item}</Route>
                     {pageRoutes.map(({path, Component}) =>
                         (<Route key={path} path={path} component={Component} strict exact/>)
                     )}

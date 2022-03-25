@@ -2,7 +2,8 @@ import React, {ChangeEvent, useState} from 'react';
 import {Input} from 'antd';
 import './index.less';
 import {useDispatch} from "react-redux";
-import {setSearchQuery} from "../../store/search-reducer";
+
+import {SetSearchQuery} from "../../store/Filter-reducer/actions";
 
 
 const Search = () => {
@@ -15,15 +16,14 @@ const Search = () => {
         setInputValue(e.currentTarget.value)
     }
 
-    const searchHandler = (value:string) => {
-        console.log(value)
-        dispatch(setSearchQuery(value))
-        setInputValue('')
+    const searchHandler = (value: string) => {
+        dispatch(SetSearchQuery(value))
     }
 
     return (
         <div className='flex-center'>
-            <Search value={inputValue} className='searchInput' placeholder='Поиск по таварам' onChange={inputHandler} onSearch={searchHandler}/>
+            <Search value={inputValue} className='searchInput' placeholder='Поиск по таварам' onChange={inputHandler}
+                    onSearch={searchHandler}/>
         </div>
     );
 };
