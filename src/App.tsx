@@ -12,9 +12,8 @@ function App() {
         <BrowserRouter>
             <Suspense fallback={<Spin/>}>
                 <Header/>
-                <Catalog/>
                 <Switch>
-                    <Route path='path="/catalog/:id' component={Item} strict exact>{Item}</Route>
+                    {/*<Route path='path="/catalog/:id' component={Item} strict exact>{Item}</Route>*/}
                     {pageRoutes.map(({path, Component}) =>
                         (<Route key={path} path={path} component={Component} strict exact/>)
                     )}

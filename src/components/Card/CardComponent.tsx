@@ -31,26 +31,19 @@ const CardComponent = ({title, price, id, addToCard, removeFromCard}: CardPropsT
         removeFromCard(id)
     }
 
-    function handleClick() {
-        console.log(history)
-        history.push(`/catalog/${id}`);
-
-    }
-
 
     const {Meta} = Card;
     return (
         <div style={{margin: '15px', position: 'relative'}} onMouseEnter={onFocus} onMouseLeave={onLooseFocus}>
-            <Link to={`catalog/${id}`} onClick={handleClick}>
+            {viewOnHover && <div style={{position: 'absolute', top: '120px', right: '70px', zIndex:'10'}}>
+                <Button onClick={addItemToCard}>Add to Card</Button>
+            </div>}
+            <Link to={`catalog/${id}`}>
                 <Card
                     hoverable
                     style={{width: 240}}
                     cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
                 >
-                    {viewOnHover && <div style={{position: 'absolute', top: '120px', right: '70px'}}>
-                        <Button onClick={addItemToCard}>Add to Card</Button>
-                        {/*<Button onClick={removeItemFromCard}>Remove Item</Button>*/}
-                    </div>}
                     <Meta title={title} description={price + '$'}/>
                 </Card>
             </Link>

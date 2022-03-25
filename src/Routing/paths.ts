@@ -4,6 +4,7 @@ import Registrations from "../Pages/Registrations/Registrations";
 import NotFound from "../Pages/NotFoundPage/NotFound";
 import SearchResult from "../Pages/SearchResultPage/SearchResult";
 import Item from "../Pages/ItemPage/Item";
+import Catalog from "../components/Catalog/Catalog";
 
 export enum PUBLIC_PATHS {
     APP = '/',
@@ -11,7 +12,7 @@ export enum PUBLIC_PATHS {
     NOT_FOUND = '/404',
     REGISTRATION = '/registration',
     SEARCH_RESULT= '/result',
-    ITEM_PAGE = '/catalog/'
+    ITEM_PAGE = '/catalog/:id'
 }
 
 export type Routes = {
@@ -25,7 +26,7 @@ export type Routes = {
 const Home = React.lazy(() => import('../Pages/HomePage/Home'))
 
 export const pageRoutes:Routes[] = [
-    {path: PUBLIC_PATHS.APP, Component: Home},
+    {path: PUBLIC_PATHS.APP, Component: Catalog},
     {path: PUBLIC_PATHS.LOGIN, Component: Login},
     {path: PUBLIC_PATHS.REGISTRATION, Component: Registrations},
     {path: PUBLIC_PATHS.NOT_FOUND, Component: NotFound},
