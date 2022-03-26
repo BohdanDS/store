@@ -12,8 +12,6 @@ type CardPropsType = {
 
 const CardComponent = ({title, price, id, addToCard, removeFromCard}: CardPropsType) => {
 
-    const history = useHistory();
-
     const [viewOnHover, setViewOnHover] = useState<boolean>(false)
 
     const onFocus = () => {
