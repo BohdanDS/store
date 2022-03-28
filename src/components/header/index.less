@@ -1,10 +1,72 @@
-@import 'src/styles/vars';
-.container {
+@import "src/styles/vars";
+
+.header-container{
   display: flex;
   align-items: center;
+  background: @main-color;
+  height: 40px;
+  color: @icon-color;
+  font-size: 1.5rem;
   justify-content: space-between;
-  padding: 0 20px;
-  //gap: 200px;
-  background: #0F1111;
   width: 100%;
+
+  button, svg {
+    color: @icon-color;
+    font-size: 1.2rem;
+  }
+  button:hover {
+    color: @secondary-color;
+  }
+  svg {
+    font-size: 1.5rem;
+  }
+  svg:hover{
+    color: @secondary-color;
+    cursor: pointer;
+  }
+  .block-1{
+    margin: 0 1.2rem;
+  }
+  .block-2 {
+    width: 600px;
+  }
+  .block-3{
+    position: relative;
+    margin: 0 1.5rem;
+    span{
+      margin: 0 1.5rem;
+    }
+  }
+  .cartItem {
+    position: absolute;
+    color: @secondary-color;
+    right: 1.5rem;
+  }
+}
+@media screen and (max-width: 950px) {
+  .header-container{
+    .block-2{
+      width: 400px;
+    }
+    .block-3{
+      margin: 0 1rem;
+      span{
+        margin: 0 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .header-container{
+    .block-2{
+      width: 230px;
+    }
+    .block-3{
+      margin: 0 1rem;
+      span{
+        margin: 0 1rem;
+      }
+    }
+  }
 }

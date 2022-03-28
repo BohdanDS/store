@@ -1,11 +1,11 @@
 import {combineReducers, createStore} from 'redux'
-import {cardReducer} from "./card-reducer/card-reducer";
 import {catalogReducer} from "./catalog-reducer/catalog-reducer";
 import {filterReducer} from "./filter-reducer/filter-reducer";
+import {cartReducer} from "./cart-reducer/cart-reducer";
 
 
 export const rootReducer = combineReducers({
-        card: cardReducer,
+        cart: cartReducer,
         catalog: catalogReducer,
         filter: filterReducer
     }

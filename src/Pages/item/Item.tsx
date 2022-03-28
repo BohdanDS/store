@@ -5,7 +5,7 @@ import {AppRootStateType} from "../../store/store";
 import {ItemType} from "../../store/catalog-reducer/catalog-reducer";
 import './index.less'
 import {Button} from "antd";
-import {AddItemToCard} from "../../store/card-reducer/actions";
+import {AddItemToCard} from "../../store/cart-reducer/actions";
 
 const Item = () => {
 

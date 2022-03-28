@@ -22,7 +22,7 @@ const Search = () => {
 
     return (
         <div className='flex-center'>
-            <Search value={inputValue} className='searchInput' placeholder='Поиск по таварам' onChange={inputHandler}
+            <Search value={inputValue} className='searchInput' placeholder='Search Amazon' onChange={inputHandler}
                     onSearch={searchHandler}/>
         </div>
     );

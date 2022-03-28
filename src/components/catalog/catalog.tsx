@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import Article from "../article/article";
 import {ItemType} from "../../store/catalog-reducer/catalog-reducer";
-import {AddItemToCard, RemoveItemFromCard} from "../../store/card-reducer/actions";
+import {AddItemToCard, RemoveItemFromCard} from "../../store/cart-reducer/actions";
 
 const Catalog = () => {
 
