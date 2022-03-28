@@ -2,6 +2,7 @@ import React, {ComponentType} from "react";
 import Login from "../pages/login/login";
 import Item from "../pages/item/Item";
 import Catalog from "../components/catalog/catalog";
+import Cart from "../pages/cart/cart";
 
 export enum PUBLIC_PATHS {
     APP = '/',
@@ -9,7 +10,8 @@ export enum PUBLIC_PATHS {
     NOT_FOUND = '/404',
     REGISTRATION = '/registration',
     SEARCH_RESULT= '/result',
-    ITEM_PAGE = '/catalog/:id'
+    ITEM_PAGE = '/catalog/:id',
+    CART='/cart'
 
 }
 
@@ -29,5 +31,6 @@ export const pageRoutes:Routes[] = [
     // {path: PUBLIC_PATHS.REGISTRATION, Component: Registrations},
     // {path: PUBLIC_PATHS.NOT_FOUND, Component: NotFound},
     // {path: PUBLIC_PATHS.SEARCH_RESULT, Component: SearchResult},
-    {path: PUBLIC_PATHS.ITEM_PAGE, Component:Item}
+    {path: PUBLIC_PATHS.ITEM_PAGE, Component:Item},
+    {path: PUBLIC_PATHS.CART, Component:Cart}
 ]

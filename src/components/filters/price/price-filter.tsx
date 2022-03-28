@@ -30,7 +30,6 @@ const PriceFilter = () => {
                 <span className='priceFilter-container__span-1'>Price From:</span>
                 <input
                     type='number'
-                    defaultValue={0}
                     min={0}
                     value={minValue}
                     onChange={minValueHandler}
@@ -38,7 +37,6 @@ const PriceFilter = () => {
                 <span className='priceFilter-container__span-2'>To:</span>
                 <input
                     type='number'
-                    defaultValue={100}
                     max={100}
                     value={maxValue}
                     onChange={maxValueHandler}
