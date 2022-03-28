@@ -5,7 +5,7 @@ import {pageRoutes} from "./routing/paths";
 import {Spin} from "antd";
 import Header from "./components/header/header";
 import Catalog from "./components/catalog/catalog";
-import Item from "./Pages/item/Item";
+import Item from "./pages/item/Item";
 
 function App() {
     return (

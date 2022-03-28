@@ -1,6 +1,6 @@
 import React, {ComponentType} from "react";
-import Login from "../Pages/login/login";
-import Item from "../Pages/item/Item";
+import Login from "../pages/login/login";
+import Item from "../pages/item/Item";
 import Catalog from "../components/catalog/catalog";
 
 export enum PUBLIC_PATHS {

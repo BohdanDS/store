@@ -13,7 +13,7 @@ export type InitialStateType = Array<ItemCardType>
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
 
-export const cartReducer = (state = initialState, action: ActionTypes): InitialStateType => {
+export default function reducer(state = initialState, action: ActionTypes): InitialStateType {
     switch (action.type) {
         case CardActionsType.REMOVE_ITEM_FROM_CARD: {
             const stateCopy = state.filter((item) => item.id !== action.itemId)

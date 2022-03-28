@@ -20,7 +20,7 @@ const initialState: InitialStateType = {
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
 
-export const filterReducer = (state = initialState, action: ActionTypes): InitialStateType => {
+export default function reducer(state = initialState, action: ActionTypes): InitialStateType {
     switch (action.type) {
         case FilterActionType.SET_MIN_PRICE_VALUE: {
             return {

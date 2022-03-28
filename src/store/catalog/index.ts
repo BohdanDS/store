@@ -103,7 +103,7 @@ export type ItemType = {
 
 export type InitialStateType = ItemType[]
 
-export const catalogReducer = (state = initialState, action: any): InitialStateType => {
+export default function reducer (state = initialState, action: any): InitialStateType {
     switch (action.type) {
         default:
             return state

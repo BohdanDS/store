@@ -5,6 +5,7 @@ import {Button} from "antd";
 import {AmazonOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
+import Filter from '../filters/filter';
 
 
 const Header = () => {
@@ -24,7 +25,6 @@ const Header = () => {
                 {itemInCart !== 0 && <span className='cartItem'>{itemInCart}</span>}
                 <ShoppingCartOutlined/>
             </div>
-            {/*<Filter/>*/}
         </header>
     )
         ;

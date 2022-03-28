@@ -2,8 +2,9 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import Article from "../article/article";
-import {ItemType} from "../../store/catalog-reducer/catalog-reducer";
-import {AddItemToCard, RemoveItemFromCard} from "../../store/cart-reducer/actions";
+import {ItemType} from "../../store/catalog";
+import {AddItemToCard, RemoveItemFromCard} from "../../store/cart/actions";
+import Filter from "../filters/filter";
 
 const Catalog = () => {
 
@@ -41,16 +42,19 @@ const Catalog = () => {
     }
 
     return (
-        <div style={{display: "flex", flexWrap: "wrap"}}>
-            {
-                itemsToShow.map(item => {
-                    return (
-                        <Article key={item.id} title={item.title} price={item.cost} id={item.id} addToCart={addToCart}
-                                 removeFromCart={removeFromCart}/>
-                    )
-                })
-            }
-        </div>
+        <>
+            <Filter/>
+            <div style={{display: "flex", flexWrap: "wrap"}}>
+                {
+                    itemsToShow.map(item => {
+                        return (
+                            <Article key={item.id} title={item.title} price={item.cost} id={item.id} addToCart={addToCart}
+                                     removeFromCart={removeFromCart}/>
+                        )
+                    })
+                }
+            </div>
+        </>
     );
 };
 

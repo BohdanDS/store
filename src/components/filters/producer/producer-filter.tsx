@@ -1,8 +1,9 @@
 import React from 'react';
-import {Select, Space} from 'antd';
+import {Select} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../store/store";
-import {SelectProducer} from "../../../store/filter-reducer/actions";
+import {SelectProducer} from "../../../store/filter/actions";
+import './index.less'
 
 interface ItemProps {
     label: string;
@@ -36,11 +37,11 @@ const ProducerFilter = () => {
     };
 
     return (
-        <div className='manufacturerFilter-container'>
-            <Space direction="vertical" style={{width: '90%'}}>
-                Producer:
-                <Select {...selectProps} value={selectedProducers} />
-            </Space>
+        <div className='producerFilter-container'>
+            <div>
+                <span>Producer:</span>
+            </div>
+            <Select {...selectProps} value={selectedProducers} className='producerFilter-container__select' />
         </div>
     );
 };

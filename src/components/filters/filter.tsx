@@ -1,15 +1,21 @@
 import React from 'react';
-import PriceFilter from "./price/Price-filter";
-import ProducerFilter from "./producer/Producer-filter";
+import PriceFilter from "./price/price-filter";
 import './index.less'
-import InMarketFilter from "./availiableInMarket/InMarket-filter";
+import InMarketFilter from "./availiableInMarket/inMarket-filter";
+import ProducerFilter from "./producer/producer-filter";
 
 const Filter = () => {
     return (
         <div className='filter-container'>
-            <PriceFilter/>
-            <ProducerFilter/>
-            <InMarketFilter/>
+           <div>
+               <PriceFilter/>
+           </div>
+            <div>
+                <ProducerFilter/>
+            </div>
+            <div>
+                <InMarketFilter/>
+            </div>
         </div>
     );
 };

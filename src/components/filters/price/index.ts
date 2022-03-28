@@ -1,3 +1,3 @@
-import PriceFilter from "./Price-filter";
+import PriceFilter from "./price-filter";
 
 export default PriceFilter
