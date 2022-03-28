@@ -1,7 +1,7 @@
 import {combineReducers, createStore} from 'redux'
-import {cardReducer} from "./Card-reducer/card-reducer";
-import {catalogReducer} from "./Catalog-reducer/catalog-reducer";
-import {filterReducer} from "./Filter-reducer/filter-reducer";
+import {cardReducer} from "./card-reducer/card-reducer";
+import {catalogReducer} from "./catalog-reducer/catalog-reducer";
+import {filterReducer} from "./filter-reducer/filter-reducer";
 
 
 export const rootReducer = combineReducers({

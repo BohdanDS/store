@@ -1,8 +1,8 @@
 import React from 'react';
-import PriceFilter from "./Price-filter/Price-filter";
-import ProducerFilter from "./Producer-filter/Producer-filter";
+import PriceFilter from "./price/Price-filter";
+import ProducerFilter from "./producer/Producer-filter";
 import './index.less'
-import InMarketFilter from "./InMarket-filter/InMarket-filter";
+import InMarketFilter from "./availiableInMarket/InMarket-filter";
 
 const Filter = () => {
     return (

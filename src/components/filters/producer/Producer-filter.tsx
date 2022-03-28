@@ -2,7 +2,7 @@ import React from 'react';
 import {Select, Space} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../store/store";
-import {SelectProducer} from "../../../store/Filter-reducer/actions";
+import {SelectProducer} from "../../../store/filter-reducer/actions";
 
 interface ItemProps {
     label: string;

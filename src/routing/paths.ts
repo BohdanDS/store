@@ -1,10 +1,10 @@
 import React, {ComponentType} from "react";
-import Login from "../Pages/Login/Login";
+import Login from "../Pages/login/login";
 import Registrations from "../Pages/Registrations/Registrations";
 import NotFound from "../Pages/NotFoundPage/NotFound";
 import SearchResult from "../Pages/SearchResultPage/SearchResult";
-import Item from "../Pages/ItemPage/Item";
-import Catalog from "../components/Catalog/Catalog";
+import Item from "../Pages/item/Item";
+import Catalog from "../components/catalog/catalog";
 
 export enum PUBLIC_PATHS {
     APP = '/',
@@ -13,6 +13,7 @@ export enum PUBLIC_PATHS {
     REGISTRATION = '/registration',
     SEARCH_RESULT= '/result',
     ITEM_PAGE = '/catalog/:id'
+
 }
 
 export type Routes = {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch } from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../store/store";
-import {ChangeInMarketToggle} from "../../../store/Filter-reducer/actions";
+import {ChangeInMarketToggle} from "../../../store/filter-reducer/actions";
 
 const InMarketFilter = () => {
 

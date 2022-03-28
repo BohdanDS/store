@@ -3,7 +3,7 @@ import {Input} from 'antd';
 import './index.less';
 import {useDispatch} from "react-redux";
 
-import {SetSearchQuery} from "../../store/Filter-reducer/actions";
+import {SetSearchQuery} from "../../store/filter-reducer/actions";
 
 
 const Search = () => {

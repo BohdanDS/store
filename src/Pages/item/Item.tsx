@@ -2,10 +2,10 @@ import React from 'react';
 import {useRouteMatch} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {ItemType} from "../../store/Catalog-reducer/catalog-reducer";
+import {ItemType} from "../../store/catalog-reducer/catalog-reducer";
 import './index.less'
 import {Button} from "antd";
-import {AddItemToCard} from "../../store/Card-reducer/actions";
+import {AddItemToCard} from "../../store/card-reducer/actions";
 
 const Item = () => {
 

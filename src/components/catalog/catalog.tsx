@@ -1,9 +1,9 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import Card from "../Card/CardComponent";
-import {ItemType} from "../../store/Catalog-reducer/catalog-reducer";
-import {AddItemToCard, RemoveItemFromCard} from "../../store/Card-reducer/actions";
+import Article from "../article/article";
+import {ItemType} from "../../store/catalog-reducer/catalog-reducer";
+import {AddItemToCard, RemoveItemFromCard} from "../../store/card-reducer/actions";
 
 const Catalog = () => {
 
@@ -27,16 +27,16 @@ const Catalog = () => {
         itemsToShow = items.filter(item => item.available === true)
     }
 
-    // itemsToShow = items.filter(item => item.cost > minPrice)
+    // itemsToShow = items.filters(item => item.cost > minPrice)
 
 
     const dispatch = useDispatch()
 
-    const addToCard = (itemId: string) => {
+    const addToCart = (itemId: string) => {
         dispatch(AddItemToCard(itemId))
     }
 
-    const removeFromCard = (itemId: string) => {
+    const removeFromCart = (itemId: string) => {
         dispatch(RemoveItemFromCard(itemId))
     }
 
@@ -45,8 +45,8 @@ const Catalog = () => {
             {
                 itemsToShow.map(item => {
                     return (
-                        <Card key={item.id} title={item.title} price={item.cost} id={item.id} addToCard={addToCard}
-                              removeFromCard={removeFromCard}/>
+                        <Article key={item.id} title={item.title} price={item.cost} id={item.id} addToCart={addToCart}
+                                 removeFromCart={removeFromCart}/>
                     )
                 })
             }
