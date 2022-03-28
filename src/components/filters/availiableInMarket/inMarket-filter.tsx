@@ -17,7 +17,7 @@ const InMarketFilter = () => {
     return (
         <div className='availableInMarket-container'>
             <span className='availableInMarket-container__span'>Available In Market:</span>
-            <Switch defaultChecked onChange={onChange} checked={checked} className='availableInMarket-container__toggle'/>
+            <Switch defaultChecked onChange={onChange} checked={checked}/>
         </div>
     );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Card} from "antd";
 import {Link} from "react-router-dom";
 import {useHoverHandler} from "./article.hook";
+import './index.less'
 
 type ArticlePropsType = {
     title: string,
@@ -25,7 +26,7 @@ const Article = ({title, price, id, addToCart, removeFromCart}: ArticlePropsType
     const {Meta} = Card;
     return (
         <div style={{margin: '15px', position: 'relative'}} onMouseEnter={onFocus} onMouseLeave={onLooseFocus}>
-            {viewOnHover && <div style={{position: 'absolute', top: '120px', right: '70px', zIndex:'10'}}>
+            {viewOnHover && <div className= 'button-container'style={{position: 'absolute', top: '120px', right: '70px', zIndex:'10'}}>
                 <Button onClick={addItemToCard}>Add to Cart</Button>
             </div>}
             <Link to={`catalog/${id}`}>
