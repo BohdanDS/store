@@ -11,7 +11,6 @@ import Filter from '../filters/filter';
 const Header = () => {
 
     const itemInCart = useSelector<AppRootStateType, number>(state => state.cart.length)
-    console.log(itemInCart)
     return (
         <header className='header-container'>
             <div className='block-1'>
