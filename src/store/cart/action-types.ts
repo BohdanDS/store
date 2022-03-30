@@ -1,4 +1,6 @@
 export const CardActionsType = {
-    ADD_ITEM_TO_CARD: '[article] ADD_ITEM_TO_CARD',
-    REMOVE_ITEM_FROM_CARD: '[article] REMOVE_ITEM_FROM_CARD',
+    ADD_ITEM_TO_CARD: '[cart] ADD_ITEM_TO_CARD',
+    REMOVE_ITEM_FROM_CARD: '[cart] REMOVE_ITEM_FROM_CARD',
+    INCREASE_ITEM_COUNT: '[cart] INCREASE_ITEM_COUNT',
+    DECREASE_ITEM_COUNT: '[cart] DECREASE_ITEM_COUNT'
 } as const

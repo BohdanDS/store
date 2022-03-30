@@ -5,17 +5,22 @@ import {AppRootStateType} from "../../store/store";
 import {ItemType} from "../../store/catalog";
 import './index.less'
 import {Button} from "antd";
-import {AddItemToCard} from "../../store/cart/actions";
 
 const Item = () => {
 
     const id = useRouteMatch<{ id: string }>("/catalog/:id")?.params.id;
     const item = useSelector<AppRootStateType, ItemType | undefined>(state => state.catalog.find(item => item.id === id))
+    // const itemsOnCart = useSelector<AppRootStateType, ItemCardType[]>(state => state.cart)
 
     const dispatch = useDispatch()
-
+    //Вынести наверх что бы не дублировать
     const addToCard = (itemId: string) => {
-        dispatch(AddItemToCard(itemId))
+        // const targetItem = itemsOnCart.filter(item=>item.id === itemId)
+        // if (!isEmptyArray(targetItem)){
+        //     dispatch(IncreaseItemCount(itemId))
+        // }else {
+        //     dispatch(AddItemToCard(itemId))
+        // }
     }
 
     return (

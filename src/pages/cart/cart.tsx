@@ -1,9 +1,12 @@
 import Order from "../../forms/order";
+import CartArticles from "../../components/cartArticles/cartArticles";
+import './index.less'
 
 const Cart = () => {
 
     return (
-        <div>
+        <div className='cartContainer'>
+            <CartArticles/>
             <Order/>
         </div>
     );

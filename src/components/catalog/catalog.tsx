@@ -5,10 +5,12 @@ import Article from "../article/article";
 import {ItemType} from "../../store/catalog";
 import {AddItemToCard, RemoveItemFromCard} from "../../store/cart/actions";
 import Filter from "../filters/filter";
+import {ItemCardType} from "../../store/cart";
 
 const Catalog = () => {
 
     const items = useSelector<AppRootStateType, ItemType[]>(state => state.catalog)
+    const itemsOnCart = useSelector<AppRootStateType, ItemCardType>(state => state.cart)
 
     let itemsToShow = items
 
@@ -33,8 +35,15 @@ const Catalog = () => {
 
     const dispatch = useDispatch()
 
+    // Вынести наверх что бы не дублировать
     const addToCart = (itemId: string) => {
         dispatch(AddItemToCard(itemId))
+        // const targetItem = itemsOnCart.filter(item=>item.id === itemId)
+        // if (!isEmptyArray(targetItem)){
+        //     dispatch(IncreaseItemCount(itemId))
+        // }else {
+        //     dispatch(AddItemToCard(itemId))
+        // }
     }
 
     const removeFromCart = (itemId: string) => {
@@ -48,7 +57,8 @@ const Catalog = () => {
                 {
                     itemsToShow.map(item => {
                         return (
-                            <Article key={item.id} title={item.title} price={item.cost} id={item.id} addToCart={addToCart}
+                            <Article key={item.id} title={item.title} price={item.cost} id={item.id}
+                                     addToCart={addToCart}
                                      removeFromCart={removeFromCart}/>
                         )
                     })

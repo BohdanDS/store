@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {ErrorMessage, Field, FieldAttributes, useFormikContext} from "formik";
 import {Input} from "antd";
 import textError from "./text-error";
@@ -8,7 +8,7 @@ type TextAreaComponentPropsType = {
     label: string
 }
 
-const TextAreaComponent = ({name, label}:TextAreaComponentPropsType) => {
+const TextAreaComponent = ({name, label}: TextAreaComponentPropsType) => {
 
     const {handleChange} = useFormikContext()
 
@@ -19,7 +19,7 @@ const TextAreaComponent = ({name, label}:TextAreaComponentPropsType) => {
                 {(el: FieldAttributes<any>) => {
                     return (
                         <>
-                            <Input.TextArea value={el.field.value} onChange={handleChange} id={name} name = {name}/>
+                            <Input.TextArea value={el.field.value} onChange={handleChange} id={name} name={name}/>
                             <ErrorMessage name={name} component={textError}/>
                         </>
                     )

@@ -2,29 +2,28 @@ import * as actions from './actions'
 import {InferValueTypes} from "../../models/common";
 import {CardActionsType} from "./action-types";
 
-const initialState: InitialStateType = []
+const initialState: ItemCardType = {}
 
 export type ItemCardType = {
-    'id': string
+    [id: string]: number
 }
 
-export type InitialStateType = Array<ItemCardType>
+export type InitialStateType = ItemCardType
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
 
 export default function reducer(state = initialState, action: ActionTypes): InitialStateType {
     switch (action.type) {
-        case CardActionsType.REMOVE_ITEM_FROM_CARD: {
-            const stateCopy = state.filter((item) => item.id !== action.itemId)
-            return [
-                ...stateCopy,
-            ]
-        }
         case CardActionsType.ADD_ITEM_TO_CARD:
-            return [
-                ...state, {id: action.itemId}
-            ]
+            return {...state, [action.itemId]: state[action.itemId] ? ++state[action.itemId] : 1}
+        case CardActionsType.DECREASE_ITEM_COUNT: {
+            return {...state, [action.itemId]: --state[action.itemId]}
+        }
+        case CardActionsType.REMOVE_ITEM_FROM_CARD: {
+           delete state[action.itemId]
+            return {...state}
+        }
         default:
             return state
     }
