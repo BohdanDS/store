@@ -1,27 +1,13 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import './App.less';
-import {BrowserRouter, Redirect, Route, Switch,} from "react-router-dom";
-import {pageRoutes} from "./routing/paths";
-import {Spin} from "antd";
-import Header from "./components/header/header";
-import Catalog from "./components/catalog/catalog";
-import Item from "./pages/item/Item";
+import PublicRoutes from "./routing/publicRoutes";
+import AuthorizedRoutes from "./routing/authorizedRoutes";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Suspense fallback={<Spin/>}>
-                <Header/>
-                <Switch>
-                    {/*<Route path='path="/catalog/:id' component={Item} strict exact>{Item}</Route>*/}
-                    {pageRoutes.map(({path, Component}) =>
-                        (<Route key={path} path={path} component={Component} strict exact/>)
-                    )}
-                    <Redirect to={'/'}/>
-                </Switch>
-            </Suspense>
-        </BrowserRouter>
-    );
+
+    const authorized = true
+    return authorized ? <AuthorizedRoutes/> : <PublicRoutes/>
+
 }
 
 export default App;
