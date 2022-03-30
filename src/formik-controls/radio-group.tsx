@@ -19,17 +19,11 @@ const RadioGroup = ({values, label, name}: RadioGroupPropsType) => {
 
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
-        console.log('123')
-        // console.log(e.target.value)
     };
 
     return (
         <>
             <h4>{label}</h4>
-            {/*<label htmlFor={name}>{values[0]}<Field type='radio' name={name}></Field></label>*/}
-            {/*<label htmlFor={name}>{values[1]}<Field type='radio' name={name}></Field></label>*/}
-
-
             <Field type='radio' id={name} name={name}>
                 {(el: FieldAttributes<any>) => {
                     return (
