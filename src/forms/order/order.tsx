@@ -18,6 +18,7 @@ const Order = () => {
         mobilePhone: ''
     }
     const validationSchema = Yup.object({
+        shipping:Yup.string().required('Please specify the way of shipping'),
         city: Yup.string().required('Please enter a city'),
         addressLine: Yup.string().required('Please enter a address'),
         firstName: Yup.string().required('Please enter First name'),
