@@ -1,4 +1,4 @@
-import Order from "../../forms/order";
+import Order from "../../forms/order/order";
 import CartArticles from "../../components/cartArticles/cartArticles";
 import './index.less'
 

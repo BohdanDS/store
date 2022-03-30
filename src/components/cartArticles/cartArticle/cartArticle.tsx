@@ -48,7 +48,7 @@ const CartArticle = ({id, checkboxHandler, values}: CartArticleType) => {
                     <Checkbox onChange={onChange} checked={checkboxValue} />
                     <h3 className='cartArticle-container__articleTitle'>{articleOnCart.title}</h3>
                 </div>
-                <div className='cartArticle-container__dividerBlock'></div>
+                <div className='cartArticle-container__dividerBlock'/>
                 <h2>{articleOnCart.cost}$</h2>
                 <p>{articleOnCart.description}</p>
                 <div className='cartArticle-container__countBlock'>
