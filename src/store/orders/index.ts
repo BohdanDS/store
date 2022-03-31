@@ -28,6 +28,9 @@ export default function reducer(state = initialState, action: ActionTypes): Orde
         case OrdersActionType.CREATE_NEW_ORDER: {
             return {...state, [action.payload.id]: {...action.payload}}
         }
+        case OrdersActionType.CHANGE_ORDER_STATUS:{
+            return {...state, [action.payload.id]: {...state[action.payload.id], status: action.payload.status}}
+        }
         default:
             return state
     }

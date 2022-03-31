@@ -5,6 +5,7 @@ import {AppRootStateType} from "../../store/store";
 import {ItemType} from "../../store/catalog";
 import './index.less'
 import {Button} from "antd";
+import {AddItemToCard} from "../../store/cart/actions";
 
 const Item = () => {
 
@@ -15,12 +16,7 @@ const Item = () => {
     const dispatch = useDispatch()
     //Вынести наверх что бы не дублировать
     const addToCard = (itemId: string) => {
-        // const targetItem = itemsOnCart.filter(item=>item.id === itemId)
-        // if (!isEmptyArray(targetItem)){
-        //     dispatch(IncreaseItemCount(itemId))
-        // }else {
-        //     dispatch(AddItemToCard(itemId))
-        // }
+        dispatch(AddItemToCard(itemId))
     }
 
     return (

@@ -11,12 +11,15 @@ import {AppRootStateType} from "../../store/store";
 import {ItemCardType} from "../../store/cart";
 import {ResetCart} from "../../store/cart/actions";
 import {ORDER_STATUSES} from "../../models/feels";
+import {useHistory} from "react-router-dom";
 
 
 const Order = () => {
 
     const dispatch = useDispatch()
     const itemsOnCart = useSelector<AppRootStateType, ItemCardType>(state => state.cart)
+
+    const history = useHistory()
 
     const initialState = {
         shipping: '',
@@ -38,6 +41,7 @@ const Order = () => {
     const onSubmit = (values: any) => {
         dispatch(CreateNewOrder(uuidv4(), Date(), 'test@gmail.com', ORDER_STATUSES.ORDER_IN_PROGRESS, itemsOnCart, values))
         dispatch(ResetCart())
+        history.push('/my-orders')
         console.log('Form data', values)
     }
 

@@ -14,3 +14,11 @@ export const CreateNewOrder = (id: string, date:string, userEmail:string, status
         delivery
     }
 })
+
+export const ChangeOrderStatus = (id:string, status:OrderStatusType) => ({
+    type: OrdersActionType.CHANGE_ORDER_STATUS,
+    payload: {
+        id,
+        status
+    }
+})
