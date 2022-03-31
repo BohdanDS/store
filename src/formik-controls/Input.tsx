@@ -7,10 +7,11 @@ import textError from "./text-error";
 type InputComponentPropsType = {
     name: string
     label: string
+    type?:string
 }
 
 
-const InputComponent: FC<InputComponentPropsType> = ({label, name}) => {
+const InputComponent: FC<InputComponentPropsType> = ({label, name, type}) => {
 
     const {handleChange} = useFormikContext()
     return (
@@ -20,7 +21,7 @@ const InputComponent: FC<InputComponentPropsType> = ({label, name}) => {
                 {(el: FieldAttributes<any>) => {
                     return (
                         <>
-                            <Input value={el.field.value} onChange={handleChange} id={name}/>
+                            <Input type = {type? type : 'input'} value={el.field.value} onChange={handleChange} id={name}/>
                             <ErrorMessage name={name} component={textError}/>
                         </>
                     )

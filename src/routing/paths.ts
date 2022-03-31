@@ -1,5 +1,5 @@
 import {ComponentType} from "react";
-import Login from "../pages/login/login";
+import Login from "../modals/login/login";
 import Item from "../pages/item/Item";
 import Catalog from "../components/catalog/catalog";
 import Cart from "../pages/cart/cart";
