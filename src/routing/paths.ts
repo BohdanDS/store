@@ -4,6 +4,8 @@ import Item from "../pages/item/Item";
 import Catalog from "../components/catalog/catalog";
 import Cart from "../pages/cart/cart";
 import error from "../pages/404/error";
+import Error from "../pages/404/error";
+import OrderHistory from "../pages/ordersHistory/orderHistory";
 
 export enum PUBLIC_PATHS {
     APP = '/',
@@ -12,7 +14,6 @@ export enum PUBLIC_PATHS {
     REGISTRATION = '/registration',
     SEARCH_RESULT = '/result',
     ITEM_PAGE = '/catalog/:id',
-    CART = '/cart'
 }
 
 export enum AUTHORIZED_PATHS {
@@ -22,7 +23,8 @@ export enum AUTHORIZED_PATHS {
     REGISTRATION = '/registration',
     SEARCH_RESULT = '/result',
     ITEM_PAGE = '/catalog/:id',
-    CART = '/cart'
+    CART = '/cart',
+    ORDER_HISTORY = '/my-orders',
 }
 
 export enum ADMIN_PATCH {
@@ -33,7 +35,7 @@ export enum ADMIN_PATCH {
     SEARCH_RESULT = '/result',
     ITEM_PAGE = '/catalog/:id',
     CART = '/cart',
-    ADMIN_PAGE= '/cms/edit'
+    ADMIN_PAGE = '/cms/edit'
 }
 
 export type Routes = {
@@ -50,20 +52,20 @@ export const publicRoute: Routes[] = [
     {path: PUBLIC_PATHS.APP, Component: Catalog},
     {path: PUBLIC_PATHS.LOGIN, Component: Login},
     {path: PUBLIC_PATHS.ITEM_PAGE, Component: Item},
-    // {path: PUBLIC_PATHS.CART, Component: Cart},
     {path: PUBLIC_PATHS.NOT_FOUND, Component: error}
 ]
 export const authorizedRoute: Routes[] = [
-    {path: PUBLIC_PATHS.APP, Component: Catalog},
-    {path: PUBLIC_PATHS.LOGIN, Component: Login},
-    {path: PUBLIC_PATHS.ITEM_PAGE, Component: Item},
-    {path: PUBLIC_PATHS.CART, Component: Cart},
-    {path: PUBLIC_PATHS.NOT_FOUND, Component: error}
+    {path: ADMIN_PATCH.APP, Component: Catalog},
+    {path: AUTHORIZED_PATHS.LOGIN, Component: Login},
+    {path: AUTHORIZED_PATHS.ITEM_PAGE, Component: Item},
+    {path: AUTHORIZED_PATHS.CART, Component: Cart},
+    {path: AUTHORIZED_PATHS.NOT_FOUND, Component: Error},
+    {path: AUTHORIZED_PATHS.ORDER_HISTORY, Component: OrderHistory}
 ]
 export const adminRoute: Routes[] = [
-    {path: PUBLIC_PATHS.APP, Component: Catalog},
-    {path: PUBLIC_PATHS.LOGIN, Component: Login},
-    {path: PUBLIC_PATHS.ITEM_PAGE, Component: Item},
-    {path: PUBLIC_PATHS.CART, Component: Cart},
-    {path: PUBLIC_PATHS.NOT_FOUND, Component: error}
+    {path: ADMIN_PATCH.APP, Component: Catalog},
+    {path: ADMIN_PATCH.LOGIN, Component: Login},
+    {path: ADMIN_PATCH.ITEM_PAGE, Component: Item},
+    // {path: PUBLIC_PATHS.CART, Component: Cart},
+    {path: ADMIN_PATCH.NOT_FOUND, Component: error}
 ]

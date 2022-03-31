@@ -23,6 +23,9 @@ export default function reducer(state = initialState, action: ActionTypes): Init
             delete state[action.itemId]
             return {...state}
         }
+        case CardActionsType.RESET_CART: {
+            return {}
+        }
         default:
             return state
     }

@@ -20,3 +20,7 @@ export const RemoveItemFromCard = (itemId: string) => ({
     type: CardActionsType.REMOVE_ITEM_FROM_CARD,
     itemId
 })
+
+export const ResetCart = ()=>({
+    type: CardActionsType.RESET_CART
+})

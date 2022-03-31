@@ -1,13 +1,15 @@
-import {combineReducers, createStore, compose} from 'redux'
+import {combineReducers, compose, createStore} from 'redux'
 import catalog from "./catalog";
 import filter from "./filter";
 import cart from "./cart";
+import order from "./orders";
 
 
 export const rootReducer = combineReducers({
         cart: cart,
         catalog: catalog,
-        filter: filter
+        filter: filter,
+        order: order
     }
 )
 
@@ -19,6 +21,6 @@ declare global {
 }
 const composeEnhancers = (IS_BROWSER && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-export const store = createStore(rootReducer,composeEnhancers())
+export const store = createStore(rootReducer, composeEnhancers())
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
