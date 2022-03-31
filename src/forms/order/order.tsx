@@ -10,6 +10,7 @@ import {v4 as uuidv4} from 'uuid';
 import {AppRootStateType} from "../../store/store";
 import {ItemCardType} from "../../store/cart";
 import {ResetCart} from "../../store/cart/actions";
+import {ORDER_STATUSES} from "../../models/feels";
 
 
 const Order = () => {
@@ -35,7 +36,7 @@ const Order = () => {
         mobilePhone: Yup.string().required('Please enter mobile phone')
     })
     const onSubmit = (values: any) => {
-        dispatch(CreateNewOrder(uuidv4(), Date(), 'test@gmail.com', 'inProcess', itemsOnCart, values))
+        dispatch(CreateNewOrder(uuidv4(), Date(), 'test@gmail.com', ORDER_STATUSES.ORDER_IN_PROGRESS, itemsOnCart, values))
         dispatch(ResetCart())
         console.log('Form data', values)
     }

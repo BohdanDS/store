@@ -3,9 +3,10 @@ import {InferValueTypes} from "../../models/common";
 import * as actions from "./actions";
 import {OrdersActionType} from "./action-types";
 import {IOrderForm} from "../../models/interfaces";
+import {ORDER_STATUSES} from "../../models/feels";
 
 const initialState: OrdersType = {}
-export type OrderStatusType = 'inProcess' | 'paid' | 'onTheWay' | 'Finished';
+export type OrderStatusType = ORDER_STATUSES
 
 
 type OrderType = {

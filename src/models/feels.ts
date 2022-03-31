@@ -9,3 +9,10 @@ export type TFells = {
 }
 
 export type TInput = Required<Omit<TFells, 'placeholder'>>
+
+export enum ORDER_STATUSES {
+    ORDER_IN_PROGRESS = 'In Progress',
+    ORDER_PAID = 'Paid',
+    ORDER_ON_THE_WAY = 'on The Way',
+    ORDER_FINISHED = 'Finished'
+}

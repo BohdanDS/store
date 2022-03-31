@@ -1,84 +1,61 @@
 import React from 'react';
-import { Table, Tag, Space } from 'antd';
+import {Space, Table} from 'antd';
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../store/store";
+import {OrdersType} from "../../store/orders";
 
 const OrderHistory = () => {
+
+    const ordersData = useSelector<AppRootStateType, OrdersType>(state => state.order)
+    const orderIds = Object.keys(ordersData)
+
     const columns = [
         {
-            title: 'Order ID',
-            dataIndex: 'key',
-            key: 'key',
-            // render: text => <a>{text}</a>,
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
         },
         {
-            title: 'Add',
-            dataIndex: 'age',
-            key: 'age',
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+        },
+        {
+            title: 'City',
+            dataIndex: 'city',
+            key: 'city',
         },
         {
             title: 'Address',
-            dataIndex: 'address',
             key: 'address',
+            dataIndex: 'address',
         },
         {
-            title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            // render: tags => (
-            //     <>
-            //         {tags.map(tag => {
-            //             let color = tag.length > 5 ? 'geekblue' : 'green';
-            //             if (tag === 'loser') {
-            //                 color = 'volcano';
-            //             }
-            //             return (
-            //                 <Tag color={color} key={tag}>
-            //                     {tag.toUpperCase()}
-            //                 </Tag>
-            //             );
-            //         })}
-            //     </>
-            // ),
-        },
-        {
-            title: 'Action',
-            key: 'action',
-            render: (text:string, record:{name:string}) => (
-                <Space size="middle">
-                    <a>Invite {record.name}</a>
-                    <a>Delete</a>
-                </Space>
-            ),
+            title: 'Status',
+            key: 'status',
+            dataIndex: 'status',
         },
     ];
 
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
-    ];
+    const order =
+        orderIds.map(id=>{
+            return(
+                {
+                    name:`${ordersData[id].delivery.firstName} ${(ordersData[id].delivery.lastName)}`,
+                    email:ordersData[id].userEmail,
+                    address:ordersData[id].delivery.addressLine,
+                    // items: ordersData[id].items,
+                    city:ordersData[id].delivery.city,
+                    status:ordersData[id].status
+                }
+            )
+        })
 
+    console.log(order)
 
     return (
         <div>
-            <Table columns={columns} dataSource={data} />,
+            <Table columns={columns} dataSource={order}/>,
         </div>
     );
 };
