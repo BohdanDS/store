@@ -7,3 +7,12 @@ export interface IOrderForm {
     textArea: string,
     mobilePhone: string
 }
+
+export interface IArticle {
+    id:string
+    price:string
+    image:string
+    title:string
+    description:string
+}
+

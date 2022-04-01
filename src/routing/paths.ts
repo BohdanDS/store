@@ -1,11 +1,12 @@
 import {ComponentType} from "react";
-import Login from "../modals/login/login";
+import Login from "../modals/auth/login";
 import Item from "../pages/item/Item";
 import Catalog from "../components/catalog/catalog";
 import Cart from "../pages/cart/cart";
 import error from "../pages/404/error";
 import Error from "../pages/404/error";
 import OrderHistory from "../pages/ordersHistory/orderHistory";
+import admin from "../pages/admin/admin";
 
 export enum PUBLIC_PATHS {
     APP = '/',
@@ -35,7 +36,7 @@ export enum ADMIN_PATCH {
     SEARCH_RESULT = '/result',
     ITEM_PAGE = '/catalog/:id',
     CART = '/cart',
-    ADMIN_PAGE = '/cms/edit'
+    ADMIN_PAGE = '/cms/edit',
 }
 
 export type Routes = {
@@ -64,8 +65,10 @@ export const authorizedRoute: Routes[] = [
 ]
 export const adminRoute: Routes[] = [
     {path: ADMIN_PATCH.APP, Component: Catalog},
-    {path: ADMIN_PATCH.LOGIN, Component: Login},
-    {path: ADMIN_PATCH.ITEM_PAGE, Component: Item},
-    // {path: PUBLIC_PATHS.CART, Component: Cart},
-    {path: ADMIN_PATCH.NOT_FOUND, Component: error}
+    {path: AUTHORIZED_PATHS.LOGIN, Component: Login},
+    {path: AUTHORIZED_PATHS.ITEM_PAGE, Component: Item},
+    {path: AUTHORIZED_PATHS.CART, Component: Cart},
+    {path: AUTHORIZED_PATHS.NOT_FOUND, Component: Error},
+    {path: AUTHORIZED_PATHS.ORDER_HISTORY, Component: OrderHistory},
+    {path: ADMIN_PATCH.ADMIN_PAGE, Component: admin}
 ]

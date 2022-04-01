@@ -16,40 +16,38 @@ const CartArticles = () => {
     const defaultCheckedList: string[] = [];
     const plainOptions = [...articlesInCart]
 
-    const [checkedList, setCheckedList] = useState(defaultCheckedList);
-    const [checkAll, setCheckAll] = useState(false);
-
     const checkboxHandler = (list: any) => {
-        setCheckedList(list)
-        setCheckAll(list.length === plainOptions.length);
+        setCheckItems({checkedList: list, checkAll: list.length === plainOptions.length})
     };
 
     const onCheckAllChange = (e: any) => {
-        setCheckedList(e.target.checked ? plainOptions : []);
-        setCheckAll(e.target.checked);
+        setCheckItems({checkedList: e.target.checked ? plainOptions : [], checkAll: e.target.checked})
     };
 
+    const [checkItems, setCheckItems] = useState({checkedList: defaultCheckedList, checkAll: false})
+
     const removeItemHandler = () => {
-        checkedList.forEach(article => {
+        checkItems.checkedList.forEach(article => {
             dispatch(RemoveItemFromCard(article))
         })
     }
-
     return (
         <div className='cartArticles-container'>
             {!isEmptyArray(articlesInCart) ? <div>
                 {
                     articlesInCart.map(id => {
                         return (
-                            <CartArticle id={id} key={id} checkboxHandler={checkboxHandler} values={checkedList}/>
+                            <CartArticle id={id} key={id} checkboxHandler={checkboxHandler}
+                                         values={checkItems.checkedList}/>
                         )
                     })
                 }
                 <div className='cartArticles-container__removeBlock'>
-                    <Checkbox onChange={onCheckAllChange} checked={checkAll}>
+                    <Checkbox onChange={onCheckAllChange} checked={checkItems.checkAll}>
                         Select All
                     </Checkbox>
-                    <Button disabled={isEmptyArray(checkedList)} onClick={removeItemHandler}>Remove from Cart</Button>
+                    <Button disabled={isEmptyArray(checkItems.checkedList)} onClick={removeItemHandler}>Remove from
+                        Cart</Button>
                 </div>
             </div> : <div>
                 <h4>Cart is empty</h4>

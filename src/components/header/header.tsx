@@ -5,7 +5,7 @@ import {AmazonOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {Link} from "react-router-dom";
-import Login from "../../modals/login/login";
+import Login from "../../modals/auth/login";
 
 
 const Header = () => {

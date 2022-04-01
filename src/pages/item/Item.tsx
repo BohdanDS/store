@@ -11,10 +11,9 @@ const Item = () => {
 
     const id = useRouteMatch<{ id: string }>("/catalog/:id")?.params.id;
     const item = useSelector<AppRootStateType, ItemType | undefined>(state => state.catalog.find(item => item.id === id))
-    // const itemsOnCart = useSelector<AppRootStateType, ItemCardType[]>(state => state.cart)
-
     const dispatch = useDispatch()
-    //Вынести наверх что бы не дублировать
+
+
     const addToCard = (itemId: string) => {
         dispatch(AddItemToCard(itemId))
     }

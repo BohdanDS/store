@@ -4,7 +4,7 @@ import {LoginOutlined} from "@ant-design/icons";
 import LoginForm from "../../forms/login/login";
 import Registration from "../../forms/registration/registration";
 
-const Login = () => {
+const Auth = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [switchModal, setSwitchModal] = useState(true)
 
@@ -33,4 +33,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Auth;

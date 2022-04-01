@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.less';
 import PublicRoutes from "./routing/publicRoutes";
-import AuthorizedRoutes from "./routing/authorizedRoutes";
+import AdminRouting from "./routing/adminRouting";
 
 function App() {
 
     const authorized = true
-    return authorized ? <AuthorizedRoutes/> : <PublicRoutes/>
+    return authorized ? <AdminRouting/> : <PublicRoutes/>
 
 }
 

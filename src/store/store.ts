@@ -3,13 +3,15 @@ import catalog from "./catalog";
 import filter from "./filter";
 import cart from "./cart";
 import order from "./orders";
+import article from './article'
 
 
 export const rootReducer = combineReducers({
         cart: cart,
         catalog: catalog,
         filter: filter,
-        order: order
+        order: order,
+        article: article
     }
 )
 
