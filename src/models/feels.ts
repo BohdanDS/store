@@ -19,7 +19,15 @@ export enum ORDER_STATUSES {
 }
 
 export enum USER_STATUSES {
-    PUBLIC_STATUS   =  'public_user',
-    AUTHORIZED_USER= 'authorized_user',
-    ADMIN_USER='admin_user'
+    PUBLIC_STATUS = 'public_user',
+    AUTHORIZED_USER = 'authorized_user',
+    ADMIN_USER = 'admin_user'
+}
+
+export type TFilterStateType = {
+    minPrice: number
+    maxPrice: number
+    producers: Array<string>
+    inMarket: boolean,
+    searchQuery: string
 }

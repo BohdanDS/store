@@ -1,21 +1,31 @@
 import React from 'react';
 import {Button, Space, Table} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/store";
-import {OrdersType} from "../../store/orders";
 import {ORDER_STATUSES, USER_STATUSES} from "../../models/feels";
 import {ChangeOrderStatus} from "../../store/orders/actions";
 import OrderStatus from "../../components/filters/orderStatus/orderStatus";
 import OrderDate from "../../components/filters/orderDate/orderDate";
+import {ordersByStatus} from "../../store/orders/selections";
+
+type keyType = {
+    key: string,
+    name: string,
+    email: string,
+    address: string,
+    city: string,
+    status: ORDER_STATUSES
+}
 
 const OrderHistory = () => {
 
+    //Заглушки
     const role = USER_STATUSES.ADMIN_USER
+    const filterValue = ORDER_STATUSES.ORDER_PAID
+
+
+    const userOrders = useSelector(ordersByStatus(filterValue))
 
     const dispatch = useDispatch()
-    const ordersData = useSelector<AppRootStateType, OrdersType>(state => state.order)
-    const orderIds = Object.keys(ordersData)
-    console.log(orderIds)
 
     const markAsPaidHandler = (key: string, role: string, status: string) => {
         if (status === ORDER_STATUSES.ORDER_IN_PROGRESS && role === USER_STATUSES.AUTHORIZED_USER) {
@@ -27,7 +37,7 @@ const OrderHistory = () => {
         }
     }
 
-    const actionName = (key:any,role: string, status: string) => {
+    const actionName = (key: keyType, role: string, status: string) => {
         if (status === ORDER_STATUSES.ORDER_IN_PROGRESS) {
             return <Button onClick={() => markAsPaidHandler(key.key, role, key.status)}>Pay</Button>
         } else if (status === ORDER_STATUSES.ORDER_PAID && role === USER_STATUSES.ADMIN_USER) {
@@ -64,7 +74,7 @@ const OrderHistory = () => {
             title: 'Status',
             key: 'status',
             dataIndex: 'status',
-            render: (status: string, key: any) => (
+            render: (status: string, key: keyType) => (
                 <Space size="middle">
                     <>{status}</>
                     {actionName(key, role, status)}
@@ -72,25 +82,22 @@ const OrderHistory = () => {
         },
     ];
 
-    const order =
-        orderIds.map(id => {
-            return (
-                {
-                    key: id,
-                    name: `${ordersData[id].delivery.firstName} ${(ordersData[id].delivery.lastName)}`,
-                    email: ordersData[id].userEmail,
-                    address: ordersData[id].delivery.addressLine,
-                    // items: ordersData[id].items,
-                    city: ordersData[id].delivery.city,
-                    status: ordersData[id].status
-                }
-            )
+    const Items = userOrders.map(order => {
+        return ({
+            key: order.id,
+            name: `${order.delivery.firstName} ${order.delivery.lastName}`,
+            email: order.userEmail,
+            address: order.delivery.addressLine,
+            city: order.delivery.city,
+            status: order.status
         })
+    })
+
     return (
         <div>
             <OrderDate/>
             <OrderStatus/>
-            <Table columns={columns} dataSource={order}/>,
+            <Table columns={columns} dataSource={Items}/>,
         </div>
     );
 };
