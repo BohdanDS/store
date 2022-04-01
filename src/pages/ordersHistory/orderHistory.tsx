@@ -22,9 +22,7 @@ const OrderHistory = () => {
     const role = USER_STATUSES.ADMIN_USER
     const filterValue = ORDER_STATUSES.ORDER_PAID
 
-
     const userOrders = useSelector(ordersByStatus(filterValue))
-
     const dispatch = useDispatch()
 
     const markAsPaidHandler = (key: string, role: string, status: string) => {
