@@ -47,7 +47,7 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
 
     const handlerButton = (values: InitialState) => {
         setIsModalVisible(false)
-        dispatch(CreateNewArticle({...values, added_date: new Date().toDateString(), available: true, id: uuidv4()}))
+        dispatch(CreateNewArticle({...values, added_date: new Date().toDateString(), available: true, id: uuidv4(), rating:0}))
         console.log(values)
     }
 

@@ -6,6 +6,7 @@ import {ItemType} from "../../store/catalog";
 import './index.less'
 import {Button} from "antd";
 import {AddItemToCard} from "../../store/cart/actions";
+import Rating from "../../components/rating/rating";
 
 const Item = () => {
 
@@ -28,6 +29,7 @@ const Item = () => {
                     </div>
                     <div className='item-short-description'>
                         <h2>{item.title}</h2>
+                        <Rating rating={item.rating} articleId={id || '1'}/>
                         <div>
                             {item.available ?
                                 <div>

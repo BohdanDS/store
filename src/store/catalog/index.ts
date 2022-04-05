@@ -12,7 +12,8 @@ const initialState: InitialStateType = [
         "added_date": "5/7/2018",
         "maker": "ZooParadise",
         "category": "fishes",
-        "subcategory": "Фильрация"
+        "subcategory": "Фильрация",
+        'rating':3.8
     },
     {
         "id": "e474c35a-17db-4d9f-be53-863a63a683fd",
@@ -23,7 +24,8 @@ const initialState: InitialStateType = [
         "added_date": "5/28/2018",
         "maker": "ZooParadise",
         "category": "birds",
-        "subcategory": "Поилки, кормушки"
+        "subcategory": "Поилки, кормушки",
+        'rating':4.3
     },
     {
         "id": "37853343-a4ee-451e-add1-ed32bc2a9270",
@@ -34,7 +36,8 @@ const initialState: InitialStateType = [
         "added_date": "4/23/2018",
         "maker": "RoyalConin",
         "category": "cats",
-        "subcategory": "Витамины"
+        "subcategory": "Витамины",
+        'rating':4
     },
     {
         "id": "efdfb6fe-d77f-4ae7-a30e-ce17f2848125",
@@ -45,7 +48,8 @@ const initialState: InitialStateType = [
         "added_date": "7/12/2017",
         "maker": "Дружок",
         "category": "dogs",
-        "subcategory": "Консервы"
+        "subcategory": "Консервы",
+        'rating':3
     },
     {
         "id": "60a09064-57b4-4725-9e45-c9f70c81dbfc",
@@ -56,7 +60,8 @@ const initialState: InitialStateType = [
         "added_date": "6/20/2018",
         "maker": "Рога и копыта",
         "category": "dogs",
-        "subcategory": "Сухой корм"
+        "subcategory": "Сухой корм",
+        'rating':4.9
     },
     {
         "id": "322621f3-1376-4970-ad44-9b78399beb8b",
@@ -67,7 +72,8 @@ const initialState: InitialStateType = [
         "added_date": "10/18/2017",
         "maker": "ZooParadise",
         "category": "fishes",
-        "subcategory": "Корма"
+        "subcategory": "Корма",
+        'rating':3.8
     },
     {
         "id": "65ba003e-4253-4a1c-a579-6f4c19fa944b",
@@ -78,7 +84,8 @@ const initialState: InitialStateType = [
         "added_date": "9/15/2017",
         "maker": "Fisherman",
         "category": "rodents",
-        "subcategory": "Средства по уходу"
+        "subcategory": "Средства по уходу",
+        'rating':3.5
     },
     {
         "id": "dc97b1ac-66c7-414d-a9c9-20109e20124b",
@@ -89,7 +96,8 @@ const initialState: InitialStateType = [
         "added_date": "3/12/2018",
         "maker": "Рога и копыта",
         "category": "rodents",
-        "subcategory": "Сухой корм"
+        "subcategory": "Сухой корм",
+        'rating':5
     },
 ]
 
@@ -104,6 +112,7 @@ export type ItemType = {
     "maker": string
     "category": string
     "subcategory": string
+    'rating':number
 }
 
 export type InitialStateType = ItemType[]

@@ -7,6 +7,7 @@ import {ItemType} from "../../store/catalog";
 import {Button, Pagination} from "antd";
 import {Link} from "react-router-dom";
 import './index.less'
+import Rating from "../rating/rating";
 
 type Props = {
     addToCart?: (articleId: string) => void
@@ -14,7 +15,7 @@ type Props = {
 
 const ItemsMain: FC<Props> = ({addToCart}) => {
 
-    useEffect(()=>{
+    useEffect(() => {
         setListView(localStorage.getItem('ListView') === 'true')
     })
 
@@ -26,8 +27,6 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
         setListView(listView)
     }
 
-
-
     return (
         <>
             <div className='viewControlsBlock'><ViewControls callback={changeView} value={listView}/></div>
@@ -36,7 +35,7 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
                         items.map(item => {
                             return (
                                 <ArticleList key={item.id} title={item.title} price={item.cost} id={item.id}
-                                             addToCart={addToCart}/>
+                                             addToCart={addToCart} rating={item.rating}/>
                             )
                         })
                     }
@@ -59,10 +58,10 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
                                     {addToCart && <Button onClick={() => addToCart(item.id)}>Add to Cart</Button>}
                                     <div className="listArticle-container__description">
                                         <p>{item.description}</p>
+                                        <Rating rating={item.rating} articleId={item.id}/>
                                     </div>
                                 </div>
                             </div>
-
                         )
                     })}
                 </>
