@@ -35,15 +35,8 @@ const Catalog = () => {
 
     const dispatch = useDispatch()
 
-    // Вынести наверх что бы не дублировать
     const addToCart = (itemId: string) => {
         dispatch(AddItemToCard(itemId))
-        // const targetItem = itemsOnCart.filter(item=>item.id === itemId)
-        // if (!isEmptyArray(targetItem)){
-        //     dispatch(IncreaseItemCount(itemId))
-        // }else {
-        //     dispatch(AddItemToCard(itemId))
-        // }
     }
 
     const removeFromCart = (itemId: string) => {

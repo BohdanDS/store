@@ -3,21 +3,22 @@ import {Button, Card} from "antd";
 import {Link} from "react-router-dom";
 import {useHoverHandler} from "./article.hook";
 import './index.less'
+import { Pagination } from 'antd';
 
 type ArticlePropsType = {
     title: string,
     price: number
     id: string
-    addToCart: (id: string) => void
-    removeFromCart: (id: string) => void
+    addToCart?: (id: string) => void
+    removeFromCart?: (id: string) => void
 }
 
-const Article = ({title, price, id, addToCart, removeFromCart}: ArticlePropsType) => {
+const ArticleList = ({title, price, id, addToCart, removeFromCart}: ArticlePropsType) => {
 
     const {viewOnHover, onFocus, onLooseFocus} = useHoverHandler()
 
     const addItemToCard = () => {
-        addToCart(id)
+        addToCart && addToCart(id)
     }
     // const removeItemFromCart = () => {
     //     removeFromCard(id)
@@ -26,7 +27,8 @@ const Article = ({title, price, id, addToCart, removeFromCart}: ArticlePropsType
     const {Meta} = Card;
     return (
         <div style={{margin: '15px', position: 'relative'}} onMouseEnter={onFocus} onMouseLeave={onLooseFocus}>
-            {viewOnHover && <div className= 'button-container'style={{position: 'absolute', top: '120px', right: '70px', zIndex:'10'}}>
+            {viewOnHover && addToCart && <div className='button-container'
+                                 style={{position: 'absolute', top: '120px', right: '70px', zIndex: '10'}}>
                 <Button onClick={addItemToCard}>Add to Cart</Button>
             </div>}
             <Link to={`catalog/${id}`}>
@@ -42,4 +44,4 @@ const Article = ({title, price, id, addToCart, removeFromCart}: ArticlePropsType
     );
 };
 
-export default Article;
+export default ArticleList;

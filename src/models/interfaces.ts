@@ -11,7 +11,7 @@ export interface IOrderForm {
 export interface IArticle {
     id:string
     price:string
-    image:string
+    uploadedImages:any
     title:string
     description:string
 }

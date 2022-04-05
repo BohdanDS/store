@@ -5,7 +5,7 @@ import {AmazonOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {Link} from "react-router-dom";
-import Login from "../../modals/auth/login";
+import Auth from "../../modals/auth/login";
 
 
 const Header = () => {
@@ -24,7 +24,7 @@ const Header = () => {
             </div>
             <div className='block-3'>
                 {/*<Button type='link'>Login</Button>*/}
-                <Link to={'/*'} component={Login}/>
+                <Link to={'/*'} component={Auth}/>
                 <Link to={'/cart'}>
                     {itemsInCart !== 0 && <span className='cartItem'>{itemsInCart}</span>}
                     <ShoppingCartOutlined/>

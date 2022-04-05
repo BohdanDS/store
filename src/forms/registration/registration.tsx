@@ -38,8 +38,6 @@ const RegistrationForm = ({onCancel}: LoginFormType) => {
                     <InputComponent name={'email'} label={'Email'}/>
                     <InputComponent name={'password'} label={'Password'}/>
                     <InputComponent name={'passwordConfirmation'} label={'Confirm password'}/>
-                    <Button type={'default'} onClick={onCancel}>Cancel</Button>
-                    <Button htmlType="submit" type={'default'}>Submit</Button>
                 </Form>
             </Formik>
         </div>

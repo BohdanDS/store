@@ -1,11 +1,13 @@
-import React from 'react';
-import {Button, Space, Table} from 'antd';
+import React, {ChangeEvent, useState} from 'react';
+import {Button, Input, Space, Table} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import {ORDER_STATUSES, USER_STATUSES} from "../../models/feels";
 import {ChangeOrderStatus} from "../../store/orders/actions";
 import OrderStatus from "../../components/filters/orderStatus/orderStatus";
 import OrderDate from "../../components/filters/orderDate/orderDate";
 import {ordersByStatus} from "../../store/orders/selections";
+import {AppRootStateType} from "../../store/store";
+import './index.less'
 
 type keyType = {
     key: string,
@@ -16,11 +18,21 @@ type keyType = {
     status: ORDER_STATUSES
 }
 
+
 const OrderHistory = () => {
+
 
     //Заглушки
     const role = USER_STATUSES.ADMIN_USER
-    const filterValue = ORDER_STATUSES.ORDER_PAID
+
+
+    const filterValue = useSelector<AppRootStateType, ORDER_STATUSES>(state => state.orderFilter.status)
+    const [userSearchQuery ,setUserSearchQuery] = useState<string>('')
+
+    const inputHandler = (e:ChangeEvent<HTMLInputElement>)=>{
+        setUserSearchQuery(e.currentTarget.value)
+        console.log(e.currentTarget.value)
+    }
 
     const userOrders = useSelector(ordersByStatus(filterValue))
     const dispatch = useDispatch()
@@ -93,8 +105,11 @@ const OrderHistory = () => {
 
     return (
         <div>
-            <OrderDate/>
-            <OrderStatus/>
+            <div className='filerContainer'>
+                <OrderDate/>
+                <OrderStatus/>
+                <Input placeholder={'Search by user'} value={userSearchQuery} onChange={inputHandler}/>
+            </div>
             <Table columns={columns} dataSource={Items}/>,
         </div>
     );

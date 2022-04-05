@@ -1,6 +1,9 @@
 import React from 'react';
 import {Select} from "antd";
 import {ORDER_STATUSES} from "../../../models/feels";
+import {useDispatch} from "react-redux";
+import {SetOrderStatus} from "../../../store/ordersFilter/actions";
+import './index.less'
 
 const { Option } = Select;
 
@@ -9,16 +12,20 @@ const filterValues = Object.values(ORDER_STATUSES)
 
 const OrderStatus = () => {
 
+    const dispatch = useDispatch()
+
+    const selectHandler = (selectedValue:ORDER_STATUSES)=> {
+        dispatch(SetOrderStatus(selectedValue))
+    }
+
     return (
-        <div>
-            <Select defaultValue={ORDER_STATUSES.ALL_ORDERS} style={{width:'300px'}}>
+        <div className='statusFilter'>
+            <Select defaultValue={ORDER_STATUSES.ALL_ORDERS} style={{width:'300px'}} onSelect={selectHandler}>
                 {filterValues.map(value=>{
                     return(
                         <Option key = {value} value={value}>{value}</Option>
                     )
                 })}
-                {/*<Option value="Zhejiang">Zhejiang</Option>*/}
-                {/*<Option value="Jiangsu">Jiangsu</Option>*/}
             </Select>
         </div>
     );

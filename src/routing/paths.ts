@@ -7,6 +7,7 @@ import error from "../pages/404/error";
 import Error from "../pages/404/error";
 import OrderHistory from "../pages/ordersHistory/orderHistory";
 import admin from "../pages/admin/admin";
+import Article from "../forms/article/article";
 
 export enum PUBLIC_PATHS {
     APP = '/',
@@ -36,7 +37,9 @@ export enum ADMIN_PATCH {
     SEARCH_RESULT = '/result',
     ITEM_PAGE = '/catalog/:id',
     CART = '/cart',
-    ADMIN_PAGE = '/cms/edit',
+    ADMIN_PAGE = '/admin',
+    ADD_ARTICLE='cms/add-article',
+    ORDER_HISTORY = '/my-orders',
 }
 
 export type Routes = {
@@ -56,7 +59,7 @@ export const publicRoute: Routes[] = [
     {path: PUBLIC_PATHS.NOT_FOUND, Component: error}
 ]
 export const authorizedRoute: Routes[] = [
-    {path: ADMIN_PATCH.APP, Component: Catalog},
+    {path: AUTHORIZED_PATHS.APP, Component: Catalog},
     {path: AUTHORIZED_PATHS.LOGIN, Component: Login},
     {path: AUTHORIZED_PATHS.ITEM_PAGE, Component: Item},
     {path: AUTHORIZED_PATHS.CART, Component: Cart},
@@ -65,10 +68,11 @@ export const authorizedRoute: Routes[] = [
 ]
 export const adminRoute: Routes[] = [
     {path: ADMIN_PATCH.APP, Component: Catalog},
-    {path: AUTHORIZED_PATHS.LOGIN, Component: Login},
-    {path: AUTHORIZED_PATHS.ITEM_PAGE, Component: Item},
-    {path: AUTHORIZED_PATHS.CART, Component: Cart},
-    {path: AUTHORIZED_PATHS.NOT_FOUND, Component: Error},
-    {path: AUTHORIZED_PATHS.ORDER_HISTORY, Component: OrderHistory},
-    {path: ADMIN_PATCH.ADMIN_PAGE, Component: admin}
+    {path: ADMIN_PATCH.LOGIN, Component: Login},
+    {path: ADMIN_PATCH.ITEM_PAGE, Component: Item},
+    {path: ADMIN_PATCH.CART, Component: Cart},
+    {path: ADMIN_PATCH.NOT_FOUND, Component: Error},
+    {path: ADMIN_PATCH.ORDER_HISTORY, Component: OrderHistory},
+    {path: ADMIN_PATCH.ADMIN_PAGE, Component: admin},
+    {path: ADMIN_PATCH.ADD_ARTICLE, Component: Article}
 ]

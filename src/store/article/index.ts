@@ -14,7 +14,7 @@ type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 export default function reducer(state = initialState, action: ActionTypes): InitialStateType {
     switch (action.type) {
         case ArticleActionType.CREATE_NEW_ARTICLE: {
-            return state
+            return {...state, [action.payload.id]: action.payload}
         }
         default:
             return state
