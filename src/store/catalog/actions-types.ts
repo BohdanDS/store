@@ -1,1 +1,5 @@
-export {}
+export const CatalogActionType = {
+    CREATE_NEW_ARTICLE:'[CATALOG] CREATE_NEW_ARTICLE',
+    REMOVE_ARTICLE:'[CATALOG] REMOVE_ARTICLE:',
+    UPDATE_ARTICLE:'[CATALOG] UPDATE_ARTICLE'
+} as const

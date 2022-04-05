@@ -3,7 +3,7 @@ import catalog from "./catalog";
 import filter from "./filter";
 import cart from "./cart";
 import order from "./orders";
-import article from './article'
+// import article from './article'
 import orderFilter from './ordersFilter'
 
 
@@ -12,7 +12,7 @@ export const rootReducer = combineReducers({
         catalog: catalog,
         filter: filter,
         order: order,
-        article: article,
+        // article: article,
         orderFilter: orderFilter,
     }
 )

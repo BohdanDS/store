@@ -1,3 +1,7 @@
+import {CatalogActionType} from "./actions-types";
+import {InferValueTypes} from "../../models/common";
+import * as actions from "./actions";
+
 const initialState: InitialStateType = [
     {
         "id": "c6c43956-38ee-4ed8-bfc4-5e7d1faf8fc8",
@@ -90,6 +94,7 @@ const initialState: InitialStateType = [
 ]
 
 export type ItemType = {
+    'uploadedImages'?:any,
     "id": string
     "title": string
     "description": string
@@ -103,8 +108,14 @@ export type ItemType = {
 
 export type InitialStateType = ItemType[]
 
-export default function reducer (state = initialState, action: any): InitialStateType {
+type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
+
+export default function reducer (state = initialState, action: ActionTypes): InitialStateType {
     switch (action.type) {
+        case CatalogActionType.CREATE_NEW_ARTICLE: {
+            console.log('Reducer :', action)
+            return [...state, action.article]
+        }
         default:
             return state
     }

@@ -1,10 +1,11 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import ViewControls from "../viewControls /viewControls";
 import ArticleList from "../article/article";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {ItemType} from "../../store/catalog";
 import {Button, Pagination} from "antd";
+import {Link} from "react-router-dom";
 import './index.less'
 
 type Props = {
@@ -13,13 +14,19 @@ type Props = {
 
 const ItemsMain: FC<Props> = ({addToCart}) => {
 
+    useEffect(()=>{
+        setListView(localStorage.getItem('ListView') === 'true')
+    })
+
     const items = useSelector<AppRootStateType, ItemType[]>(state => state.catalog)
     const [listView, setListView] = useState(false)
 
     const changeView = (listView: boolean) => {
+        localStorage.setItem('ListView', String(listView));
         setListView(listView)
-        console.log(listView)
     }
+
+
 
     return (
         <>
@@ -37,21 +44,25 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
                 : <>
                     {items.map(item => {
                         return (
+
                             <div className='listArticle-container'>
                                 <div className='listArticle-container__image'>
                                     <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
                                 </div>
                                 <div className='listArticle-container__textArea'>
-                                    <div className='listArticle-container__titlePrice'>
-                                        <h3>{item.title}</h3>
-                                        <h4>{item.cost}$</h4>
-                                    </div>
+                                    <Link to={`catalog/${item.id}`}>
+                                        <div className='listArticle-container__titlePrice'>
+                                            <h3>{item.title}</h3>
+                                            <h4>{item.cost}$</h4>
+                                        </div>
+                                    </Link>
                                     {addToCart && <Button onClick={() => addToCart(item.id)}>Add to Cart</Button>}
                                     <div className="listArticle-container__description">
                                         <p>{item.description}</p>
                                     </div>
                                 </div>
                             </div>
+
                         )
                     })}
                 </>

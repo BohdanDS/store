@@ -33,7 +33,7 @@ const Admin = () => {
             <Tabs type="card">
                 <TabPane tab="Articles" key="1">
                     <div>
-                        <Button onClick={showModal}>Add Article</Button>
+                        <Button className='Articles__btn' onClick={showModal}>Create Article</Button>
                         <Article visible={isModalVisible} setIsModalVisible={setIsModalVisible}/>
                     </div>
                     <ItemsMain/>
