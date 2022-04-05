@@ -3,7 +3,7 @@ import ViewControls from "../viewControls /viewControls";
 import ArticleList from "../article/article";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {ItemType} from "../../store/catalog";
+import {CatalogInitialState} from "../../store/catalog";
 import {Button, Pagination} from "antd";
 import {Link} from "react-router-dom";
 import './index.less'
@@ -17,9 +17,10 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
 
     useEffect(() => {
         setListView(localStorage.getItem('ListView') === 'true')
-    })
+    }, [])
 
-    const items = useSelector<AppRootStateType, ItemType[]>(state => state.catalog)
+    const items = useSelector<AppRootStateType, CatalogInitialState>(state => state.catalog)
+    const arrOfKeys = Object.keys(items)
     const [listView, setListView] = useState(false)
 
     const changeView = (listView: boolean) => {
@@ -32,16 +33,17 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
             <div className='viewControlsBlock'><ViewControls callback={changeView} value={listView}/></div>
             {(!listView) ? <div style={{display: "flex", flexWrap: "wrap"}}>
                     {
-                        items.map(item => {
+                        arrOfKeys.map(articleId => {
                             return (
-                                <ArticleList key={item.id} title={item.title} price={item.cost} id={item.id}
-                                             addToCart={addToCart} rating={item.rating}/>
+                                <ArticleList key={articleId} title={items[articleId].title} price={items[articleId].cost}
+                                             id={items[articleId].id}
+                                             addToCart={addToCart} rating={items[articleId].rating}/>
                             )
                         })
                     }
                 </div>
                 : <>
-                    {items.map(item => {
+                    {arrOfKeys.map(articleId => {
                         return (
 
                             <div className='listArticle-container'>
@@ -49,16 +51,17 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
                                     <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
                                 </div>
                                 <div className='listArticle-container__textArea'>
-                                    <Link to={`catalog/${item.id}`}>
+                                    <Link to={`catalog/${articleId}`}>
                                         <div className='listArticle-container__titlePrice'>
-                                            <h3>{item.title}</h3>
-                                            <h4>{item.cost}$</h4>
+                                            <h3>{items[articleId].title}</h3>
+                                            <h4>{items[articleId].cost}$</h4>
                                         </div>
                                     </Link>
-                                    {addToCart && <Button onClick={() => addToCart(item.id)}>Add to Cart</Button>}
+                                    {addToCart &&
+                                        <Button onClick={() => addToCart(items[articleId].id)}>Add to Cart</Button>}
                                     <div className="listArticle-container__description">
-                                        <p>{item.description}</p>
-                                        <Rating rating={item.rating} articleId={item.id}/>
+                                        <p>{items[articleId].description}</p>
+                                        <Rating rating={items[articleId].rating} articleId={items[articleId].id}/>
                                     </div>
                                 </div>
                             </div>

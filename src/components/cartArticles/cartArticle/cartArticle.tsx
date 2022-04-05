@@ -17,7 +17,7 @@ type CartArticleType = {
 const CartArticle = ({id, checkboxHandler, values}: CartArticleType) => {
 
     const dispatch = useDispatch()
-    const articleOnCart = useSelector<AppRootStateType, ItemType | undefined>(state => state.catalog.find(article => article.id === id))
+    const articleOnCart = useSelector<AppRootStateType, ItemType | undefined>(state => state.catalog[id])
     const itemOnCart = useSelector<AppRootStateType, number>(state => state.cart[id])
 
     const checkboxValue = values.includes(id)

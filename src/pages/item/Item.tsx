@@ -1,23 +1,43 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {useRouteMatch} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {ItemType} from "../../store/catalog";
 import './index.less'
-import {Button} from "antd";
+import {Button, Input} from "antd";
 import {AddItemToCard} from "../../store/cart/actions";
 import Rating from "../../components/rating/rating";
+import {AddCommentToArticle} from "../../store/catalog/actions";
 
 const Item = () => {
 
+    //Заглушка
+    const currentUser = 'bhh'
+
     const id = useRouteMatch<{ id: string }>("/catalog/:id")?.params.id;
-    const item = useSelector<AppRootStateType, ItemType | undefined>(state => state.catalog.find(item => item.id === id))
+
+    //@ts-ignore
+    const item = useSelector<AppRootStateType, ItemType>(state => state.catalog[id])
     const dispatch = useDispatch()
+
+    const [comment, setComment] = useState('')
+
+    const commentHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setComment(e.currentTarget.value)
+    }
 
 
     const addToCard = (itemId: string) => {
         dispatch(AddItemToCard(itemId))
     }
+
+    const addCommentHandler = () => {
+        id && dispatch(AddCommentToArticle(id, {
+            author: currentUser,
+            textComment: comment
+        }))
+    }
+
 
     return (
         <div className='wrapper'>
@@ -52,6 +72,13 @@ const Item = () => {
                     <p className='maker'>
                         Maker: {item.maker}
                     </p>
+                    <div className='comment-container'>
+                        <h3>Leave a feedback:</h3>
+                        <Input.TextArea value={comment} onChange={commentHandler}/>
+                        <div className='comment-container__btn'>
+                            <Button onClick={addCommentHandler}>Add</Button>
+                        </div>
+                    </div>
                 </div>
             </>}
         </div>

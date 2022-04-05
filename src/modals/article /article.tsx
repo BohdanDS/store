@@ -39,15 +39,10 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
         subcategory: '',
     }
     type InitialState = typeof initialState
-    //
-    // const handlerButton = (...rest:any)=>()=>{
-    //     setIsModalVisible(false)
-    //     console.log(rest)
-    // }
 
     const handlerButton = (values: InitialState) => {
         setIsModalVisible(false)
-        dispatch(CreateNewArticle({...values, added_date: new Date().toDateString(), available: true, id: uuidv4(), rating:0}))
+        dispatch(CreateNewArticle({...values, added_date: new Date().toDateString(), available: true, id: uuidv4(), rating:0, comment:{}}))
         console.log(values)
     }
 

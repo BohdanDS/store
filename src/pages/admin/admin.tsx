@@ -4,7 +4,7 @@ import './index.less'
 import OrderHistory from "../ordersHistory/orderHistory";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {ItemType} from "../../store/catalog";
+import {CatalogInitialState, ItemType} from "../../store/catalog";
 import Article from "../../modals/article /article";
 import ItemsMain from "../../components/itemsMain/itemsMain";
 
@@ -20,7 +20,7 @@ const Admin = () => {
     const showModal = () => {
         setIsModalVisible(true);
     };
-    const items = useSelector<AppRootStateType, ItemType[]>(state => state.catalog)
+    const items = useSelector<AppRootStateType, CatalogInitialState>(state => state.catalog)
 
     const changeView = (listView: boolean) => {
         setListView(listView)

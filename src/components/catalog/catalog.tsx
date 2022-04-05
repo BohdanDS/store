@@ -2,15 +2,16 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import Article from "../article/article";
-import {ItemType} from "../../store/catalog";
+import {CatalogInitialState, ItemType} from "../../store/catalog";
 import {AddItemToCard, RemoveItemFromCard} from "../../store/cart/actions";
 import Filter from "../filters/filter";
 import {ItemCardType} from "../../store/cart";
 import ItemsMain from "../itemsMain/itemsMain";
+import {ChangeInMarketToggle} from "../../store/filter/actions";
 
 const Catalog = () => {
 
-    const items = useSelector<AppRootStateType, ItemType[]>(state => state.catalog)
+    const items = useSelector<AppRootStateType, CatalogInitialState>(state => state.catalog)
     const itemsOnCart = useSelector<AppRootStateType, ItemCardType>(state => state.cart)
 
     let itemsToShow = items
@@ -24,11 +25,11 @@ const Catalog = () => {
 
 
     if (searchQuery) {
-        itemsToShow = items.filter(item => item.title.includes(searchQuery))
+        // itemsToShow = items.filter(item => item.title.includes(searchQuery))
     }
 
     if (inMarketStatus) {
-        itemsToShow = items.filter(item => item.available === true)
+        console.log('123')
     }
 
     // itemsToShow = items.filters(item => item.cost > minPrice)
