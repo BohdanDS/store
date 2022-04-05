@@ -1,0 +1,21 @@
+@import 'src/styles/vars';
+.viewControls{
+  font-size: 1.5rem;
+  display: flex;
+  .relativeBlock {
+    position: relative;
+  }
+  &__showSelected {
+    position: absolute;
+    top: 80%;
+    width: 25px;
+    height: 3px;
+    background: @secondary-color;
+  }
+  .anticon-table {
+    margin-right: 0.5rem;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+}

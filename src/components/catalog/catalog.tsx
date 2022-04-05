@@ -6,6 +6,7 @@ import {ItemType} from "../../store/catalog";
 import {AddItemToCard, RemoveItemFromCard} from "../../store/cart/actions";
 import Filter from "../filters/filter";
 import {ItemCardType} from "../../store/cart";
+import ItemsMain from "../itemsMain/itemsMain";
 
 const Catalog = () => {
 
@@ -46,17 +47,7 @@ const Catalog = () => {
     return (
         <>
             <Filter/>
-            <div style={{display: "flex", flexWrap: "wrap"}}>
-                {
-                    itemsToShow.map(item => {
-                        return (
-                            <Article key={item.id} title={item.title} price={item.cost} id={item.id}
-                                     addToCart={addToCart}
-                                     removeFromCart={removeFromCart}/>
-                        )
-                    })
-                }
-            </div>
+            <ItemsMain addToCart = {addToCart}/>
         </>
     );
 };
