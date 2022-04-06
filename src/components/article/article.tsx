@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, Card, Rate} from "antd";
-import {Link} from "react-router-dom";
+import {Button, Card} from "antd";
+import {useHistory} from "react-router-dom";
 import {useHoverHandler} from "./article.hook";
 import './index.less'
 import Rating from "../rating/rating";
@@ -17,14 +17,18 @@ type ArticlePropsType = {
 const ArticleList = ({title, price, id, addToCart, rating}: ArticlePropsType) => {
     const {viewOnHover, onFocus, onLooseFocus} = useHoverHandler()
 
+    let history = useHistory()
+
     const addItemToCard = () => {
         addToCart && addToCart(id)
     }
-    // const removeItemFromCart = () => {
-    //     removeFromCard(id)
-    // }
-    const ratingHandler = (e: number) => {
-        console.log(id, e)
+
+    const linkNavigation = (event: any) => {
+        history.push(`catalog/${id}`)
+    }
+
+    const ratingHandler = (event: any) => {
+        event.stopPropagation()
     }
 
     const {Meta} = Card;
@@ -34,17 +38,18 @@ const ArticleList = ({title, price, id, addToCart, rating}: ArticlePropsType) =>
                                               style={{position: 'absolute', top: '120px', right: '70px', zIndex: '10'}}>
                 <Button onClick={addItemToCard}>Add to Cart</Button>
             </div>}
-            <Link to={`catalog/${id}`}>
+            <div onClick={linkNavigation}>
                 <Card
                     hoverable
                     style={{width: 240}}
-                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
-                >
+                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}>
                     <Meta title={title} description={price + '$'}/>
                     {/*Запретить переход по ссылке*/}
-                    <Rating rating={rating} articleId={id}/>
+                    <div onClick={ratingHandler}>
+                        <Rating rating={rating} articleId={id}/>
+                    </div>
                 </Card>
-            </Link>
+            </div>
         </div>
     );
 };
