@@ -1,5 +1,5 @@
 import * as actions from './actions'
-import {InferValueTypes} from "../../models/common";
+import {InferValueTypes} from "../../../models/common";
 import {CardActionsType} from "./action-types";
 
 const initialState: ItemCardType = {}

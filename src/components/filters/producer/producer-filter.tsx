@@ -2,7 +2,7 @@ import React from 'react';
 import {Select} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../store/store";
-import {SelectProducer} from "../../../store/filter/actions";
+import {SelectProducer} from "../../../store/reducers/filter/actions";
 import './index.less'
 
 interface ItemProps {

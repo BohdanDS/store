@@ -5,7 +5,7 @@ import {InputComponent} from "../../formik-controls";
 import ImageUploader from "../../formik-controls/imageUploader";
 import {useDispatch} from "react-redux";
 import {v4 as uuidv4} from 'uuid';
-import {CreateNewArticle} from "../../store/catalog/actions";
+import {CreateNewArticle} from "../../store/reducers/catalog/actions";
 
 
 type Props = {

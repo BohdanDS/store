@@ -2,12 +2,12 @@ import React, {ChangeEvent, useState} from 'react';
 import {useRouteMatch} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {ItemType} from "../../store/catalog";
+import {ItemType} from "../../store/reducers/catalog";
 import './index.less'
 import {Button, Input} from "antd";
-import {AddItemToCard} from "../../store/cart/actions";
+import {AddItemToCard} from "../../store/reducers/cart/actions";
 import Rating from "../../components/rating/rating";
-import {AddCommentToArticle} from "../../store/catalog/actions";
+import {AddCommentToArticle} from "../../store/reducers/catalog/actions";
 
 const Item = () => {
 

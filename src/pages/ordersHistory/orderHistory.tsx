@@ -2,10 +2,10 @@ import React, {ChangeEvent, useState} from 'react';
 import {Button, Input, Space, Table} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import {ORDER_STATUSES, USER_STATUSES} from "../../models/feels";
-import {ChangeOrderStatus} from "../../store/orders/actions";
+import {ChangeOrderStatus} from "../../store/reducers/orders/actions";
 import OrderStatus from "../../components/filters/orderStatus/orderStatus";
 import OrderDate from "../../components/filters/orderDate/orderDate";
-import {ordersByStatus} from "../../store/orders/selections";
+import {ordersByStatus} from "../../store/reducers/orders/selections";
 import {AppRootStateType} from "../../store/store";
 import './index.less'
 
@@ -26,7 +26,7 @@ const OrderHistory = () => {
     const role = USER_STATUSES.ADMIN_USER
 
 
-    const filterValue = useSelector<AppRootStateType, ORDER_STATUSES>(state => state.orderFilter.status)
+    const filterValue = useSelector<AppRootStateType, ORDER_STATUSES>(state => state.ordersFilter.status)
     const [userSearchQuery ,setUserSearchQuery] = useState<string>('')
 
     const inputHandler = (e:ChangeEvent<HTMLInputElement>)=>{
@@ -93,6 +93,7 @@ const OrderHistory = () => {
     ];
 
     const Items = userOrders.map(order => {
+
         return ({
             key: order.id,
             name: `${order.delivery.firstName} ${order.delivery.lastName}`,

@@ -1,6 +1,6 @@
 import * as actions from './actions'
-import {ORDER_STATUSES} from "../../models/feels";
-import {InferValueTypes} from "../../models/common";
+import {ORDER_STATUSES} from "../../../models/feels";
+import {InferValueTypes} from "../../../models/common";
 import {OrdersFilterActionType} from "./action-types";
 
 const date = new Date()

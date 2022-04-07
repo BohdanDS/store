@@ -2,12 +2,12 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import Article from "../article/article";
-import {CatalogInitialState, ItemType} from "../../store/catalog";
-import {AddItemToCard, RemoveItemFromCard} from "../../store/cart/actions";
+import {CatalogInitialState, ItemType} from "../../store/reducers/catalog";
+import {AddItemToCard, RemoveItemFromCard} from "../../store/reducers/cart/actions";
 import Filter from "../filters/filter";
-import {ItemCardType} from "../../store/cart";
+import {ItemCardType} from "../../store/reducers/cart";
 import ItemsMain from "../itemsMain/itemsMain";
-import {ChangeInMarketToggle} from "../../store/filter/actions";
+import {ChangeInMarketToggle} from "../../store/reducers/filter/actions";
 
 const Catalog = () => {
 

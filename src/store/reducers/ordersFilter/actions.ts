@@ -1,5 +1,5 @@
 import {OrdersFilterActionType} from "./action-types";
-import {ORDER_STATUSES} from "../../models/feels";
+import {ORDER_STATUSES} from "../../../models/feels";
 
 export const SetFromDateValue = (fromDate:string)=>({
     type:OrdersFilterActionType.SET_FROM_DATE_VALUE,

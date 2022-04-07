@@ -1,9 +1,9 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../store/store";
-import {ItemType} from "../../../store/catalog";
+import {ItemType} from "../../../store/reducers/catalog";
 import {Button, Checkbox} from "antd";
-import {AddItemToCard, DecreaseItemCount} from "../../../store/cart/actions";
+import {AddItemToCard, DecreaseItemCount} from "../../../store/reducers/cart/actions";
 import {MinusOutlined, PlusOutlined} from "@ant-design/icons";
 import './index.less'
 

@@ -3,7 +3,7 @@ import ViewControls from "../viewControls /viewControls";
 import ArticleList from "../article/article";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {CatalogInitialState} from "../../store/catalog";
+import {CatalogInitialState} from "../../store/reducers/catalog";
 import {Button, Pagination} from "antd";
 import {Link} from "react-router-dom";
 import './index.less'

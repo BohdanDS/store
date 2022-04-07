@@ -1,5 +1,5 @@
 import {CatalogActionType} from "./actions-types";
-import {InferValueTypes} from "../../models/common";
+import {InferValueTypes} from "../../../models/common";
 import * as actions from "./actions";
 import {v4 as uuidv4} from 'uuid';
 

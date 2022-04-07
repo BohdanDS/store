@@ -1,7 +1,7 @@
 import * as actions from './actions'
-import {InferValueTypes} from "../../models/common";
+import {InferValueTypes} from "../../../models/common";
 import {FilterActionType} from "./action-types";
-import {TFilterStateType} from "../../models/feels";
+import {TFilterStateType} from "../../../models/feels";
 
 const initialState: TFilterStateType = {
     minPrice: 0,

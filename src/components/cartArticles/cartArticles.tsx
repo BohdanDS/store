@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {ItemCardType} from "../../store/cart";
+import {ItemCardType} from "../../store/reducers/cart";
 import CartArticle from "./cartArticle/cartArticle";
 import './index.less'
 import {Button, Checkbox} from "antd";
 import {isEmptyArray} from "formik";
-import {RemoveItemFromCard} from "../../store/cart/actions";
+import {RemoveItemFromCard} from "../../store/reducers/cart/actions";
 
 const CartArticles = () => {
 

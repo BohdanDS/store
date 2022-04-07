@@ -1,9 +1,9 @@
 import {ItemCardType} from "../cart";
-import {InferValueTypes} from "../../models/common";
+import {InferValueTypes} from "../../../models/common";
 import * as actions from "./actions";
 import {OrdersActionType} from "./action-types";
-import {IOrderForm} from "../../models/interfaces";
-import {ORDER_STATUSES} from "../../models/feels";
+import {IOrderForm} from "../../../models/interfaces";
+import {ORDER_STATUSES} from "../../../models/feels";
 
 const initialState: OrdersType = {
     'b284a015-0781-4dff-8bee-79b99c90de00': {

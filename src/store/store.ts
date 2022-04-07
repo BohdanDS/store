@@ -1,10 +1,12 @@
-import {combineReducers, compose, createStore} from 'redux'
-import catalog from "./catalog";
-import filter from "./filter";
-import cart from "./cart";
-import order from "./orders";
-// import article from './article'
-import orderFilter from './ordersFilter'
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
+import createSagaMiddleware from 'redux-saga';
+import catalog from "./reducers/catalog";
+import filter from "./reducers/filter";
+import cart from "./reducers/cart";
+import order from "./reducers/orders";
+import orderFilter from './reducers/ordersFilter'
+import reducer, {history} from './reducers';
+import {routerMiddleware} from "connected-react-router";
 
 
 export const rootReducer = combineReducers({
@@ -24,7 +26,11 @@ declare global {
     }
 }
 const composeEnhancers = (IS_BROWSER && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const sagaMiddleware = createSagaMiddleware();
 
-export const store = createStore(rootReducer, composeEnhancers())
-export type AppRootStateType = ReturnType<typeof rootReducer>
+export const store = createStore(reducer, composeEnhancers(applyMiddleware(
+    routerMiddleware(history),
+    sagaMiddleware,
+)))
+export type AppRootStateType = ReturnType<typeof reducer>
 

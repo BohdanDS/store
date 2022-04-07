@@ -4,7 +4,7 @@ import './index.less'
 import OrderHistory from "../ordersHistory/orderHistory";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {CatalogInitialState, ItemType} from "../../store/catalog";
+import {CatalogInitialState, ItemType} from "../../store/reducers/catalog";
 import Article from "../../modals/article /article";
 import ItemsMain from "../../components/itemsMain/itemsMain";
 

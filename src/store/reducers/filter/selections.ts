@@ -1,4 +1,4 @@
-import {AppRootStateType} from "../store";
+import {AppRootStateType} from "../../store";
 
 
 const filterState = (state: AppRootStateType) => state.filter

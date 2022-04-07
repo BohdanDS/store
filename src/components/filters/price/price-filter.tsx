@@ -3,7 +3,7 @@ import {Slider} from "antd";
 import './index.less'
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../store/store";
-import {SetMaxPriceFilterValue, SetMinPriceFilterValue} from "../../../store/filter/actions";
+import {SetMaxPriceFilterValue, SetMinPriceFilterValue} from "../../../store/reducers/filter/actions";
 
 const PriceFilter = () => {
 
