@@ -129,7 +129,6 @@ const initialState: CatalogInitialState = {
         },
 }
 
-
 export type CommentType = {
     author: string,
     textComment: string

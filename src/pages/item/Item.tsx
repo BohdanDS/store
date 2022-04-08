@@ -8,6 +8,7 @@ import {Button, Input} from "antd";
 import {AddItemToCard} from "../../store/reducers/cart/actions";
 import Rating from "../../components/rating/rating";
 import {AddCommentToArticle} from "../../store/reducers/catalog/actions";
+import Comments from "../../components/comment/comments";
 
 const Item = () => {
 
@@ -36,6 +37,7 @@ const Item = () => {
             author: currentUser,
             textComment: comment
         }))
+        setComment('')
     }
 
 
@@ -79,6 +81,7 @@ const Item = () => {
                             <Button onClick={addCommentHandler}>Add</Button>
                         </div>
                     </div>
+                    <Comments comments={item.comment}/>
                 </div>
             </>}
         </div>

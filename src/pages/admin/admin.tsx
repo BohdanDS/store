@@ -16,7 +16,7 @@ const Admin = () => {
     const showModal = () => {
         setIsModalVisible(true);
     };
-
+    
     return (
         <div className="card-container">
             <Tabs type="card">
