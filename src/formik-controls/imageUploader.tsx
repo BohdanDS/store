@@ -6,20 +6,21 @@ import {Upload} from "antd";
 type Props = {
     name: string,
     label: string
-    print: any
+
 }
 
-const ImageUploader: FC<Props> = ({name, label, print}) => {
+const ImageUploader: FC<Props> = ({name, label}) => {
 
-    const {values,handleChange} = useFormikContext()
+    const {setFieldValue} = useFormikContext()
 
-    const [fileList, setFileList] = useState([]);
+
+    const [fileList, setFileList] = useState<any>([]);
 
     const onChange = ({fileList: newFileList}: any) => {
         setFileList(newFileList);
-        console.log(values)
-        print(fileList)
+        setFieldValue(name, newFileList)
     };
+
 
     const onPreview = async (file: any) => {
         let src = file.url;
@@ -35,6 +36,7 @@ const ImageUploader: FC<Props> = ({name, label, print}) => {
         const imgWindow = window.open(src);
         imgWindow && imgWindow.document.write(image.outerHTML);
     };
+
 
     return (
         <Field id={name} name={name}>

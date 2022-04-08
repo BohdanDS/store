@@ -7,6 +7,7 @@ import {AppRootStateType} from "../../store/store";
 import {CatalogInitialState, ItemType} from "../../store/reducers/catalog";
 import Article from "../../modals/article /article";
 import ItemsMain from "../../components/itemsMain/itemsMain";
+import Categories from "../../components/categories/categories";
 
 const {TabPane} = Tabs;
 
@@ -37,6 +38,9 @@ const Admin = () => {
                         <Article visible={isModalVisible} setIsModalVisible={setIsModalVisible}/>
                     </div>
                     <ItemsMain/>
+                </TabPane>
+                <TabPane tab="Categories" key="2" className='ordersTab'>
+                    <Categories/>
                 </TabPane>
                 <TabPane tab="Orders" key="3" className='ordersTab'>
                     <OrderHistory/>

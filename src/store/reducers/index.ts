@@ -6,7 +6,7 @@ import catalogReducer from '../reducers/catalog/'
 import filterReducer from '../reducers/filter/'
 import ordersReducer from '../reducers/orders/'
 import ordersFilterReducer from '../reducers/ordersFilter/'
-
+import categoryReducer from '../reducers/category/'
 
 export const history = createBrowserHistory();
 
@@ -23,6 +23,7 @@ const rootReducer = combineReducers({
     filter: filterReducer,
     orders: ordersReducer,
     ordersFilter: ordersFilterReducer,
+    category: categoryReducer,
     router: connectRouter(history),
 })
 
