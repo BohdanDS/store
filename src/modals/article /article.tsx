@@ -38,16 +38,9 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
     type InitialState = typeof initialState
 
     const handlerButton = (values: InitialState) => {
-
-        let {uploadedImages, ...rest} = values
-        console.log('uploadedImages', uploadedImages)
-        //@ts-ignore
-        uploadedImages = uploadedImages.map(image => image.thumbUrl)
-        console.log('rest', rest)
         setIsModalVisible(false)
         dispatch(CreateNewArticle({
-            ...rest,
-            uploadedImages,
+            ...values,
             added_date: new Date().toDateString(),
             available: true,
             id: uuidv4(),

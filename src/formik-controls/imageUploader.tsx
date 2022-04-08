@@ -2,6 +2,7 @@ import React, {FC, useState} from 'react';
 import {Field, FieldAttributes, useFormikContext} from "formik";
 import ImgCrop from "antd-img-crop";
 import {Upload} from "antd";
+import {getBase64} from "../models/common";
 
 type Props = {
     name: string,
@@ -16,10 +17,29 @@ const ImageUploader: FC<Props> = ({name, label}) => {
 
     const [fileList, setFileList] = useState<any>([]);
 
-    const onChange = ({fileList: newFileList}: any) => {
-        setFileList(newFileList);
-        setFieldValue(name, newFileList)
-    };
+    const validateUpload = (_file: File) => {
+        return false
+    }
+
+    const uploadImage = async ({fileList: newFileList}: any) => {
+        setFileList(newFileList)
+        console.log(newFileList)
+        if (newFileList.length === 0) return
+        const newFile = newFileList[newFileList.length - 1]
+        try {
+            const type = newFile.type.split('/')[0]
+            if (type !== 'image') {
+                // put(NotificationOpen('error', 'Ошибка', 'File is not an image'))
+                return
+            }
+        } catch (_error) {
+            return false
+        }
+        getBase64(newFile.originFileObj, (imageUrl: any) => {
+
+            setFieldValue(name, imageUrl)
+        })
+    }
 
 
     const onPreview = async (file: any) => {
@@ -49,12 +69,13 @@ const ImageUploader: FC<Props> = ({name, label}) => {
                                 // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                                 listType="picture-card"
                                 fileList={fileList}
-                                onChange={onChange}
+                                onChange={uploadImage}
+                                beforeUpload={validateUpload}
                                 onPreview={onPreview}
                                 name={name}
                                 id={name}
                             >
-                                {fileList.length < 5 && '+ Upload'}
+                                {fileList.length < 1 && '+ Upload'}
                             </Upload>
                         </ImgCrop>
                     </>
