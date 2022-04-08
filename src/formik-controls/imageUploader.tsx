@@ -23,7 +23,6 @@ const ImageUploader: FC<Props> = ({name, label}) => {
 
     const uploadImage = async ({fileList: newFileList}: any) => {
         setFileList(newFileList)
-        console.log(newFileList)
         if (newFileList.length === 0) return
         const newFile = newFileList[newFileList.length - 1]
         try {
@@ -36,7 +35,6 @@ const ImageUploader: FC<Props> = ({name, label}) => {
             return false
         }
         getBase64(newFile.originFileObj, (imageUrl: any) => {
-
             setFieldValue(name, imageUrl)
         })
     }
@@ -66,7 +64,6 @@ const ImageUploader: FC<Props> = ({name, label}) => {
                         <label htmlFor={name}>{label}:</label>
                         <ImgCrop rotate>
                             <Upload
-                                // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                                 listType="picture-card"
                                 fileList={fileList}
                                 onChange={uploadImage}

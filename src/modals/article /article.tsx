@@ -23,7 +23,6 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
 
     const handleCancel = () => {
         setIsModalVisible(false)
-        console.log('handleCancel')
     }
 
     const initialState = {
@@ -37,7 +36,7 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
     }
     type InitialState = typeof initialState
 
-    const handlerButton = (values: InitialState) => {
+    const handlerButton = (values: InitialState, onSubmitProps: any) => {
         setIsModalVisible(false)
         dispatch(CreateNewArticle({
             ...values,
@@ -47,23 +46,25 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
             rating: 0,
             comment: {}
         }))
+        onSubmitProps.resetForm()
+
     }
 
 
     return (
         <Formik initialValues={initialState} onSubmit={handlerButton}>
             {formik => {
-                console.log(formik.values)
+                console.log(formik)
                 return (
                     (
-                        <Modal visible={visible} onOk={() => handlerButton(formik.values)} onCancel={handleCancel}>
+                        <Modal visible={visible} onOk={() => handlerButton(formik.values, formik)}
+                               onCancel={handleCancel}>
                             <Form>
                                 <InputComponent name={'title'} label={'Article Name'}/>
                                 <InputComponent name={'description'} label={'Description'}/>
                                 <InputComponent type='number' name={'cost'} label={'Price'}/>
                                 <InputComponent name={'maker'} label={'Maker'}/>
                                 <MultiSelect name={'category'} label={'Select Category'} options={categories}/>
-                                {/*<InputComponent name={'subcategory'} label={'Subcategory'}/>*/}
                                 <ImageUploader name={'uploadedImages'} label={'Upload Images'}/>
                             </Form>
                         </Modal>

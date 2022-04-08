@@ -23,7 +23,7 @@ const MultiSelect: FC<Props> = ({options, name, label}) => {
         <>
             <label htmlFor={name}>{label}:</label>
             <Field id={name} name={name}>
-                {(_el: FieldAttributes<any>) => {
+                {(el: FieldAttributes<any>) => {
                     return (
                         <Select
                             id={name}
@@ -31,8 +31,8 @@ const MultiSelect: FC<Props> = ({options, name, label}) => {
                             allowClear
                             style={{width: '100%'}}
                             placeholder="Please select..."
-                            // onSelect={handler}
                             onChange={handler}
+                            value={el.field.value}
                         >
                             {options.map(item => {
                                 return (
