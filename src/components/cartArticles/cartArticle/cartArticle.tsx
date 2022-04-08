@@ -1,11 +1,11 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../../store/store";
 import {ItemType} from "../../../store/reducers/catalog";
 import {Button, Checkbox} from "antd";
 import {AddItemToCard, DecreaseItemCount} from "../../../store/reducers/cart/actions";
 import {MinusOutlined, PlusOutlined} from "@ant-design/icons";
 import './index.less'
+import {TApplicationState} from "../../../store/aplication-state";
 
 type CartArticleType = {
     id: string
@@ -17,8 +17,8 @@ type CartArticleType = {
 const CartArticle = ({id, checkboxHandler, values}: CartArticleType) => {
 
     const dispatch = useDispatch()
-    const articleOnCart = useSelector<AppRootStateType, ItemType | undefined>(state => state.catalog[id])
-    const itemOnCart = useSelector<AppRootStateType, number>(state => state.cart[id])
+    const articleOnCart = useSelector<TApplicationState, ItemType | undefined>(state => state.catalog[id])
+    const itemOnCart = useSelector<TApplicationState, number>(state => state.cart[id])
 
     const checkboxValue = values.includes(id)
 

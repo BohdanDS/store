@@ -1,9 +1,9 @@
 import React from 'react';
 import {Select} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../../store/store";
 import {SelectProducer} from "../../../store/reducers/filter/actions";
 import './index.less'
+import {TApplicationState} from "../../../store/aplication-state";
 
 interface ItemProps {
     label: string;
@@ -13,7 +13,7 @@ interface ItemProps {
 
 const ProducerFilter = () => {
 
-    const selectedProducers = useSelector<AppRootStateType, Array<string>>(state => state.filter.producers)
+    const selectedProducers = useSelector<TApplicationState, Array<string>>(state => state.filter.producers)
     const dispatch = useDispatch()
 
 

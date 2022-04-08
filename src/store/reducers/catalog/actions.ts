@@ -1,6 +1,10 @@
 import {CatalogActionType} from './actions-types'
 import {CommentType, ItemType} from "./index";
 
+export const LoadArticles = (page: string, search: string) => ({
+    type: CatalogActionType.LOAD_ARTICLE
+})
+
 export const CreateNewArticle = (article: ItemType) => ({
     type: CatalogActionType.CREATE_NEW_ARTICLE,
     article,

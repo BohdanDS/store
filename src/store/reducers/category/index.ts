@@ -3,20 +3,20 @@ import * as actions from './actions'
 import {CategoryActionsType} from "./action-types";
 import {v4 as uuidv4} from 'uuid';
 
-const initialState: CategoryType = {
+const initialState: TCategoryState = {
     '1':'Weapon',
     '2':'Food',
     '3':'Drugs',
     '4':'Alcohol',
 }
 
-export type CategoryType = {
+export type TCategoryState = {
     [id: string]: string
 }
 
 type ActionType = ReturnType<InferValueTypes<typeof actions>>
 
-export default function reducer(state = initialState, action: ActionType): CategoryType {
+export default function reducer(state = initialState, action: ActionType): TCategoryState {
     switch (action.type) {
         case CategoryActionsType.CREATE_NEW_CATEGORY: {
             return {...state, [uuidv4()]: action.categoryName}

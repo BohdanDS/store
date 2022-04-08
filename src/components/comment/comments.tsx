@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC} from 'react';
 import {CommentType} from "../../store/reducers/catalog";
 
 
@@ -13,7 +13,7 @@ const Comments: FC<Props> = ({comments}) => {
     console.log(comments)
     return (
         <div>
-            {Object.keys(comments).map(comment=>{
+            {Object.keys(comments).map(comment => {
                 return (
                     <>
                         <h3>{comments[comment].author}</h3>

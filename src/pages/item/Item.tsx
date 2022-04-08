@@ -1,7 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useRouteMatch} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/store";
 import {ItemType} from "../../store/reducers/catalog";
 import './index.less'
 import {Button, Input} from "antd";
@@ -9,6 +8,7 @@ import {AddItemToCard} from "../../store/reducers/cart/actions";
 import Rating from "../../components/rating/rating";
 import {AddCommentToArticle} from "../../store/reducers/catalog/actions";
 import Comments from "../../components/comment/comments";
+import {TApplicationState} from "../../store/aplication-state";
 
 const Item = () => {
 
@@ -18,7 +18,7 @@ const Item = () => {
     const id = useRouteMatch<{ id: string }>("/catalog/:id")?.params.id;
 
     //@ts-ignore
-    const item = useSelector<AppRootStateType, ItemType>(state => state.catalog[id])
+    const item = useSelector<TApplicationState, ItemType>(state => state.catalog[id])
     const dispatch = useDispatch()
 
     const [comment, setComment] = useState('')

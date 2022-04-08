@@ -3,7 +3,16 @@ import {InferValueTypes} from "../../../models/common";
 import * as actions from "./actions";
 import {v4 as uuidv4} from 'uuid';
 
-const initialState: CatalogInitialState = {
+
+// type CatalogInitState = {
+//     articles: CatalogInitialState,
+//     isLoading: boolean,
+//     error: '',
+//     page: 1,
+//     search: ''
+// }
+
+const initialState: TCatalogState = {
     'c6c43956-38ee-4ed8-bfc4-5e7d1faf8fc8': {
         'uploadedImages': [],
         "id": "c6c43956-38ee-4ed8-bfc4-5e7d1faf8fc8",
@@ -151,14 +160,17 @@ export type ItemType = {
     }
 }
 
-export type CatalogInitialState = {
+export type TCatalogState = {
     [articleId: string]: ItemType
 }
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
-export default function reducer(state = initialState, action: ActionTypes): CatalogInitialState {
+export default function reducer(state = initialState, action: ActionTypes): TCatalogState {
     switch (action.type) {
+        case CatalogActionType.LOAD_ARTICLE: {
+            return {...state}
+        }
         case CatalogActionType.CREATE_NEW_ARTICLE: {
             return {...state, [uuidv4()]: action.article}
         }

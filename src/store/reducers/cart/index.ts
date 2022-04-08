@@ -2,17 +2,16 @@ import * as actions from './actions'
 import {InferValueTypes} from "../../../models/common";
 import {CardActionsType} from "./action-types";
 
-const initialState: ItemCardType = {}
+const initialState: TCartState = {}
 
-export type ItemCardType = {
+export type TCartState = {
     [id: string]: number
 }
 
-export type InitialStateType = ItemCardType
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
-export default function reducer(state = initialState, action: ActionTypes): InitialStateType {
+export default function reducer(state = initialState, action: ActionTypes): TCartState {
     switch (action.type) {
         case CardActionsType.ADD_ITEM_TO_CARD:
             return {...state, [action.itemId]: state[action.itemId] ? ++state[action.itemId] : 1}

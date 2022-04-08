@@ -17,7 +17,7 @@ export function appReducer(state = initial, action: any) {
 }
 
 const rootReducer = combineReducers({
-    app: appReducer,
+    // app: appReducer,
     cart: cartReducer,
     catalog: catalogReducer,
     filter: filterReducer,

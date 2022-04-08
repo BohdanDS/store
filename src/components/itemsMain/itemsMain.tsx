@@ -2,12 +2,12 @@ import React, {FC, useEffect, useState} from 'react';
 import ViewControls from "../viewControls /viewControls";
 import ArticleList from "../article/article";
 import {useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/store";
-import {CatalogInitialState} from "../../store/reducers/catalog";
+import {TCatalogState} from "../../store/reducers/catalog";
 import {Button, Pagination} from "antd";
 import {Link} from "react-router-dom";
 import './index.less'
 import Rating from "../rating/rating";
+import {TApplicationState} from "../../store/aplication-state";
 
 type Props = {
     addToCart?: (articleId: string) => void
@@ -19,7 +19,7 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
         setListView(localStorage.getItem('ListView') === 'true')
     }, [])
 
-    const items = useSelector<AppRootStateType, CatalogInitialState>(state => state.catalog)
+    const items = useSelector<TApplicationState, TCatalogState>(state => state.catalog)
     const arrOfKeys = Object.keys(items)
     const [listView, setListView] = useState(false)
 

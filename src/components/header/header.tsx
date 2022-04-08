@@ -3,14 +3,14 @@ import Search from "../search";
 import './index.less'
 import {AmazonOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/store";
 import {Link} from "react-router-dom";
 import Auth from "../../modals/auth/login";
+import {TApplicationState} from "../../store/aplication-state";
 
 
 const Header = () => {
 
-    const itemsInCart = useSelector<AppRootStateType, number[]>(state => Object.values(state.cart)).reduce((a, b) => a + b, 0)
+    const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart)).reduce((a, b) => a + b, 0)
 
     return (
         <header className='header-container'>

@@ -1,15 +1,15 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {Button, Input} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/store";
-import {CategoryType} from "../../store/reducers/category";
+import {TCategoryState} from "../../store/reducers/category";
 import {CreateNewCategory, RemoveCategory, UpdateCategory} from "../../store/reducers/category/actions";
 import Category from "./category/category";
 import './index.less'
+import {TApplicationState} from "../../store/aplication-state";
 
 const Categories = () => {
 
-    const categories = useSelector<AppRootStateType, CategoryType>(state => state.category)
+    const categories = useSelector<TApplicationState, TCategoryState>(state => state.category)
     const data = Object.keys(categories)
     const dispatch = useDispatch()
     const [categoryValue, setCategoryValue] = useState<string>('')

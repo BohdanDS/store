@@ -24,7 +24,7 @@ export enum USER_STATUSES {
     ADMIN_USER = 'admin_user'
 }
 
-export type TFilterStateType = {
+export type TFilterState = {
     minPrice: number
     maxPrice: number
     producers: Array<string>

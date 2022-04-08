@@ -1,9 +1,9 @@
 import * as actions from './actions'
 import {InferValueTypes} from "../../../models/common";
 import {FilterActionType} from "./action-types";
-import {TFilterStateType} from "../../../models/feels";
+import {TFilterState} from "../../../models/feels";
 
-const initialState: TFilterStateType = {
+const initialState: TFilterState = {
     minPrice: 0,
     maxPrice: 100,
     producers: [],
@@ -14,7 +14,7 @@ const initialState: TFilterStateType = {
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
 
-export default function reducer(state = initialState, action: ActionTypes): TFilterStateType {
+export default function reducer(state = initialState, action: ActionTypes): TFilterState {
     switch (action.type) {
         case FilterActionType.SET_MIN_PRICE_VALUE: {
             return {

@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/store";
-import {ItemCardType} from "../../store/reducers/cart";
+import {TCartState} from "../../store/reducers/cart";
 import CartArticle from "./cartArticle/cartArticle";
 import './index.less'
 import {Button, Checkbox} from "antd";
 import {isEmptyArray} from "formik";
 import {RemoveItemFromCard} from "../../store/reducers/cart/actions";
+import {TApplicationState} from "../../store/aplication-state";
 
 const CartArticles = () => {
 
-    const articlesInCart = Object.keys(useSelector<AppRootStateType, ItemCardType>(state => state.cart))
+    const articlesInCart = Object.keys(useSelector<TApplicationState, TCartState>(state => state.cart))
     const dispatch = useDispatch()
 
     const defaultCheckedList: string[] = [];

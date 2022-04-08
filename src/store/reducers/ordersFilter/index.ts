@@ -5,13 +5,13 @@ import {OrdersFilterActionType} from "./action-types";
 
 const date = new Date()
 
-const initialState: InitialStateType = {
+const initialState: TOrdersFilterState = {
     fromDate: new Date(date.getFullYear(), date.getMonth(), 1).toISOString().substring(0, 10),
     toDate: new Date(date.getFullYear(), date.getMonth() + 1, 0).toISOString().substring(0, 10),
     status: ORDER_STATUSES.ALL_ORDERS,
 }
 
-type InitialStateType = {
+export type TOrdersFilterState = {
     fromDate: string,
     toDate: string,
     status: ORDER_STATUSES
@@ -20,7 +20,7 @@ type InitialStateType = {
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
-export default function reducer(state = initialState, action: ActionTypes): InitialStateType {
+export default function reducer(state = initialState, action: ActionTypes): TOrdersFilterState {
     switch (action.type) {
         case OrdersFilterActionType.SET_FROM_DATE_VALUE: {
             return {...state, fromDate: action.fromDate}

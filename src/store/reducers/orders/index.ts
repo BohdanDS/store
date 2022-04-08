@@ -1,11 +1,11 @@
-import {ItemCardType} from "../cart";
+import {TCartState} from "../cart";
 import {InferValueTypes} from "../../../models/common";
 import * as actions from "./actions";
 import {OrdersActionType} from "./action-types";
 import {IOrderForm} from "../../../models/interfaces";
 import {ORDER_STATUSES} from "../../../models/feels";
 
-const initialState: OrdersType = {
+const initialState: TOrdersState = {
     'b284a015-0781-4dff-8bee-79b99c90de00': {
         id: 'b284a015-0781-4dff-8bee-79b99c90de00',
         date: 'Fri Apr 01 2022 13:25:26 GMT+0300 (Москва, стандартное время)',
@@ -100,22 +100,22 @@ const initialState: OrdersType = {
 export type OrderStatusType = ORDER_STATUSES
 
 
-type OrderType = {
+export type OrderType = {
     id:string,
     date:  string,
     status: OrderStatusType
-    items: ItemCardType
+    items: TCartState
     userEmail: string
     delivery: IOrderForm
 }
 
-export type OrdersType = {
+export type TOrdersState = {
     [orderId: string]: OrderType
 }
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
-export default function reducer(state = initialState, action: ActionTypes): OrdersType {
+export default function reducer(state = initialState, action: ActionTypes): TOrdersState {
     switch (action.type) {
         case OrdersActionType.CREATE_NEW_ORDER: {
             return {...state, [action.payload.id]: {...action.payload}}

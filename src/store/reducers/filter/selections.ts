@@ -1,7 +1,7 @@
-import {AppRootStateType} from "../../store";
+import {TApplicationState} from "../../aplication-state";
 
 
-const filterState = (state: AppRootStateType) => state.filter
+const filterState = (state: TApplicationState) => state.filter
 
 // export const selectMinPriceValue = createSelector(
 //     filterState,

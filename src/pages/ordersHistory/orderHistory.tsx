@@ -6,8 +6,8 @@ import {ChangeOrderStatus} from "../../store/reducers/orders/actions";
 import OrderStatus from "../../components/filters/orderStatus/orderStatus";
 import OrderDate from "../../components/filters/orderDate/orderDate";
 import {ordersByStatus} from "../../store/reducers/orders/selections";
-import {AppRootStateType} from "../../store/store";
 import './index.less'
+import {TApplicationState} from "../../store/aplication-state";
 
 type keyType = {
     key: string,
@@ -20,13 +20,10 @@ type keyType = {
 
 
 const OrderHistory = () => {
-
-
     //Заглушки
     const role = USER_STATUSES.ADMIN_USER
 
-
-    const filterValue = useSelector<AppRootStateType, ORDER_STATUSES>(state => state.ordersFilter.status)
+    const filterValue = useSelector<TApplicationState, ORDER_STATUSES>(state => state.ordersFilter.status)
     const [userSearchQuery ,setUserSearchQuery] = useState<string>('')
 
     const inputHandler = (e:ChangeEvent<HTMLInputElement>)=>{
@@ -38,7 +35,7 @@ const OrderHistory = () => {
     const dispatch = useDispatch()
 
     const markAsPaidHandler = (key: string, role: string, status: string) => {
-        if (status === ORDER_STATUSES.ORDER_IN_PROGRESS && role === USER_STATUSES.AUTHORIZED_USER) {
+        if (status === ORDER_STATUSES.ORDER_IN_PROGRESS) {
             dispatch(ChangeOrderStatus(key, ORDER_STATUSES.ORDER_PAID))
         } else if (status === ORDER_STATUSES.ORDER_PAID && role === USER_STATUSES.ADMIN_USER) {
             dispatch(ChangeOrderStatus(key, ORDER_STATUSES.ORDER_ON_THE_WAY))

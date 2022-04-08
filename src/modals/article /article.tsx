@@ -6,9 +6,9 @@ import ImageUploader from "../../formik-controls/imageUploader";
 import {useDispatch, useSelector} from "react-redux";
 import {v4 as uuidv4} from 'uuid';
 import {CreateNewArticle} from "../../store/reducers/catalog/actions";
-import {AppRootStateType} from "../../store/store";
-import {CategoryType} from "../../store/reducers/category";
+import {TCategoryState} from "../../store/reducers/category";
 import MultiSelect from "../../formik-controls/multiSelect";
+import {TApplicationState} from "../../store/aplication-state";
 
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 const Article: FC<Props> = ({visible, setIsModalVisible}) => {
 
     const dispatch = useDispatch()
-    const categories = Object.values(useSelector<AppRootStateType, CategoryType>(state => state.category))
+    const categories = Object.values(useSelector<TApplicationState, TCategoryState>(state => state.category))
 
     const handleCancel = () => {
         setIsModalVisible(false)
