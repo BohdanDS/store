@@ -5,19 +5,20 @@ import {ConnectedRouter} from "connected-react-router";
 import {Provider} from "react-redux";
 import reportWebVitals from './reportWebVitals';
 import configureStore from "./configureStore";
-import App from "./App";
+import AdminRoutes from "./routing/adminRouting";
+import './App.less';
+
+
 export const history = createBrowserHistory(); //либа history
 const {store} = configureStore({}, history);
-// fetchersInterceptor(store.dispatch); //прокидываем в интерсептор dispatch
 
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App/>
+            <AdminRoutes/>
         </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 );
 
 reportWebVitals();
-

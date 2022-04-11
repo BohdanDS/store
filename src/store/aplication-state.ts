@@ -7,12 +7,11 @@ import {TOrdersState} from "./reducers/orders";
 import { RouterState } from "connected-react-router";
 
 export type TApplicationState = Readonly<{
-    router: RouterState //для роутинга
-    //ниже пример изолированых хранилищ
+    router: RouterState,
     cart: TCartState,
     catalog: TCatalogState,
     category: TCategoryState,
     filter: TFilterState,
     orders: TOrdersState,
-    ordersFilter: TOrdersFilterState
+    ordersFilter: TOrdersFilterState,
 }>

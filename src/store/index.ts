@@ -1,13 +1,13 @@
-import {combineReducers} from "redux";
 import {TApplicationState} from "./aplication-state";
 import {connectRouter} from "connected-react-router";
-import cartReducer from "./reducers/cart";
-import catalogReducer from "./reducers/catalog";
-import filterReducer from "./reducers/filter";
-import ordersReducer from "./reducers/orders";
-import ordersFilterReducer from "./reducers/ordersFilter";
-import categoryReducer from "./reducers/category";
-import { History } from 'history';
+import {History} from 'history';
+import {combineReducers} from 'redux';
+import cartReducer from './reducers/cart'
+import catalogReducer from './reducers/catalog'
+import filterReducer from './reducers/filter'
+import ordersReducer from './reducers/orders'
+import ordersFilterReducer from './reducers/ordersFilter'
+import categoryReducer from './reducers/category'
 
 
 const store = (history: History) => combineReducers<TApplicationState>({
