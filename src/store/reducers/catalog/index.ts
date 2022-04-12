@@ -4,14 +4,6 @@ import * as actions from "./actions";
 import {v4 as uuidv4} from 'uuid';
 
 
-// type CatalogInitState = {
-//     articles: CatalogInitialState,
-//     isLoading: boolean,
-//     error: '',
-//     page: 1,
-//     search: ''
-// }
-
 const initialState: TCatalogState = {
     'c6c43956-38ee-4ed8-bfc4-5e7d1faf8fc8': {
         'uploadedImages': [],
