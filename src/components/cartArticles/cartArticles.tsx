@@ -33,26 +33,29 @@ const CartArticles = () => {
     }
     return (
         <div className='cartArticles-container'>
-            {!isEmptyArray(articlesInCart) ? <div>
+            {isEmptyArray(articlesInCart) && <div><h4>Cart is empty</h4></div>}
+            {!isEmptyArray(articlesInCart) && <div>
                 {
-                    articlesInCart.map(id => {
-                        return (
-                            <CartArticle id={id} key={id} checkboxHandler={checkboxHandler}
-                                         values={checkItems.checkedList}/>
+                    articlesInCart.map(id => (<CartArticle
+                                id={id} key={id}
+                                checkboxHandler={checkboxHandler}
+                                values={checkItems.checkedList}/>
                         )
-                    })
+                    )
                 }
                 <div className='cartArticles-container__removeBlock'>
-                    <Checkbox onChange={onCheckAllChange} checked={checkItems.checkAll}>
+                    <Checkbox
+                        onChange={onCheckAllChange}
+                        checked={checkItems.checkAll}>
                         Select All
                     </Checkbox>
-                    <Button disabled={isEmptyArray(checkItems.checkedList)} onClick={removeItemHandler}>Remove from
-                        Cart</Button>
+                    <Button
+                        disabled={isEmptyArray(checkItems.checkedList)}
+                        onClick={removeItemHandler}>Remove from
+                        Cart
+                    </Button>
                 </div>
-            </div> : <div>
-                <h4>Cart is empty</h4>
             </div>}
-
         </div>
     );
 };
