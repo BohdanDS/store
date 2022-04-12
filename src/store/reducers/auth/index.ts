@@ -10,15 +10,12 @@ export type TAuthState = {
     isLoading: boolean
 }
 
-
 const initialState: TAuthState = {
     user: {},
     isAuth: false,
     error: null,
     isLoading: false
 }
-
-
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
