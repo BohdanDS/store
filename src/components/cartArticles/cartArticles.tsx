@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/store";
-import {ItemCardType} from "../../store/cart";
+import {TCartState} from "../../store/reducers/cart";
 import CartArticle from "./cartArticle/cartArticle";
 import './index.less'
 import {Button, Checkbox} from "antd";
 import {isEmptyArray} from "formik";
-import {RemoveItemFromCard} from "../../store/cart/actions";
+import {RemoveItemFromCard} from "../../store/reducers/cart/actions";
+import {TApplicationState} from "../../store/aplication-state";
 
 const CartArticles = () => {
 
-    const articlesInCart = Object.keys(useSelector<AppRootStateType, ItemCardType>(state => state.cart))
+    const articlesInCart = Object.keys(useSelector<TApplicationState, TCartState>(state => state.cart))
     const dispatch = useDispatch()
 
     const defaultCheckedList: string[] = [];
@@ -33,26 +33,29 @@ const CartArticles = () => {
     }
     return (
         <div className='cartArticles-container'>
-            {!isEmptyArray(articlesInCart) ? <div>
+            {isEmptyArray(articlesInCart) && <div><h4>Cart is empty</h4></div>}
+            {!isEmptyArray(articlesInCart) && <div>
                 {
-                    articlesInCart.map(id => {
-                        return (
-                            <CartArticle id={id} key={id} checkboxHandler={checkboxHandler}
-                                         values={checkItems.checkedList}/>
+                    articlesInCart.map(id => (<CartArticle
+                                id={id} key={id}
+                                checkboxHandler={checkboxHandler}
+                                values={checkItems.checkedList}/>
                         )
-                    })
+                    )
                 }
                 <div className='cartArticles-container__removeBlock'>
-                    <Checkbox onChange={onCheckAllChange} checked={checkItems.checkAll}>
+                    <Checkbox
+                        onChange={onCheckAllChange}
+                        checked={checkItems.checkAll}>
                         Select All
                     </Checkbox>
-                    <Button disabled={isEmptyArray(checkItems.checkedList)} onClick={removeItemHandler}>Remove from
-                        Cart</Button>
+                    <Button
+                        disabled={isEmptyArray(checkItems.checkedList)}
+                        onClick={removeItemHandler}>Remove from
+                        Cart
+                    </Button>
                 </div>
-            </div> : <div>
-                <h4>Cart is empty</h4>
             </div>}
-
         </div>
     );
 };

@@ -3,14 +3,17 @@ import Search from "../search";
 import './index.less'
 import {AmazonOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import {useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/store";
 import {Link} from "react-router-dom";
 import Auth from "../../modals/auth/login";
+import {TApplicationState} from "../../store/aplication-state";
+import UserMenu from "../userMenu/userMenu";
 
 
 const Header = () => {
 
-    const itemsInCart = useSelector<AppRootStateType, number[]>(state => Object.values(state.cart)).reduce((a, b) => a + b, 0)
+    const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart)).reduce((a, b) => a + b, 0)
+
+    const logged = true
 
     return (
         <header className='header-container'>
@@ -23,8 +26,7 @@ const Header = () => {
                 <Search/>
             </div>
             <div className='block-3'>
-                {/*<Button type='link'>Login</Button>*/}
-                <Link to={'/*'} component={Auth}/>
+                {logged ? <UserMenu/> : <Link to={'/*'} component={Auth}/>}
                 <Link to={'/cart'}>
                     {itemsInCart !== 0 && <span className='cartItem'>{itemsInCart}</span>}
                     <ShoppingCartOutlined/>

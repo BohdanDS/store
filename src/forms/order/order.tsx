@@ -5,19 +5,19 @@ import {InputComponent, InputMasked, RadioGroup, TextAreaComponent} from "../../
 import {Button} from "antd";
 import './index.less'
 import {useDispatch, useSelector} from "react-redux";
-import {CreateNewOrder} from "../../store/orders/actions";
+import {CreateNewOrder} from "../../store/reducers/orders/actions";
 import {v4 as uuidv4} from 'uuid';
-import {AppRootStateType} from "../../store/store";
-import {ItemCardType} from "../../store/cart";
-import {ResetCart} from "../../store/cart/actions";
+import {TCartState} from "../../store/reducers/cart";
+import {ResetCart} from "../../store/reducers/cart/actions";
 import {ORDER_STATUSES} from "../../models/feels";
 import {useHistory} from "react-router-dom";
+import {TApplicationState} from "../../store/aplication-state";
 
 
 const Order = () => {
 
     const dispatch = useDispatch()
-    const itemsOnCart = useSelector<AppRootStateType, ItemCardType>(state => state.cart)
+    const itemsOnCart = useSelector<TApplicationState, TCartState>(state => state.cart)
 
     const history = useHistory()
 

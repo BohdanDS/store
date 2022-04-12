@@ -1,10 +1,10 @@
-import {AppRootStateType} from "../store";
 import {createSelector} from "reselect";
 import {OrderStatusType} from "./index";
-import {ORDER_STATUSES} from "../../models/feels";
+import {ORDER_STATUSES} from "../../../models/feels";
+import {TApplicationState} from "../../aplication-state";
 
 
-const ordersState = (state: AppRootStateType) => state.order
+const ordersState = (state: TApplicationState) => state.orders
 
 
 export const ordersByStatus = (status: OrderStatusType) => createSelector(

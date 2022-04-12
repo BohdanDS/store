@@ -1,13 +1,13 @@
 import React from 'react';
 import {Switch} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../../store/store";
-import {ChangeInMarketToggle} from "../../../store/filter/actions";
+import {ChangeInMarketToggle} from "../../../store/reducers/filter/actions";
 import './index.less'
+import {TApplicationState} from "../../../store/aplication-state";
 
 const InMarketFilter = () => {
 
-    const checked = useSelector<AppRootStateType, boolean>(state => state.filter.inMarket)
+    const checked = useSelector<TApplicationState, boolean>(state => state.filter.inMarket)
     const dispatch = useDispatch()
 
     function onChange(checked: boolean) {

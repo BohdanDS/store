@@ -2,13 +2,13 @@ import React, {ChangeEvent} from 'react';
 import {Slider} from "antd";
 import './index.less'
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../../store/store";
-import {SetMaxPriceFilterValue, SetMinPriceFilterValue} from "../../../store/filter/actions";
+import {SetMaxPriceFilterValue, SetMinPriceFilterValue} from "../../../store/reducers/filter/actions";
+import {TApplicationState} from "../../../store/aplication-state";
 
 const PriceFilter = () => {
 
-    const minValue = useSelector<AppRootStateType, number>(state => state.filter.minPrice)
-    const maxValue = useSelector<AppRootStateType, number>(state => state.filter.maxPrice)
+    const minValue = useSelector<TApplicationState, number>(state => state.filter.minPrice)
+    const maxValue = useSelector<TApplicationState, number>(state => state.filter.maxPrice)
     const dispatch = useDispatch()
 
     const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {

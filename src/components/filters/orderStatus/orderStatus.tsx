@@ -2,7 +2,7 @@ import React from 'react';
 import {Select} from "antd";
 import {ORDER_STATUSES} from "../../../models/feels";
 import {useDispatch} from "react-redux";
-import {SetOrderStatus} from "../../../store/ordersFilter/actions";
+import {SetOrderStatus} from "../../../store/reducers/ordersFilter/actions";
 import './index.less'
 
 const { Option } = Select;

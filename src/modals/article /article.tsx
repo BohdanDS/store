@@ -3,9 +3,12 @@ import {Modal} from "antd";
 import {Form, Formik} from "formik";
 import {InputComponent} from "../../formik-controls";
 import ImageUploader from "../../formik-controls/imageUploader";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {v4 as uuidv4} from 'uuid';
-import {CreateNewArticle} from "../../store/catalog/actions";
+import {CreateNewArticle} from "../../store/reducers/catalog/actions";
+import {TCategoryState} from "../../store/reducers/category";
+import MultiSelect from "../../formik-controls/multiSelect";
+import {TApplicationState} from "../../store/aplication-state";
 
 
 type Props = {
@@ -16,17 +19,10 @@ type Props = {
 const Article: FC<Props> = ({visible, setIsModalVisible}) => {
 
     const dispatch = useDispatch()
-
-    // const handleOk = (values: InitialState) => {
-    //     debugger
-    //     // dispatch(CreateNewArticle({...values, added_date: new Date().toDateString(), available: true, id: uuidv4()}))
-    //     console.log(values)
-    //     setIsModalVisible(false)
-    // };
+    const categories = Object.values(useSelector<TApplicationState, TCategoryState>(state => state.category))
 
     const handleCancel = () => {
         setIsModalVisible(false)
-        console.log('handleCancel')
     }
 
     const initialState = {
@@ -35,36 +31,48 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
         cost: 0,
         uploadedImages: [],
         maker: '',
-        category: '',
+        category: [],
         subcategory: '',
     }
     type InitialState = typeof initialState
 
-    const handlerButton = (values: InitialState) => {
+    const handlerButton = (values: InitialState, onSubmitProps: any) => {
         setIsModalVisible(false)
-        dispatch(CreateNewArticle({...values, added_date: new Date().toDateString(), available: true, id: uuidv4(), rating:0, comment:{}}))
-        console.log(values)
-    }
+        dispatch(CreateNewArticle({
+            ...values,
+            added_date: new Date().toDateString(),
+            available: true,
+            id: uuidv4(),
+            rating: 0,
+            comment: {}
+        }))
+        onSubmitProps.resetForm()
 
-    const test = (values: any) => {
-        console.log('test', values)
     }
 
 
     return (
         <Formik initialValues={initialState} onSubmit={handlerButton}>
-            {formik =>
-                <Modal visible={visible} onOk={() => handlerButton(formik.values)} onCancel={handleCancel}>
-                    <Form>
-                        <InputComponent name={'title'} label={'Article Name'}/>
-                        <InputComponent name={'description'} label={'Description'}/>
-                        <InputComponent type='number' name={'cost'} label={'Price'}/>
-                        <InputComponent name={'maker'} label={'Maker'}/>
-                        <InputComponent name={'category'} label={'Category'}/>
-                        <InputComponent name={'subcategory'} label={'Subcategory'}/>
-                        <ImageUploader print={test} name={'uploadedImages'} label={'Upload Images'}/>
-                    </Form>
-                </Modal>}
+            {formik => {
+                console.log(formik)
+                return (
+                    (
+                        <Modal visible={visible} onOk={() => handlerButton(formik.values, formik)}
+                               onCancel={handleCancel}>
+                            <Form>
+                                <InputComponent name={'title'} label={'Article Name'}/>
+                                <InputComponent name={'description'} label={'Description'}/>
+                                <InputComponent type='number' name={'cost'} label={'Price'}/>
+                                <InputComponent name={'maker'} label={'Maker'}/>
+                                <MultiSelect name={'category'} label={'Select Category'} options={categories}/>
+                                <ImageUploader name={'uploadedImages'} label={'Upload Images'}/>
+                            </Form>
+                        </Modal>
+                    )
+                )
+            }
+            }
+
         </Formik>
 
     );
