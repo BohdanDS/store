@@ -19,9 +19,6 @@ const initialState: TAuthState = {
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
-
-
-
 export default function reducer(state = initialState, action: ActionTypes): TAuthState {
     switch (action.type) {
         case AuthActionTypes.START_LOGIN: {

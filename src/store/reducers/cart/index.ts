@@ -8,7 +8,6 @@ export type TCartState = {
     [id: string]: number
 }
 
-
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
 export default function reducer(state = initialState, action: ActionTypes): TCartState {
