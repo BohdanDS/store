@@ -1,4 +1,4 @@
-export const CatalogActionType = {
+export const AuthActionTypes = {
     START_LOGIN: '[LOGIN] START_LOGIN',
     LOGIN_SUCCESS: '[LOGIN] LOGIN_SUCCESS',
     LOGIN_FAILED: '[LOGIN] LOGIN_FAILED',
