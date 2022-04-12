@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 
 
 import reducers from './store';
-import rootSaga from "./store/sagas";
+import rootSaga from "./workers";
 
 const IS_BROWSER = typeof window !== 'undefined';
 declare global {

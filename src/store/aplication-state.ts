@@ -4,7 +4,8 @@ import {TCategoryState} from "./reducers/category";
 import {TFilterState} from "../models/feels";
 import {TOrdersFilterState} from "./reducers/ordersFilter";
 import {TOrdersState} from "./reducers/orders";
-import { RouterState } from "connected-react-router";
+import {RouterState} from "connected-react-router";
+import {TAuthState} from "./reducers/auth";
 
 export type TApplicationState = Readonly<{
     router: RouterState,
@@ -14,4 +15,5 @@ export type TApplicationState = Readonly<{
     filter: TFilterState,
     orders: TOrdersState,
     ordersFilter: TOrdersFilterState,
+    login: TAuthState
 }>
