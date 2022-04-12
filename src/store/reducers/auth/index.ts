@@ -18,6 +18,8 @@ const initialState: TAuthState = {
     isLoading: false
 }
 
+
+
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
 export default function reducer(state = initialState, action: ActionTypes): TAuthState {
