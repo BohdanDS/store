@@ -4,24 +4,19 @@ import {useDispatch, useSelector} from "react-redux";
 import {SelectProducer} from "../../../store/reducers/filter/actions";
 import './index.less'
 import {TApplicationState} from "../../../store/aplication-state";
-
-interface ItemProps {
-    label: string;
-    value: string;
-}
-
+import {makersArray} from "../../../store/reducers/catalog/selectors";
 
 const ProducerFilter = () => {
 
     const selectedProducers = useSelector<TApplicationState, Array<string>>(state => state.filter.producers)
+    const uniqueMakers = Array.from(new Set(useSelector(makersArray())))
     const dispatch = useDispatch()
 
 
-    const options: ItemProps[] = [];
-    for (let i = 0; i < 20; i++) {
-        const value = i.toString() + i;
+    const options = [];
+    for (let i = 0; i < uniqueMakers.length; i++) {
+        const value = uniqueMakers[i];
         options.push({
-            label: `Long Label: ${value}`,
             value,
         });
     }
@@ -36,12 +31,13 @@ const ProducerFilter = () => {
         maxTagCount: 'responsive' as const,
     };
 
+
     return (
         <div className='producerFilter-container'>
             <div>
                 <span>Producer:</span>
             </div>
-            <Select {...selectProps} value={selectedProducers} className='producerFilter-container__select' />
+            <Select {...selectProps} value={selectedProducers} className='producerFilter-container__select'/>
         </div>
     );
 };

@@ -5,7 +5,7 @@ import {ORDER_STATUSES, USER_STATUSES} from "../../models/feels";
 import {ChangeOrderStatus} from "../../store/reducers/orders/actions";
 import OrderStatus from "../../components/filters/orderStatus/orderStatus";
 import OrderDate from "../../components/filters/orderDate/orderDate";
-import {ordersByStatus} from "../../store/reducers/orders/selections";
+import {ordersByStatus} from "../../store/reducers/orders/selectors";
 import './index.less'
 import {TApplicationState} from "../../store/aplication-state";
 

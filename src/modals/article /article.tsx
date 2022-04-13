@@ -50,31 +50,24 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
 
     }
 
-
     return (
         <Formik initialValues={initialState} onSubmit={handlerButton}>
-            {formik => {
-                console.log(formik)
-                return (
-                    (
-                        <Modal visible={visible} onOk={() => handlerButton(formik.values, formik)}
-                               onCancel={handleCancel}>
-                            <Form>
-                                <InputComponent name={'title'} label={'Article Name'}/>
-                                <InputComponent name={'description'} label={'Description'}/>
-                                <InputComponent type='number' name={'cost'} label={'Price'}/>
-                                <InputComponent name={'maker'} label={'Maker'}/>
-                                <MultiSelect name={'category'} label={'Select Category'} options={categories}/>
-                                <ImageUploader name={'uploadedImages'} label={'Upload Images'}/>
-                            </Form>
-                        </Modal>
-                    )
+            {formik =>
+                (
+                    <Modal visible={visible} onOk={() => handlerButton(formik.values, formik)}
+                           onCancel={handleCancel}>
+                        <Form>
+                            <InputComponent name={'title'} label={'Article Name'}/>
+                            <InputComponent name={'description'} label={'Description'}/>
+                            <InputComponent type='number' name={'cost'} label={'Price'}/>
+                            <InputComponent name={'maker'} label={'Maker'}/>
+                            <MultiSelect name={'category'} label={'Select Category'} options={categories}/>
+                            <ImageUploader name={'uploadedImages'} label={'Upload Images'}/>
+                        </Form>
+                    </Modal>
                 )
             }
-            }
-
         </Formik>
-
     );
 };
 
