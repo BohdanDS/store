@@ -9,6 +9,7 @@ import ordersReducer from './reducers/orders'
 import ordersFilterReducer from './reducers/ordersFilter'
 import categoryReducer from './reducers/category'
 import loginReducer from './reducers/auth'
+import notificationReducer from './reducers/notification'
 
 
 const store = (history: History) => combineReducers<TApplicationState>({
@@ -20,6 +21,7 @@ const store = (history: History) => combineReducers<TApplicationState>({
     ordersFilter: ordersFilterReducer,
     category: categoryReducer,
     login: loginReducer,
+    notification: notificationReducer,
 });
 
 export default store;

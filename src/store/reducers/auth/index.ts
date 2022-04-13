@@ -1,17 +1,22 @@
 import {InferValueTypes} from "../../../models/common";
-import * as actions from "../auth/actions";
+import * as actions from "./actions";
 import {AuthActionTypes} from "./actions-types";
 import {TUser} from "../../../models/user";
 
 export type TAuthState = {
-    user: TUser | {},
+    user: TUser
     isAuth: boolean
     error: null | string,
     isLoading: boolean
 }
 
 const initialState: TAuthState = {
-    user: {},
+    user: {
+        name: null,
+        userId: null,
+        email: null,
+        role: null
+    },
     isAuth: false,
     error: null,
     isLoading: false
@@ -31,7 +36,7 @@ export default function reducer(state = initialState, action: ActionTypes): TAut
             return {...state, isAuth: false, isLoading: false, error: action.error}
         }
         case AuthActionTypes.LOGOUT: {
-            return {...state, user: {}, isAuth: false}
+            return {...state, user: {userId:null, role:null, email:null, name:null}, isAuth: false}
         }
         case AuthActionTypes.START_REGISTRATION: {
             return {...state, isLoading: true}

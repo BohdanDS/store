@@ -6,8 +6,10 @@ import Filter from "../filters/filter";
 import {TCartState} from "../../store/reducers/cart";
 import ItemsMain from "../itemsMain/itemsMain";
 import {TApplicationState} from "../../store/aplication-state";
+import {CloseNotification, ShowNotification} from "../../store/reducers/notification/actions";
 
 const Catalog = () => {
+    const dispatch = useDispatch()
 
     const items = useSelector<TApplicationState, TCatalogState>(state => state.catalog)
     const itemsOnCart = useSelector<TApplicationState, TCartState>(state => state.cart)
@@ -27,13 +29,15 @@ const Catalog = () => {
     }
 
     if (inMarketStatus) {
-        console.log('123')
+        dispatch(ShowNotification({
+            message: 'Message Notification',
+            notificationType: 'error',
+            description: 'Poshel v jepu'
+        }))
     }
 
     // itemsToShow = items.filters(item => item.cost > minPrice)
 
-
-    const dispatch = useDispatch()
 
     const addToCart = (itemId: string) => {
         dispatch(AddItemToCard(itemId))

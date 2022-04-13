@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import configureStore from "./configureStore";
 import './App.less';
 import App from "./App";
+import Notification from "./components/notification/notification";
 
 
 export const history = createBrowserHistory(); //либа history
@@ -16,6 +17,7 @@ ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <App/>
+            <Notification/>
         </ConnectedRouter>
     </Provider>,
     document.getElementById('root')

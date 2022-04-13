@@ -1,10 +1,12 @@
-import {all, spawn, takeEvery} from 'redux-saga/effects';
+import {all, spawn, takeEvery,fork} from 'redux-saga/effects';
 import {LOCATION_CHANGE, LocationChangeAction} from "connected-react-router";
+import {Authorization} from "./auth";
 
 
 export default function* rootSaga() {
     yield all([
-        spawn(pageLoader)
+        // spawn(pageLoader),
+        fork(Authorization)
     ])
 }
 

@@ -3,12 +3,20 @@ import * as Yup from 'yup'
 import {Form, Formik} from "formik";
 import {InputComponent} from "../../formik-controls";
 import {Button} from "antd";
+import {useDispatch, useSelector} from "react-redux";
+import {AuthActionTypes} from "../../store/reducers/auth/actions-types";
+import {TApplicationState} from "../../store/aplication-state";
 
 type LoginFormType = {
-    onCancel:()=>void
+    onCancel: () => void
 }
 
-const LoginForm = ({onCancel}:LoginFormType) => {
+const LoginForm = ({onCancel}: LoginFormType) => {
+
+    type TLoginFormData = typeof initialState
+
+    const dispatch = useDispatch()
+    // const isLoggedIn = useSelector<TApplicationState, boolean>(state => state.login.isAuth)
 
     const initialState = {
         login: '',
@@ -20,20 +28,25 @@ const LoginForm = ({onCancel}:LoginFormType) => {
         password: Yup.string().required('Please enter password')
     })
 
-    const onSubmit = (values: any) => {
-        console.log('Form data', values)
-        onCancel()
+    const onSubmit = (values: TLoginFormData) => {
+        dispatch({
+            type: AuthActionTypes.START_LOGIN,
+            login: values.login,
+            password: values.password,
+        })
     }
 
     return (
         <div>
             <Formik initialValues={initialState} onSubmit={onSubmit} validationSchema={validationSchema}>
-                <Form>
-                    <InputComponent name={'login'} label={'Email'}/>
-                    <InputComponent type='password' name={'password'} label={'Password'}/>
-                    <Button type={'default'} onClick={onCancel}>Cancel</Button>
-                    <Button htmlType="submit" type={'default'}>Submit</Button>
-                </Form>
+                {(formik) => (
+                    <Form>
+                        <InputComponent name={'login'} label={'Email'}/>
+                        <InputComponent type='password' name={'password'} label={'Password'}/>
+                        <Button type={'default'} onClick={onCancel}>Cancel</Button>
+                        <Button htmlType="submit" type={'default'}>Submit</Button>
+                    </Form>
+                )}
             </Formik>
         </div>
     );

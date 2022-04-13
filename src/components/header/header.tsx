@@ -7,13 +7,14 @@ import {Link} from "react-router-dom";
 import Auth from "../../modals/auth/login";
 import {TApplicationState} from "../../store/aplication-state";
 import UserMenu from "../userMenu/userMenu";
+import {IUser, TUser} from "../../models/user";
+import {TAuthState} from "../../store/reducers/auth";
 
 
 const Header = () => {
 
     const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart)).reduce((a, b) => a + b, 0)
-
-    const logged = true
+    const authData = useSelector<TApplicationState, TAuthState>(state => state.login)
 
     return (
         <header className='header-container'>
@@ -26,7 +27,7 @@ const Header = () => {
                 <Search/>
             </div>
             <div className='block-3'>
-                {logged ? <UserMenu/> : <Link to={'/*'} component={Auth}/>}
+                {authData.isAuth ? <UserMenu/> : <Link to={'/*'} component={Auth}/>}
                 <Link to={'/cart'}>
                     {itemsInCart !== 0 && <span className='cartItem'>{itemsInCart}</span>}
                     <ShoppingCartOutlined/>

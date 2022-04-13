@@ -4,14 +4,15 @@ import {InputComponent} from "../../formik-controls";
 import {Button} from "antd";
 import * as Yup from "yup";
 
-type LoginFormType = {
+type RegistrationFormType = {
     onCancel: () => void
 }
 
-const RegistrationForm = ({onCancel}: LoginFormType) => {
+const RegistrationForm = ({onCancel}: RegistrationFormType) => {
 
     const initialState = {
         login: '',
+        name: '',
         password: '',
         passwordConfirmation: ''
     }
@@ -34,11 +35,16 @@ const RegistrationForm = ({onCancel}: LoginFormType) => {
     return (
         <div>
             <Formik initialValues={initialState} onSubmit={onSubmit} validationSchema={validationSchema}>
-                <Form>
-                    <InputComponent name={'email'} label={'Email'}/>
-                    <InputComponent name={'password'} label={'Password'}/>
-                    <InputComponent name={'passwordConfirmation'} label={'Confirm password'}/>
-                </Form>
+                {(formik) => (
+                    <Form>
+                        <InputComponent name={'email'} label={'Email'}/>
+                        <InputComponent name={'name'} label={'User Name'}/>
+                        <InputComponent name={'password'} label={'Password'}/>
+                        <InputComponent name={'passwordConfirmation'} label={'Confirm password'}/>
+                        <Button type={'default'} onClick={onCancel}>Cancel</Button>
+                        <Button htmlType="submit" type={'default'}>Submit</Button>
+                    </Form>
+                )}
             </Formik>
         </div>
     );

@@ -6,6 +6,7 @@ import {TOrdersFilterState} from "./reducers/ordersFilter";
 import {TOrdersState} from "./reducers/orders";
 import {RouterState} from "connected-react-router";
 import {TAuthState} from "./reducers/auth";
+import {TNotificationState} from "./reducers/notification";
 
 export type TApplicationState = Readonly<{
     router: RouterState,
@@ -16,4 +17,5 @@ export type TApplicationState = Readonly<{
     orders: TOrdersState,
     ordersFilter: TOrdersFilterState,
     login: TAuthState
+    notification: TNotificationState
 }>

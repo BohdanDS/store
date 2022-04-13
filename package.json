@@ -17,6 +17,7 @@
     "antd": "^4.19.3",
     "antd-img-crop": "^4.2.0",
     "antd-mask-input": "^2.0.5",
+    "axios": "^0.26.1",
     "connected-react-router": "^6.9.2",
     "craco-less": "^2.0.0",
     "formik": "^2.2.9",
