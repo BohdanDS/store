@@ -1,11 +1,11 @@
 import {AxiosResponse} from "axios";
 import {put} from "redux-saga/effects";
-import {LoginFailed, LoginSuccess} from "../../../store/reducers/auth/actions";
-import {ShowNotification} from "../../../store/reducers/notification/actions";
-import {IUser} from "../../../models/user";
-import {AuthAPI} from "../../../api/auth";
+import {LoginFailed, LoginSuccess, Logout} from "../../store/reducers/auth/actions";
+import {ShowNotification} from "../../store/reducers/notification/actions";
+import {IUser} from "../../models/user";
+import {AuthAPI} from "../../api/auth";
 
-export function* loginUSer(loginData: any) {
+export function* loginUser(loginData: any) {
     try {
         const {data}: AxiosResponse<IUser> = yield AuthAPI.login(loginData.login, loginData.password)
         yield put(LoginSuccess(data.user))
@@ -23,4 +23,10 @@ export function* loginUSer(loginData: any) {
             description: e.response.data.message
         }))
     }
+}
+
+export function* logOutUser(){
+    yield AuthAPI.logOut()
+    put(Logout())
+    localStorage.removeItem('token')
 }
