@@ -21,7 +21,7 @@ const InputComponent: FC<InputComponentPropsType> = ({label, name, type}) => {
                 {(el: FieldAttributes<any>) => {
                     return (
                         <>
-                            <Input type = {type? type : 'input'} value={el.field.value} onChange={handleChange} id={name}/>
+                            <Input type = {type? type : 'input'} value={el.field.value} onChange={handleChange} id={name} autoFocus/>
                             <ErrorMessage name={name} component={textError}/>
                         </>
                     )

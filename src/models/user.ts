@@ -1,6 +1,6 @@
 export type TUser = {
     name:null|string
-    userId: null| string
+    id: null| string
     email: null|string
     role: null|string
 }

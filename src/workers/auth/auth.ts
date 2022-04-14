@@ -1,9 +1,17 @@
 import {AxiosResponse} from "axios";
 import {put} from "redux-saga/effects";
-import {LoginFailed, LoginSuccess, Logout, StartLogin, StartRegistration} from "../../store/reducers/auth/actions";
+import {
+    LoginFailed,
+    LoginSuccess,
+    Logout,
+    RegistrationSuccess,
+    StartLogin,
+    StartRegistration
+} from "../../store/reducers/auth/actions";
 import {ShowNotification} from "../../store/reducers/notification/actions";
-import {IUser} from "../../models/user";
+import {IUser, TUser} from "../../models/user";
 import {AuthAPI} from "../../api/auth";
+import {CloseModal} from "../../store/reducers/modals/actions";
 
 export function* loginUser(loginData: any) {
     console.log(loginData)
@@ -17,6 +25,7 @@ export function* loginUser(loginData: any) {
             description: 'Test message XXX'
         }))
         localStorage.setItem('token', data.token)
+        yield put(CloseModal())
     } catch (e: any) {
         yield put(LoginFailed(e.response.data.message))
         yield put(ShowNotification({
@@ -38,12 +47,24 @@ export function* logOutUser() {
 }
 
 export function* registerUser(registrationData:any) {
-    console.log(registrationData)
+    console.log('registerUser', registrationData)
     put(StartRegistration(registrationData.email, registrationData.userName, registrationData.password))
     try {
-        const {data}:AxiosResponse = yield AuthAPI.userRegistration(registrationData.email, registrationData.userName, registrationData.password)
+        const {data}:AxiosResponse<TUser> = yield AuthAPI.userRegistration(registrationData.email,registrationData.userName, registrationData.password)
         console.log(data)
-    } catch (e) {
-
+        yield put(RegistrationSuccess(data))
+        yield put(ShowNotification({
+            notificationType: "success",
+            message: `Welcome ${data.name}`,
+            description: 'Test message XXX'
+        }))
+        yield put(CloseModal())
+    } catch (e:any) {
+        yield put(LoginFailed(e.response.data.message))
+        yield put(ShowNotification({
+            notificationType: "error",
+            message: "Uuups!",
+            description: e.response.data.message
+        }))
     }
 }

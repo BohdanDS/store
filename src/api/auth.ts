@@ -12,6 +12,9 @@ export const AuthAPI = {
         return instance.get('auth/logout')
     },
     userRegistration(email: string, name: string, password: string) {
+        console.log(email)
+        console.log(name)
+        console.log(password)
         return instance.post('/auth/registration', {email, name,password})
     }
 }

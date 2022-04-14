@@ -52,8 +52,7 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
 
     return (
         <Formik initialValues={initialState} onSubmit={handlerButton}>
-            {formik =>
-                (
+            {formik => (
                     <Modal visible={visible} onOk={() => handlerButton(formik.values, formik)}
                            onCancel={handleCancel}>
                         <Form>
