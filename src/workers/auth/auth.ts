@@ -46,20 +46,21 @@ export function* logOutUser() {
     }
 }
 
-export function* registerUser(registrationData:any) {
+export function* registerUser(registrationData: any) {
     console.log('registerUser', registrationData)
     put(StartRegistration(registrationData.email, registrationData.userName, registrationData.password))
     try {
-        const {data}:AxiosResponse<TUser> = yield AuthAPI.userRegistration(registrationData.email,registrationData.userName, registrationData.password)
+        const {data}: AxiosResponse<IUser> = yield AuthAPI.userRegistration(registrationData.email, registrationData.userName, registrationData.password)
         console.log(data)
-        yield put(RegistrationSuccess(data))
+        yield put(RegistrationSuccess(data.user))
         yield put(ShowNotification({
             notificationType: "success",
-            message: `Welcome ${data.name}`,
+            message: `Welcome ${data.user.name}`,
             description: 'Test message XXX'
         }))
+        localStorage.setItem('token', data.token)
         yield put(CloseModal())
-    } catch (e:any) {
+    } catch (e: any) {
         yield put(LoginFailed(e.response.data.message))
         yield put(ShowNotification({
             notificationType: "error",

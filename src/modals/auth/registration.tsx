@@ -56,8 +56,8 @@ const Registration = () => {
                                 <Form>
                                     <InputComponent name={'email'} label={'Email Address'}/>
                                     <InputComponent name={'userName'} label={'User Name'}/>
-                                    <InputComponent type={'password'} name={'password'} label={'Password'}/>
-                                    <InputComponent type={'password'} name={'passwordConfirmation'}
+                                    <InputComponent name={'password'} label={'Password'}/>
+                                    <InputComponent name={'passwordConfirmation'}
                                                     label={'Confirm Password'}/>
                                     <div className='modal_controls'>
                                         <Button type={'default'} onClick={onCancel}>Cancel</Button>
