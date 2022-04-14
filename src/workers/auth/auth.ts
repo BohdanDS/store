@@ -1,11 +1,13 @@
 import {AxiosResponse} from "axios";
 import {put} from "redux-saga/effects";
-import {LoginFailed, LoginSuccess, Logout} from "../../store/reducers/auth/actions";
+import {LoginFailed, LoginSuccess, Logout, StartLogin, StartRegistration} from "../../store/reducers/auth/actions";
 import {ShowNotification} from "../../store/reducers/notification/actions";
 import {IUser} from "../../models/user";
 import {AuthAPI} from "../../api/auth";
 
 export function* loginUser(loginData: any) {
+    console.log(loginData)
+    put(StartLogin(loginData.login, loginData.password))
     try {
         const {data}: AxiosResponse<IUser> = yield AuthAPI.login(loginData.login, loginData.password)
         yield put(LoginSuccess(data.user))
@@ -25,8 +27,23 @@ export function* loginUser(loginData: any) {
     }
 }
 
-export function* logOutUser(){
-    yield AuthAPI.logOut()
-    put(Logout())
-    localStorage.removeItem('token')
+export function* logOutUser() {
+    try {
+        yield AuthAPI.logOut()
+        put(Logout())
+        localStorage.removeItem('token')
+    } catch (e) {
+        console.dir(e)
+    }
+}
+
+export function* registerUser(registrationData:any) {
+    console.log(registrationData)
+    put(StartRegistration(registrationData.email, registrationData.userName, registrationData.password))
+    try {
+        const {data}:AxiosResponse = yield AuthAPI.userRegistration(registrationData.email, registrationData.userName, registrationData.password)
+        console.log(data)
+    } catch (e) {
+
+    }
 }

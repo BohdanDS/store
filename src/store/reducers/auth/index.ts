@@ -36,7 +36,7 @@ export default function reducer(state = initialState, action: ActionTypes): TAut
             return {...state, isAuth: false, isLoading: false, error: action.error}
         }
         case AuthActionTypes.LOGOUT: {
-            return {...state, user: {userId:null, role:null, email:null, name:null}, isAuth: false}
+            return {...state, user: {userId:null, role: null, email: null, name: null}, isAuth: false, error:null}
         }
         case AuthActionTypes.START_REGISTRATION: {
             return {...state, isLoading: true}

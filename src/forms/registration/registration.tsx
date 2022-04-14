@@ -3,6 +3,8 @@ import {Form, Formik} from "formik";
 import {InputComponent} from "../../formik-controls";
 import {Button} from "antd";
 import * as Yup from "yup";
+import {useDispatch} from "react-redux";
+import {AuthActionTypes} from "../../store/reducers/auth/actions-types";
 
 type RegistrationFormType = {
     onCancel: () => void
@@ -10,9 +12,13 @@ type RegistrationFormType = {
 
 const RegistrationForm = ({onCancel}: RegistrationFormType) => {
 
+    const dispatch = useDispatch()
+
+    type RegistrationFormType = typeof initialState
+
     const initialState = {
-        login: '',
-        name: '',
+        email: '',
+        userName: '',
         password: '',
         passwordConfirmation: ''
     }
@@ -27,24 +33,30 @@ const RegistrationForm = ({onCancel}: RegistrationFormType) => {
             .oneOf([Yup.ref('password'), null], 'Passwords must match')
     })
 
-    const onSubmit = (values: any) => {
-        console.log('Form data', values)
-        onCancel()
+    const handleSubmit = (formik: any) => {
+        const {passwordConfirmation, ...registrationData} = formik.values
+        dispatch({type: AuthActionTypes.START_REGISTRATION, ...registrationData})
+        !formik.errors && onCancel()
     }
-
     return (
         <div>
-            <Formik initialValues={initialState} onSubmit={onSubmit} validationSchema={validationSchema}>
-                {(formik) => (
-                    <Form>
-                        <InputComponent name={'email'} label={'Email'}/>
-                        <InputComponent name={'name'} label={'User Name'}/>
-                        <InputComponent name={'password'} label={'Password'}/>
-                        <InputComponent name={'passwordConfirmation'} label={'Confirm password'}/>
-                        <Button type={'default'} onClick={onCancel}>Cancel</Button>
-                        <Button htmlType="submit" type={'default'}>Submit</Button>
-                    </Form>
-                )}
+            <Formik initialValues={initialState} onSubmit={handleSubmit} validationSchema={validationSchema}>
+                {(formik) => {
+                    console.log(formik.errors)
+                    return (
+                        (
+                            <Form>
+                                <InputComponent name={'email'} label={'Email'}/>
+                                <InputComponent name={'userName'} label={'User Name'}/>
+                                <InputComponent name={'password'} label={'Password'}/>
+                                <InputComponent name={'passwordConfirmation'} label={'Confirm password'}/>
+                                <Button type={'default'} onClick={onCancel}>Cancel</Button>
+                                <Button onClick={() => handleSubmit(formik)} htmlType="submit"
+                                        type={'default'}>Submit</Button>
+                            </Form>
+                        )
+                    )
+                }}
             </Formik>
         </div>
     );

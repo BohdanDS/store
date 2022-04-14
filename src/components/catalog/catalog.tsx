@@ -29,11 +29,7 @@ const Catalog = () => {
     }
 
     if (inMarketStatus) {
-        dispatch(ShowNotification({
-            message: 'Message Notification',
-            notificationType: 'error',
-            description: 'Poshel v jepu'
-        }))
+        console.log('Market')
     }
 
     // itemsToShow = items.filters(item => item.cost > minPrice)

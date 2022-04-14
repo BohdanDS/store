@@ -16,15 +16,14 @@ const Admin = () => {
     const showModal = () => {
         setIsModalVisible(true);
     };
-    
+
     return (
         <div className="card-container">
             <Tabs type="card">
                 <TabPane tab="Articles" key="1">
                     <div>
                         <Button className='Articles__btn' onClick={showModal}>Create Article</Button>
-                        {isModalVisible ?
-                            <Article visible={isModalVisible} setIsModalVisible={setIsModalVisible}/> : ''}
+                        {isModalVisible && <Article visible={isModalVisible} setIsModalVisible={setIsModalVisible}/>}
                     </div>
                     <ItemsMain/>
                 </TabPane>

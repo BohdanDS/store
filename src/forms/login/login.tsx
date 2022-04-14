@@ -3,9 +3,8 @@ import * as Yup from 'yup'
 import {Form, Formik} from "formik";
 import {InputComponent} from "../../formik-controls";
 import {Button} from "antd";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {AuthActionTypes} from "../../store/reducers/auth/actions-types";
-import {TApplicationState} from "../../store/aplication-state";
 
 type LoginFormType = {
     onCancel: () => void

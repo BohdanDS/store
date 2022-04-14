@@ -7,6 +7,7 @@ import {TOrdersState} from "./reducers/orders";
 import {RouterState} from "connected-react-router";
 import {TAuthState} from "./reducers/auth";
 import {TNotificationState} from "./reducers/notification";
+import {TModalState} from "./reducers/modals";
 
 export type TApplicationState = Readonly<{
     router: RouterState,
@@ -16,6 +17,7 @@ export type TApplicationState = Readonly<{
     filter: TFilterState,
     orders: TOrdersState,
     ordersFilter: TOrdersFilterState,
-    login: TAuthState
-    notification: TNotificationState
+    login: TAuthState,
+    notification: TNotificationState,
+    modals:TModalState,
 }>

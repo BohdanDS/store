@@ -8,6 +8,7 @@ import configureStore from "./configureStore";
 import './App.less';
 import App from "./App";
 import Notification from "./components/notification/notification";
+import Modals from "./modals/modals";
 
 
 export const history = createBrowserHistory(); //либа history
@@ -18,6 +19,7 @@ ReactDOM.render(
         <ConnectedRouter history={history}>
             <App/>
             <Notification/>
+            <Modals/>
         </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
