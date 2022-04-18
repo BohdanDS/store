@@ -1,26 +1,31 @@
 import React, {FC, useEffect, useState} from 'react';
 import ViewControls from "../viewControls /viewControls";
 import ArticleList from "../article/article";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {TCatalogState} from "../../store/reducers/catalog";
 import {Button, Pagination} from "antd";
 import {Link} from "react-router-dom";
 import './index.less'
 import Rating from "../rating/rating";
 import {TApplicationState} from "../../store/aplication-state";
+import {CatalogActionType} from "../../store/reducers/catalog/actions-types";
+
 
 type Props = {
-    addToCart?: (articleId: string) => void
+    addToCart?: (articleId: number) => void
 }
 
 const ItemsMain: FC<Props> = ({addToCart}) => {
+    const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch({type: CatalogActionType.START_LOAD_ARTICLES, page: 0})
         setListView(localStorage.getItem('ListView') === 'true')
     }, [])
 
-    const items = useSelector<TApplicationState, TCatalogState>(state => state.catalog)
-    const arrOfKeys = Object.keys(items)
+    const catalog = useSelector<TApplicationState, TCatalogState>(state => state.catalog)
+    const items = catalog.items
+
     const [listView, setListView] = useState(false)
 
     const changeView = (listView: boolean) => {
@@ -28,40 +33,43 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
         setListView(listView)
     }
 
+    const onChange = (value: number) => {
+        dispatch({type: CatalogActionType.START_LOAD_ARTICLES, page: value - 1})
+    }
+
     return (
         <>
             <div className='viewControlsBlock'><ViewControls callback={changeView} value={listView}/></div>
             {(!listView) ? <div style={{display: "flex", flexWrap: "wrap"}}>
                     {
-                        arrOfKeys.map(articleId => {
+                        items.map(item => {
                             return (
-                                <ArticleList key={articleId} title={items[articleId].title} price={items[articleId].cost}
-                                             id={items[articleId].id}
-                                             addToCart={addToCart} rating={items[articleId].rating}/>
+                                <ArticleList key={item.id} title={item.title} price={item.price}
+                                             id={item.id}
+                                             addToCart={addToCart} rating={5}/>
                             )
                         })
                     }
                 </div>
                 : <>
-                    {arrOfKeys.map(articleId => {
+                    {items.map(item => {
                         return (
-
-                            <div className='listArticle-container'>
+                            <div key={item.id} className='listArticle-container'>
                                 <div className='listArticle-container__image'>
                                     <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
                                 </div>
                                 <div className='listArticle-container__textArea'>
-                                    <Link to={`catalog/${articleId}`}>
+                                    <Link to={`catalog/${item.id}`}>
                                         <div className='listArticle-container__titlePrice'>
-                                            <h3>{items[articleId].title}</h3>
-                                            <h4>{items[articleId].cost}$</h4>
+                                            <h3>{item.title}</h3>
+                                            <h4>{item.price}$</h4>
                                         </div>
                                     </Link>
                                     {addToCart &&
-                                        <Button onClick={() => addToCart(items[articleId].id)}>Add to Cart</Button>}
+                                        <Button onClick={() => addToCart(item.id)}>Add to Cart</Button>}
                                     <div className="listArticle-container__description">
-                                        <p>{items[articleId].description}</p>
-                                        <Rating rating={items[articleId].rating} articleId={items[articleId].id}/>
+                                        {/*<p>{item.description}</p>*/}
+                                        <Rating rating={5} articleId={item.id}/>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +77,7 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
                     })}
                 </>
             }
-            <Pagination defaultCurrent={1} total={50}/>
+            <Pagination current={catalog.currentPage} total={catalog.totalCount} pageSize={catalog.pageSize} onChange={onChange}/>
         </>
     );
 };

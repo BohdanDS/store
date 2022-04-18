@@ -36,7 +36,6 @@ const Registration = () => {
 
     const onSubmit = (values: TRegistrationFormData) => {
         const {passwordConfirmation, ...dataToRegistration} = values
-        console.log(values)
         dispatch({
             type: AuthActionTypes.START_REGISTRATION,
             ...dataToRegistration

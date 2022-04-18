@@ -28,7 +28,7 @@ const CartArticles = () => {
 
     const removeItemHandler = () => {
         checkItems.checkedList.forEach(article => {
-            dispatch(RemoveItemFromCard(article))
+            dispatch(RemoveItemFromCard(Number(article)))
         })
     }
     return (

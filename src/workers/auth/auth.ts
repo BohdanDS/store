@@ -12,12 +12,14 @@ import {ShowNotification} from "../../store/reducers/notification/actions";
 import {IUser, TUser} from "../../models/user";
 import {CloseModal} from "../../store/reducers/modals/actions";
 import AuthAPI from "../../api/auth";
+import {AuthActionTypes} from "../../store/reducers/auth/actions-types";
 
-export function* loginUser(loginData: any) {
-    console.log(loginData)
-    put(StartLogin(loginData.login, loginData.password))
+
+export function* loginUser(payload:ReturnType<typeof StartLogin>) {
+    console.log(payload)
+    put(StartLogin(payload.login, payload.password))
     try {
-        const {data}: AxiosResponse<IUser> = yield AuthAPI.login(loginData.login, loginData.password)
+        const {data}: AxiosResponse<IUser> = yield AuthAPI.login(payload.login, payload.password)
         yield put(LoginSuccess(data.user))
         yield put(ShowNotification({
             notificationType: "success",
@@ -47,7 +49,7 @@ export function* logOutUser() {
     }
 }
 
-export function* registerUser(registrationData: any) {
+export function* registerUser(registrationData: ReturnType<typeof StartRegistration>) {
     console.log('registerUser', registrationData)
     put(StartRegistration(registrationData.email, registrationData.userName, registrationData.password))
     try {

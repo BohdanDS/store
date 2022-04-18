@@ -8,8 +8,8 @@ import Rating from "../rating/rating";
 type ArticlePropsType = {
     title: string,
     price: number
-    id: string
-    addToCart?: (id: string) => void
+    id: number
+    addToCart?: (id: number) => void
     removeFromCart?: (id: string) => void
     rating: number
 }

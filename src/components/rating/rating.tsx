@@ -3,7 +3,7 @@ import {Rate} from "antd";
 
 type Props = {
     rating:number
-    articleId:string
+    articleId:number
 }
 
 const Rating:FC<Props> = ({rating,articleId}) => {

@@ -38,14 +38,14 @@ const Article: FC<Props> = ({visible, setIsModalVisible}) => {
 
     const handlerButton = (values: InitialState, onSubmitProps: any) => {
         setIsModalVisible(false)
-        dispatch(CreateNewArticle({
-            ...values,
-            added_date: new Date().toDateString(),
-            available: true,
-            id: uuidv4(),
-            rating: 0,
-            comment: {}
-        }))
+        // dispatch(CreateNewArticle({
+        //     ...values,
+        //     added_date: new Date().toDateString(),
+        //     available: true,
+        //     id: uuidv4(),
+        //     rating: 0,
+        //     comment: {}
+        // }))
         onSubmitProps.resetForm()
 
     }

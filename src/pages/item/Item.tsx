@@ -9,6 +9,7 @@ import Rating from "../../components/rating/rating";
 import {AddCommentToArticle} from "../../store/reducers/catalog/actions";
 import Comments from "../../components/comment/comments";
 import {TApplicationState} from "../../store/aplication-state";
+import {IItem} from "../../models/catalogItems";
 
 const Item = () => {
 
@@ -17,8 +18,8 @@ const Item = () => {
 
     const id = useRouteMatch<{ id: string }>("/catalog/:id")?.params.id;
 
-    //@ts-ignore
-    const item = useSelector<TApplicationState, ItemType>(state => state.catalog[id])
+
+    const item = useSelector<TApplicationState, IItem | undefined>(state => state.catalog.items.find(item => item.id === Number(id)))
     const dispatch = useDispatch()
 
     const [comment, setComment] = useState('')
@@ -28,7 +29,7 @@ const Item = () => {
     }
 
 
-    const addToCard = (itemId: string) => {
+    const addToCard = (itemId: number) => {
         dispatch(AddItemToCard(itemId))
     }
 
@@ -51,29 +52,27 @@ const Item = () => {
                     </div>
                     <div className='item-short-description'>
                         <h2>{item.title}</h2>
-                        <Rating rating={item.rating} articleId={id || '1'}/>
+                        {/*<Rating rating={item.rating} articleId={id || '1'}/>*/}
                         <div>
-                            {item.available ?
-                                <div>
-                                    <h3>Available in Market</h3>
-                                    <p>Size:</p>
-                                    <p>Vendor Code:</p>
-                                    <p>Parameters:</p>
-                                    <h3>Price: {item.cost}$</h3>
-                                    <Button onClick={() => addToCard(item.id)}>Add to Card</Button>
-                                </div>
-                                : <div>Currently not available</div>}
+                            <div>
+                                <h3>Available in Market</h3>
+                                <p>Size:</p>
+                                <p>Vendor Code:</p>
+                                <p>Parameters:</p>
+                                <h3>Price: {item.price}$</h3>
+                                <Button onClick={() => addToCard(item.id)}>Add to Card</Button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className='item-full-description'>
                     <h3>Full Description:</h3>
                     <p>
-                        {item.description}
+                        {/*{item.description}*/}
                     </p>
-                    <p className='maker'>
-                        Maker: {item.maker}
-                    </p>
+                    {/*<p className='maker'>*/}
+                    {/*    Maker: {item.maker}*/}
+                    {/*</p>*/}
                     <div className='comment-container'>
                         <h3>Leave a feedback:</h3>
                         <Input.TextArea value={comment} onChange={commentHandler}/>
@@ -81,7 +80,7 @@ const Item = () => {
                             <Button onClick={addCommentHandler}>Add</Button>
                         </div>
                     </div>
-                    <Comments comments={item.comment}/>
+                    {/*<Comments comments={item.comment}/>*/}
                 </div>
             </>}
         </div>

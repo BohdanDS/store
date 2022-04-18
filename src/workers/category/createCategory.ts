@@ -2,12 +2,11 @@ import {AxiosResponse} from "axios";
 import CategoryAPI from "../../api/category";
 import {put} from "redux-saga/effects";
 import {ShowNotification} from "../../store/reducers/notification/actions";
-import {CloseModal} from "../../store/reducers/modals/actions";
 import {ICategory} from "../../models/category";
-import {CreateNewCategory} from "../../store/reducers/category/actions";
+import {CreateNewCategory, StartCreatingNewCategory} from "../../store/reducers/category/actions";
 
 
-export function* createCategory(payload: any) {
+export function* createCategory(payload: ReturnType<typeof StartCreatingNewCategory>) {
     console.log(payload)
     try {
         const {data}: AxiosResponse<ICategory> = yield CategoryAPI.createCategory(payload.title)

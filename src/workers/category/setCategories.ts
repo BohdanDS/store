@@ -6,7 +6,7 @@ import {ICategory} from "../../models/category";
 import {SetCategories} from "../../store/reducers/category/actions";
 import CategoryAPI from "../../api/category";
 import {ShowNotification} from "../../store/reducers/notification/actions";
-import {CloseModal} from "../../store/reducers/modals/actions";
+
 
 
 export function* setCategories() {
@@ -24,5 +24,18 @@ export function* setCategories() {
                 }))
             }
         }
+    }
+}
+export function* getCategories(){
+    try {
+        const {data}: AxiosResponse<ICategory[]> = yield CategoryAPI.getCategories()
+        yield put(SetCategories(data))
+    }
+    catch (e:any) {
+        yield put(ShowNotification({
+            notificationType: "error",
+            message: "Uuups!",
+            description: e.response.data.message
+        }))
     }
 }

@@ -1,7 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {Button, Input} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {CreateNewCategory, RemoveCategory} from "../../store/reducers/category/actions";
 import './index.less'
 import {TApplicationState} from "../../store/aplication-state";
 import {ICategory} from "../../models/category";

@@ -5,7 +5,7 @@ import {RemoveCategory} from "../../store/reducers/category/actions";
 import {CloseNotification, ShowNotification} from "../../store/reducers/notification/actions";
 import {CloseModal} from "../../store/reducers/modals/actions";
 
-export function* deleteCategory(payload: any) {
+export function* deleteCategory(payload: ReturnType<typeof RemoveCategory>) {
     try {
         const {data}: AxiosResponse = yield CategoryAPI.deleteCategory(payload.categoryId)
 

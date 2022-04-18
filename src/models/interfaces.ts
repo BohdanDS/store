@@ -8,11 +8,4 @@ export interface IOrderForm {
     mobilePhone: string
 }
 
-export interface IArticle {
-    id:string
-    price:string
-    uploadedImages:any
-    title:string
-    description:string
-}
 

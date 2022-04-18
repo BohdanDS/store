@@ -1,8 +1,9 @@
 import {API} from "./index";
+import {IUser} from "../models/user";
 
 export default class AuthAPI {
-    static login(email: string, password: string) {
-        return API.post('/auth/login', {email, password})
+    static async login(email: string, password: string) {
+        return API.post<IUser>('/auth/login', {email, password})
     }
 
     static logOut() {
@@ -10,6 +11,6 @@ export default class AuthAPI {
     }
 
     static userRegistration(email: string, name: string, password: string) {
-        return API.post('/auth/registration', {email, name, password})
+        return API.post<IUser>('/auth/registration', {email, name, password})
     }
 }
