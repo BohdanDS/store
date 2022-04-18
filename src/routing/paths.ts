@@ -38,7 +38,7 @@ export enum ADMIN_PATCH {
     ITEM_PAGE = '/catalog/:id',
     CART = '/cart',
     ADMIN_PAGE = '/admin',
-    ADD_ARTICLE='cms/add-article',
+    ADD_ARTICLE = 'cms/add-article',
     ORDER_HISTORY = '/my-orders',
 }
 
@@ -47,19 +47,19 @@ export type Routes = {
     Component: ComponentType
     // name?: string //опцианально
     showInMenu?: boolean //опцианально
-    // exact?: boolean
+    exact?: boolean
 }
 
 // const Home = React.lazy(() => import('../Pages/HomePage/Home'))
 
 export const publicRoute: Routes[] = [
-    {path: PUBLIC_PATHS.APP, Component: Catalog},
+    {path: PUBLIC_PATHS.APP, Component: Catalog, exact: true},
     {path: PUBLIC_PATHS.LOGIN, Component: Login},
     {path: PUBLIC_PATHS.ITEM_PAGE, Component: Item},
     {path: PUBLIC_PATHS.NOT_FOUND, Component: error}
 ]
 export const authorizedRoute: Routes[] = [
-    {path: AUTHORIZED_PATHS.APP, Component: Catalog},
+    {path: AUTHORIZED_PATHS.APP, Component: Catalog, exact: true},
     {path: AUTHORIZED_PATHS.LOGIN, Component: Login},
     {path: AUTHORIZED_PATHS.ITEM_PAGE, Component: Item},
     {path: AUTHORIZED_PATHS.CART, Component: Cart},
@@ -67,7 +67,7 @@ export const authorizedRoute: Routes[] = [
     {path: AUTHORIZED_PATHS.ORDER_HISTORY, Component: OrderHistory}
 ]
 export const adminRoute: Routes[] = [
-    {path: ADMIN_PATCH.APP, Component: Catalog},
+    {path: ADMIN_PATCH.APP, Component: Catalog, exact: true},
     {path: ADMIN_PATCH.LOGIN, Component: Login},
     {path: ADMIN_PATCH.ITEM_PAGE, Component: Item},
     {path: ADMIN_PATCH.CART, Component: Cart},
@@ -76,3 +76,4 @@ export const adminRoute: Routes[] = [
     {path: ADMIN_PATCH.ADMIN_PAGE, Component: admin},
     {path: ADMIN_PATCH.ADD_ARTICLE, Component: Article}
 ]
+

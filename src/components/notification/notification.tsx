@@ -13,14 +13,14 @@ const Notification = () => {
     const notificationData = useSelector<TApplicationState, TNotificationState>(state => state.notification)
 
     useEffect(() => {
-        notificationData.isShowing && openNotificationWithIcon(notificationData.notification.notificationType)
+        notificationData.isShowing && notificationData.notification && openNotificationWithIcon(notificationData.notification.notificationType)
         return () => {
             dispatch(CloseNotification())
         }
     }, [notificationData.isShowing])
 
     const openNotificationWithIcon = (type: NotificationType) => {
-        notification[notificationData.notification.notificationType]({
+        notificationData.notification && notification[notificationData.notification.notificationType]({
             message: notificationData.notification.message,
             description: notificationData.notification.description
         });

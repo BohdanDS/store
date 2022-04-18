@@ -4,7 +4,7 @@ import * as actions from "./actions";
 import {TNotification} from "../../../models/notification";
 
 export type TNotificationState = {
-    notification: TNotification
+    notification: TNotification | null,
     isShowing: boolean
 }
 
@@ -22,10 +22,10 @@ type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 export default function reducer(state = initialState, action: ActionTypes): TNotificationState {
     switch (action.type) {
         case NotificationActionTypes.SHOW_NOTIFICATION: {
-            return {...state, isShowing: true, notification:{...action.notification}}
+            return {...state, isShowing: true, notification: {...action.notification}}
         }
         case NotificationActionTypes.CLOSE_NOTIFICATION: {
-            return {...state, isShowing: false}
+            return {...state, isShowing: false, notification: null}
         }
         default:
             return state

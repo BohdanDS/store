@@ -10,8 +10,8 @@ import {
 } from "../../store/reducers/auth/actions";
 import {ShowNotification} from "../../store/reducers/notification/actions";
 import {IUser, TUser} from "../../models/user";
-import {AuthAPI} from "../../api/auth";
 import {CloseModal} from "../../store/reducers/modals/actions";
+import AuthAPI from "../../api/auth";
 
 export function* loginUser(loginData: any) {
     console.log(loginData)
@@ -33,6 +33,7 @@ export function* loginUser(loginData: any) {
             message: "Uuups!",
             description: e.response.data.message
         }))
+        yield put(CloseModal())
     }
 }
 

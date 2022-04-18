@@ -4,11 +4,11 @@ import {Button} from "antd";
 import './index.less'
 
 type Props = {
-    id: string
+    id: number
     value: string
     onChange?: (newValue: string) => void
     onEnter: (e: KeyboardEvent<HTMLInputElement>, id?: string, title?: string) => void
-    onRemove: (categoryId: string) => void
+    onRemove: (categoryId: number) => void
 }
 
 const Category: FC<Props> = ({id, value, onEnter, onRemove, onChange}) => {
@@ -21,7 +21,7 @@ const Category: FC<Props> = ({id, value, onEnter, onRemove, onChange}) => {
         <>
             <div className='category-container'>
                 <div>
-                    <EditableSpan id={id} value={value} onEnter={onEnter}/>
+                    <EditableSpan id={String(id)} value={value} onEnter={onEnter}/>
                 </div>
                 <div>
                     <Button onClick={removeHandler}>Remove</Button>

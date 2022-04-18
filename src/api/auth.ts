@@ -1,20 +1,15 @@
-import axios from 'axios'
+import {API} from "./index";
 
-const instance = axios.create({
-    baseURL: 'http://localhost:5005/api/'
-})
+export default class AuthAPI {
+    static login(email: string, password: string) {
+        return API.post('/auth/login', {email, password})
+    }
 
-export const AuthAPI = {
-    login(email: string, password: string) {
-        return instance.post('/auth/login', {email, password})
-    },
-    logOut() {
-        return instance.get('auth/logout')
-    },
-    userRegistration(email: string, name: string, password: string) {
-        console.log(email)
-        console.log(name)
-        console.log(password)
-        return instance.post('/auth/registration', {email, name,password})
+    static logOut() {
+        return API.get('auth/logout')
+    }
+
+    static userRegistration(email: string, name: string, password: string) {
+        return API.post('/auth/registration', {email, name, password})
     }
 }

@@ -9,7 +9,6 @@ import Registration from "./auth/registration";
 const Modals = () => {
 
     const modalToShow = useSelector<TApplicationState, string | null>(state => state.modals.modalToShow)
-    console.log(modalToShow)
     const modalToShowSwitcher = (modalToShow: string | null) => {
         switch (modalToShow) {
             case ModalsEnum.LOGIN_MODAL: {

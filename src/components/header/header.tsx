@@ -33,7 +33,7 @@ const Header = () => {
                 <Search/>
             </div>
             <div className='block-3'>
-                {authData.isAuth ? <UserMenu/> : <Link to={'/'}><LoginOutlined onClick={loginHandler}/></Link>}
+                {authData.isAuth ? <UserMenu/> : <LoginOutlined onClick={loginHandler}/>}
                 <Link to={'/cart'}>
                     {itemsInCart !== 0 && <span className='cartItem'>{itemsInCart}</span>}
                     <ShoppingCartOutlined/>
