@@ -18,7 +18,7 @@ const CartArticles: FC<Props> = ({items}) => {
     const dispatch = useDispatch()
 
     const defaultCheckedList: string[] = [];
-    const plainOptions = [...items.map(item=>String(item.id))]
+    const plainOptions = [...items.map(item => String(item.id))]
 
     const checkboxHandler = (list: any) => {
         setCheckItems({checkedList: list, checkAll: list.length === plainOptions.length})
@@ -32,21 +32,14 @@ const CartArticles: FC<Props> = ({items}) => {
     console.log(checkItems)
 
     const removeItemHandler = () => {
-        const newArr=[]
-        for (let i =0; i<checkItems.checkedList.length;i++){
+        const newArr = []
+        for (let i = 0; i < checkItems.checkedList.length; i++) {
             let obj = {
-                id:Number(checkItems.checkedList[i])
+                id: Number(checkItems.checkedList[i])
             }
             newArr.push(obj)
         }
-        console.log(newArr)
-        console.log(checkItems.checkedList)
-        console.log(Array.from(checkItems.checkedList, item=>{}))
         dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: newArr})
-
-        // checkItems.checkedList.forEach(article => {
-        //     dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: Number(article)})
-        // })
     }
     return (
         <div className='cartArticles-container'>
