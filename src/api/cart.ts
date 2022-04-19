@@ -6,7 +6,10 @@ export default class CartAPI {
     }
 
     static removeItemToCart(itemId: number) {
-        console.log(itemId)
-        return API_Auth.post('/card/remove', {products: [{id:itemId}]})
+        console.log('API call itemId',itemId)
+        return API_Auth.post('/card/remove', {products: itemId})
+    }
+    static getCartItems(){
+        return API_Auth.get('card/')
     }
 }

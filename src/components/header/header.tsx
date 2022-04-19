@@ -15,7 +15,7 @@ import {ModalsEnum} from "../../models/modals";
 const Header = () => {
 
     const dispatch = useDispatch()
-    const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart)).reduce((a, b) => a + b, 0)
+    const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart.itemsLocal)).reduce((a, b) => a + b, 0)
     const authData = useSelector<TApplicationState, TAuthState>(state => state.login)
 
     const loginHandler = () => {

@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {TCartState} from "../../store/reducers/cart";
-import CartArticle from "./cartArticle/cartArticle";
+import React, {FC, useState} from 'react';
+import {useDispatch} from "react-redux";
+import {cartProduct} from "../../store/reducers/cart";
 import './index.less'
 import {Button, Checkbox} from "antd";
 import {isEmptyArray} from "formik";
-import {TApplicationState} from "../../store/aplication-state";
 import {CardActionsType} from "../../store/reducers/cart/action-types";
+import CartArticle from "./cartArticle/cartArticle";
 
-const CartArticles = () => {
-    const articlesInCart = (Object.keys(useSelector<TApplicationState, TCartState>(state => state.cart)))
+type Props = {
+    items: cartProduct[]
+}
+
+const CartArticles: FC<Props> = ({items}) => {
+
+    console.log('Items', items)
+
     const dispatch = useDispatch()
 
     const defaultCheckedList: string[] = [];
-    const plainOptions = [...articlesInCart]
+    const plainOptions = [...items.map(item=>String(item.id))]
 
     const checkboxHandler = (list: any) => {
         setCheckItems({checkedList: list, checkAll: list.length === plainOptions.length})
@@ -24,23 +29,41 @@ const CartArticles = () => {
     };
 
     const [checkItems, setCheckItems] = useState({checkedList: defaultCheckedList, checkAll: false})
+    console.log(checkItems)
 
     const removeItemHandler = () => {
-        checkItems.checkedList.forEach(article => {
-            // dispatch(RemoveItemFromCard(Number(article)))
-            dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: Number(article)})
-        })
+        const newArr=[]
+        for (let i =0; i<checkItems.checkedList.length;i++){
+            let obj = {
+                id:Number(checkItems.checkedList[i])
+            }
+            newArr.push(obj)
+        }
+        console.log(newArr)
+        console.log(checkItems.checkedList)
+        console.log(Array.from(checkItems.checkedList, item=>{}))
+        dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: newArr})
+
+        // checkItems.checkedList.forEach(article => {
+        //     dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: Number(article)})
+        // })
     }
-    console.log(articlesInCart)
     return (
         <div className='cartArticles-container'>
-            {isEmptyArray(articlesInCart) && <div><h4>Cart is empty</h4></div>}
-            {!isEmptyArray(articlesInCart) && <div>
+            {isEmptyArray(items) && <div><h4>Cart is empty</h4></div>}
+            {!isEmptyArray(items) && <div>
                 {
-                    articlesInCart.map(itemId => {
+                    items.map(item => {
                         return (
-                            <CartArticle key={itemId} itemId={Number(itemId)} checkboxHandler={checkboxHandler}
-                                         values={checkItems.checkedList}/>
+                            <CartArticle key={item.id}
+                                         itemId={item.id}
+                                         img={item.img}
+                                         price={item.price}
+                                         title={item.title}
+                                         checkboxHandler={checkboxHandler}
+                                         values={checkItems.checkedList}
+                                         itemOnCart={items.length}
+                            />
                         )
                     })
                 }

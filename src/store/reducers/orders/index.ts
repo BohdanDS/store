@@ -1,4 +1,4 @@
-import {TCartState} from "../cart";
+import {ItemsLocalType, TCartState} from "../cart";
 import {InferValueTypes} from "../../../models/common";
 import * as actions from "./actions";
 import {OrdersActionType} from "./action-types";
@@ -104,7 +104,7 @@ export type OrderType = {
     id:string,
     date:  string,
     status: OrderStatusType
-    items: TCartState
+    items: ItemsLocalType
     userEmail: string
     delivery: IOrderForm
 }

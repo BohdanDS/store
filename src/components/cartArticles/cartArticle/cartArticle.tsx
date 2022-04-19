@@ -1,31 +1,24 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Checkbox} from "antd";
-import {DecreaseItemCount} from "../../../store/reducers/cart/actions";
 import {MinusOutlined, PlusOutlined} from "@ant-design/icons";
 import './index.less'
-import {TApplicationState} from "../../../store/aplication-state";
-import {IItem} from "../../../models/catalogItems";
 import {CardActionsType} from "../../../store/reducers/cart/action-types";
-import {CatalogActionType} from "../../../store/reducers/catalog/actions-types";
 
 type CartArticleType = {
     itemId: number
+    price: number
+    title: string,
+    img: null | string,
     checkboxHandler: (list: string[]) => void
     values: string[]
+    itemOnCart: number
 }
 
 
-const CartArticle = ({itemId, checkboxHandler, values}: CartArticleType) => {
+const CartArticle = ({itemId, checkboxHandler, values, img, title, price, itemOnCart}: CartArticleType) => {
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch({type: CatalogActionType.START_LOAD_ITEM_BY_ID, id: itemId})
-    })
-
-    const articleOnCart = useSelector<TApplicationState, IItem | undefined>(state => state.catalog.items.find(item => item.id === itemId))
-    const itemOnCart = useSelector<TApplicationState, number>(state => state.cart[itemId])
 
     const checkboxValue = values.includes(String(itemId))
 
@@ -48,14 +41,14 @@ const CartArticle = ({itemId, checkboxHandler, values}: CartArticleType) => {
 
     return (
         <div className='cartArticle-container'>
-            {articleOnCart && <>
+            {<>
                 <div className='cartArticle-container__titleBlock'>
                     <div style={{display: "flex"}}>
                         <Checkbox onChange={onChange} checked={checkboxValue}/>
-                        <h3 className='cartArticle-container__articleTitle'>{articleOnCart.title}</h3>
+                        <h3 className='cartArticle-container__articleTitle'>{title}</h3>
                     </div>
                     <div>
-                        <h4>{articleOnCart.price}$</h4>
+                        <h4>{price}$</h4>
                     </div>
                 </div>
                 <div className='cartArticle-container__dividerBlock'/>
@@ -76,9 +69,9 @@ const CartArticle = ({itemId, checkboxHandler, values}: CartArticleType) => {
                         leap into electronic</p>
                 </div>
                 <div className='cartArticle-container__countBlock'>
-                    <Button onClick={increaseItemHandler}><PlusOutlined/></Button>
-                    <p>{itemOnCart}</p>
-                    <Button onClick={decreaseItemHandler} disabled={itemOnCart === 0}><MinusOutlined/></Button>
+                    {/*<Button onClick={increaseItemHandler}><PlusOutlined/></Button>*/}
+                    {/*<p>{itemOnCart}</p>*/}
+                    {/*<Button onClick={decreaseItemHandler} disabled={itemOnCart === 0}><MinusOutlined/></Button>*/}
                 </div>
             </>}
         </div>

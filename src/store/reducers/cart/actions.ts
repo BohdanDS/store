@@ -1,4 +1,5 @@
 import {CardActionsType} from "./action-types";
+import {cartProduct} from "./index";
 
 
 export const AddItemToCard = (itemId: number) => ({
@@ -18,4 +19,9 @@ export const RemoveItemFromCard = (itemId: number) => ({
 
 export const ResetCart = () => ({
     type: CardActionsType.RESET_CART
+})
+
+export const fetchCartItems = (items: cartProduct[]) => ({
+    type: CardActionsType.FETCHING_ITEMS_SUCCESS,
+    items
 })

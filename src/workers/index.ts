@@ -4,6 +4,7 @@ import {setCategories} from "./category/setCategories";
 import {Category} from "./category";
 import {CatalogSaga} from "./catalog";
 import {Cart} from "./cart";
+import {getCartItems} from "./cart/getCartItems";
 
 
 export default function* rootSaga() {
@@ -12,7 +13,8 @@ export default function* rootSaga() {
         fork(Authorization),
         fork(setCategories),
         fork(Category),
-        fork(Cart)
+        fork(Cart),
+        fork(getCartItems)
     ])
 }
 
