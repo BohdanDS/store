@@ -12,7 +12,7 @@ const initialState: TOrdersState = {
         userEmail: 'test@gmail.com',
         status: ORDER_STATUSES.ORDER_IN_PROGRESS,
         items: {
-            'e474c35a-17db-4d9f-be53-863a63a683fd': 2
+            1: 2
         },
         delivery: {
             shipping: 'Courier delivery',
@@ -30,7 +30,7 @@ const initialState: TOrdersState = {
         userEmail: 'test@gmail.com',
         status: ORDER_STATUSES.ORDER_PAID,
         items: {
-            'e474c35a-17db-4d9f-be53-863a63a683fd': 2
+            2: 2
         },
         delivery: {
             shipping: 'Courier delivery',
@@ -48,7 +48,7 @@ const initialState: TOrdersState = {
         userEmail: 'test@gmail.com',
         status: ORDER_STATUSES.ORDER_ON_THE_WAY,
         items: {
-            'e474c35a-17db-4d9f-be53-863a63a683fd': 2
+            3: 2
         },
         delivery: {
             shipping: 'Courier delivery',
@@ -66,7 +66,7 @@ const initialState: TOrdersState = {
         userEmail: 'test@gmail.com',
         status: ORDER_STATUSES.ORDER_FINISHED,
         items: {
-            'e474c35a-17db-4d9f-be53-863a63a683fd': 2
+            4: 2
         },
         delivery: {
             shipping: 'Courier delivery',
@@ -84,7 +84,7 @@ const initialState: TOrdersState = {
         userEmail: 'test@gmail.com',
         status: ORDER_STATUSES.ORDER_PAID,
         items: {
-            'e474c35a-17db-4d9f-be53-863a63a683fd': 2
+           7: 2
         },
         delivery: {
             shipping: 'Courier delivery',

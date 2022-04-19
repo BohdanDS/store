@@ -10,7 +10,9 @@ import {TApplicationState} from "../../store/aplication-state";
 
 const CartArticles = () => {
 
-    const articlesInCart = Object.keys(useSelector<TApplicationState, TCartState>(state => state.cart))
+    // @ts-ignore
+    const articlesInCart = (Object.keys(useSelector<TApplicationState, TCartState>(state => state.cart)))
+    console.log('111',articlesInCart)
     const dispatch = useDispatch()
 
     const defaultCheckedList: string[] = [];
@@ -31,17 +33,26 @@ const CartArticles = () => {
             dispatch(RemoveItemFromCard(Number(article)))
         })
     }
+    console.log(articlesInCart)
     return (
         <div className='cartArticles-container'>
             {isEmptyArray(articlesInCart) && <div><h4>Cart is empty</h4></div>}
             {!isEmptyArray(articlesInCart) && <div>
+                {/*{*/}
+                {/*    articlesInCart.map(id => (<CartArticle*/}
+                {/*            itemId={Number(id)} key={id}*/}
+                {/*                checkboxHandler={checkboxHandler}*/}
+                {/*                values={checkItems.checkedList}/>*/}
+                {/*        )*/}
+                {/*    )*/}
+                {/*}*/}
                 {
-                    articlesInCart.map(id => (<CartArticle
-                                id={id} key={id}
-                                checkboxHandler={checkboxHandler}
-                                values={checkItems.checkedList}/>
+                    articlesInCart.map(itemId=>{
+                        console.log('Item ID map',itemId)
+                        return (
+                            <div><CartArticle itemId={Number(itemId)} checkboxHandler={checkboxHandler} values={checkItems.checkedList}/></div>
                         )
-                    )
+                    })
                 }
                 <div className='cartArticles-container__removeBlock'>
                     <Checkbox

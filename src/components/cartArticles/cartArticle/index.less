@@ -2,13 +2,22 @@
 
 .cartArticle-container {
   &__titleBlock{
+    width: 90%;
     display: flex;
     line-height: 1.5rem;
+    justify-content: space-between;
+    h4{
+      font-size: 1rem;
+    }
   }
   &__dividerBlock {
     width: 90%;
     height: 2px;
     background: @secondary-color;
+  }
+  &__description {
+    width: 90%;
+    font-size: 0.9rem;
   }
   .checkboxes label {
     display: block;

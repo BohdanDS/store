@@ -1,43 +1,50 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Checkbox} from "antd";
-import {AddItemToCard, DecreaseItemCount} from "../../../store/reducers/cart/actions";
+import {DecreaseItemCount} from "../../../store/reducers/cart/actions";
 import {MinusOutlined, PlusOutlined} from "@ant-design/icons";
 import './index.less'
 import {TApplicationState} from "../../../store/aplication-state";
 import {IItem} from "../../../models/catalogItems";
+import {CardActionsType} from "../../../store/reducers/cart/action-types";
+import {CatalogActionType} from "../../../store/reducers/catalog/actions-types";
 
 type CartArticleType = {
-    id: string
+    itemId: number
     checkboxHandler: (list: string[]) => void
     values: string[]
 }
 
 
-const CartArticle = ({id, checkboxHandler, values}: CartArticleType) => {
+const CartArticle = ({itemId, checkboxHandler, values}: CartArticleType) => {
 
     const dispatch = useDispatch()
-    const articleOnCart = useSelector<TApplicationState, IItem[]>(state => state.catalog.items.filter(item => item.id === Number(id)))
-    const itemOnCart = useSelector<TApplicationState, number>(state => state.cart[id])
 
-    const checkboxValue = values.includes(String(id))
+    useEffect(() => {
+        dispatch({type: CatalogActionType.START_LOAD_ITEM_BY_ID, id: itemId})
+    })
+
+    const articleOnCart = useSelector<TApplicationState, IItem | undefined>(state => state.catalog.items.find(item => item.id === itemId))
+    const itemOnCart = useSelector<TApplicationState, number>(state => state.cart[itemId])
+
+    const checkboxValue = values.includes(String(itemId))
 
     const onChange = () => {
-        // if (!values.includes(String(id))) {
-        //     values = [...values, id]
-        // } else {
-        //     values = values.filter(article => article !== id)
-        // }
-        // checkboxHandler(values)
+        if (!values.includes(String(itemId))) {
+            values = [...values, String(itemId)]
+        } else {
+            values = values.filter(article => article !== String(itemId))
+        }
+        checkboxHandler(values)
     }
 
     const increaseItemHandler = () => {
-        dispatch(AddItemToCard(Number(id)))
+        dispatch({type: CardActionsType.START_ADDING_ITEM_TO_CARD, itemId})
     }
 
     const decreaseItemHandler = () => {
         if (itemOnCart > 0) {
-            dispatch(DecreaseItemCount(Number(id)))
+            dispatch(DecreaseItemCount(itemId))
         }
     }
 
@@ -45,12 +52,31 @@ const CartArticle = ({id, checkboxHandler, values}: CartArticleType) => {
         <div className='cartArticle-container'>
             {articleOnCart && <>
                 <div className='cartArticle-container__titleBlock'>
-                    <Checkbox onChange={onChange} checked={checkboxValue}/>
-                    {/*<h3 className='cartArticle-container__articleTitle'>{articleOnCart.title}</h3>*/}
+                    <div style={{display: "flex"}}>
+                        <Checkbox onChange={onChange} checked={checkboxValue}/>
+                        <h3 className='cartArticle-container__articleTitle'>{articleOnCart.title}</h3>
+                    </div>
+                    <div>
+                        <h4>{articleOnCart.price}$</h4>
+                    </div>
                 </div>
                 <div className='cartArticle-container__dividerBlock'/>
-                {/*<h2>{articleOnCart}$</h2>*/}
-                {/*<p>{articleOnCart.description}</p>*/}
+                <div className='cartArticle-container__description'>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the
+                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                        type
+                        and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+                        the
+                        leap into electronic</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the
+                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                        type
+                        and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+                        the
+                        leap into electronic</p>
+                </div>
                 <div className='cartArticle-container__countBlock'>
                     <Button onClick={increaseItemHandler}><PlusOutlined/></Button>
                     <p>{itemOnCart}</p>

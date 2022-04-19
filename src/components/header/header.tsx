@@ -35,8 +35,10 @@ const Header = () => {
             <div className='block-3'>
                 {authData.isAuth ? <UserMenu/> : <LoginOutlined onClick={loginHandler}/>}
                 <Link to={'/cart'}>
-                    {itemsInCart !== 0 && <span className='cartItem'>{itemsInCart}</span>}
-                    <ShoppingCartOutlined/>
+                    <div className='block-3__cart'>
+                        {itemsInCart !== 0 && <span className='cartItem'>{itemsInCart}</span>}
+                        <ShoppingCartOutlined/>
+                    </div>
                 </Link>
             </div>
         </header>

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useRouteMatch} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {ItemType} from "../../store/reducers/catalog";
@@ -10,8 +10,14 @@ import {AddCommentToArticle} from "../../store/reducers/catalog/actions";
 import Comments from "../../components/comment/comments";
 import {TApplicationState} from "../../store/aplication-state";
 import {IItem} from "../../models/catalogItems";
+import {CardActionsType} from "../../store/reducers/cart/action-types";
+import {CatalogActionType} from "../../store/reducers/catalog/actions-types";
 
 const Item = () => {
+
+    useEffect(()=>{
+        dispatch({type: CatalogActionType.START_LOAD_ITEM_BY_ID, id: id})
+    })
 
     //Заглушка
     const currentUser = 'bhh'
@@ -30,7 +36,7 @@ const Item = () => {
 
 
     const addToCard = (itemId: number) => {
-        dispatch(AddItemToCard(itemId))
+        dispatch({type: CardActionsType.START_ADDING_ITEM_TO_CARD, itemId})
     }
 
     const addCommentHandler = () => {

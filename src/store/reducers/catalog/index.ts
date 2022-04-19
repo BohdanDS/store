@@ -172,12 +172,16 @@ type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 export default function reducer(state: TCatalogState = initialState, action: ActionTypes): TCatalogState {
     switch (action.type) {
         case CatalogActionType.LOAD_ARTICLES_SUCCESS: {
+
             return {
                 ...state,
-                items: action.articles,
+                items: [...action.articles],
                 totalCount: action.totalCount,
-                currentPage: action.currentPage
+                currentPage: action.page
             }
+        }
+        case CatalogActionType.LOAD_ITEM_BY_ID_SUCCESS: {
+            return {...state, items: [...state.items, action.article]}
         }
         case CatalogActionType.CREATE_NEW_ARTICLE: {
             return {...state, items: [...state.items, action.article]}

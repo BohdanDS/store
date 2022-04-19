@@ -5,19 +5,19 @@ import {CardActionsType} from "./action-types";
 const initialState: TCartState = {}
 
 export type TCartState = {
-    [id: string]: number
+    [id: number]: number
 }
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
 export default function reducer(state = initialState, action: ActionTypes): TCartState {
     switch (action.type) {
-        case CardActionsType.ADD_ITEM_TO_CARD:
+        case CardActionsType.ADD_ITEM_TO_CARD_SUCCESS:
             return {...state, [action.itemId]: state[action.itemId] ? ++state[action.itemId] : 1}
         case CardActionsType.DECREASE_ITEM_COUNT: {
             return {...state, [action.itemId]: state[action.itemId] >= 1 ? --state[action.itemId] : 0}
         }
-        case CardActionsType.REMOVE_ITEM_FROM_CARD: {
+        case CardActionsType.REMOVE_ITEM_FROM_CARD_SUCCESS: {
             delete state[action.itemId]
             return {...state}
         }

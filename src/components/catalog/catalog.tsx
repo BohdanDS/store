@@ -5,6 +5,7 @@ import {AddItemToCard, RemoveItemFromCard} from "../../store/reducers/cart/actio
 import Filter from "../filters/filter";
 import ItemsMain from "../itemsMain/itemsMain";
 import {TApplicationState} from "../../store/aplication-state";
+import {CardActionsType} from "../../store/reducers/cart/action-types";
 
 const Catalog = () => {
     const dispatch = useDispatch()
@@ -28,7 +29,7 @@ const Catalog = () => {
 
 
     const addToCart = (itemId: number) => {
-        dispatch(AddItemToCard(itemId))
+        dispatch({type: CardActionsType.START_ADDING_ITEM_TO_CARD, itemId})
     }
 
     return (
