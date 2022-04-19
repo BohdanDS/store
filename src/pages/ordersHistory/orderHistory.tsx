@@ -28,7 +28,6 @@ const OrderHistory = () => {
 
     const inputHandler = (e:ChangeEvent<HTMLInputElement>)=>{
         setUserSearchQuery(e.currentTarget.value)
-        console.log(e.currentTarget.value)
     }
 
     const userOrders = useSelector(ordersByStatus(filterValue))

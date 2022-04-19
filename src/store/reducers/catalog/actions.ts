@@ -3,10 +3,11 @@ import {CommentType} from "./index";
 import {IItem} from "../../../models/catalogItems";
 
 
-export const fetchArticles = (articles: IItem[], totalCount: number) => ({
+export const fetchArticles = (articles: IItem[], totalCount: number, currentPage: number) => ({
     type: CatalogActionType.LOAD_ARTICLES_SUCCESS,
     articles,
-    totalCount
+    totalCount,
+    currentPage,
 })
 
 export const CreateNewArticle = (article: IItem) => ({

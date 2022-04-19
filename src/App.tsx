@@ -6,7 +6,6 @@ import {useSelector} from "react-redux";
 import {TApplicationState} from "./store/aplication-state";
 
 function App() {
-    console.log('Render App')
     const userRole = useSelector<TApplicationState, string|null>(state => state.login.user.role)
     return <AdminRouting/>
 

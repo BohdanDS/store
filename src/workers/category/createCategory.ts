@@ -7,10 +7,8 @@ import {CreateNewCategory, StartCreatingNewCategory} from "../../store/reducers/
 
 
 export function* createCategory(payload: ReturnType<typeof StartCreatingNewCategory>) {
-    console.log(payload)
     try {
         const {data}: AxiosResponse<ICategory> = yield CategoryAPI.createCategory(payload.title)
-        console.log(data)
         yield put(CreateNewCategory(data))
         yield put(ShowNotification({
             notificationType: "success",

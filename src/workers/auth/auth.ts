@@ -16,7 +16,6 @@ import {AuthActionTypes} from "../../store/reducers/auth/actions-types";
 
 
 export function* loginUser(payload:ReturnType<typeof StartLogin>) {
-    console.log(payload)
     put(StartLogin(payload.login, payload.password))
     try {
         const {data}: AxiosResponse<IUser> = yield AuthAPI.login(payload.login, payload.password)
@@ -50,11 +49,9 @@ export function* logOutUser() {
 }
 
 export function* registerUser(registrationData: ReturnType<typeof StartRegistration>) {
-    console.log('registerUser', registrationData)
     put(StartRegistration(registrationData.email, registrationData.userName, registrationData.password))
     try {
         const {data}: AxiosResponse<IUser> = yield AuthAPI.userRegistration(registrationData.email, registrationData.userName, registrationData.password)
-        console.log(data)
         yield put(RegistrationSuccess(data.user))
         yield put(ShowNotification({
             notificationType: "success",

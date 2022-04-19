@@ -10,7 +10,6 @@ type Props = {
 
 const Comments: FC<Props> = ({comments}) => {
 
-    console.log(comments)
     return (
         <div>
             {Object.keys(comments).map(comment => {

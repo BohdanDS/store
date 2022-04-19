@@ -19,7 +19,7 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch({type: CatalogActionType.START_LOAD_ARTICLES, page: 0})
+        dispatch({type: CatalogActionType.START_LOAD_ARTICLES, page: catalog.currentPage - 1})
         setListView(localStorage.getItem('ListView') === 'true')
     }, [])
 
@@ -77,7 +77,8 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
                     })}
                 </>
             }
-            <Pagination current={catalog.currentPage} total={catalog.totalCount} pageSize={catalog.pageSize} onChange={onChange}/>
+            <Pagination current={catalog.currentPage} total={catalog.totalCount} pageSize={catalog.pageSize}
+                        onChange={onChange}/>
         </>
     );
 };

@@ -11,7 +11,6 @@ import {ShowNotification} from "../../store/reducers/notification/actions";
 const Categories = () => {
 
     const categories = useSelector<TApplicationState, ICategory[]>(state => state.category)
-    console.log(categories)
 
     const dispatch = useDispatch()
     const [categoryValue, setCategoryValue] = useState<string>('')

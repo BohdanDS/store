@@ -42,7 +42,6 @@ const Order = () => {
         dispatch(CreateNewOrder(uuidv4(), Date(), 'test@gmail.com', ORDER_STATUSES.ORDER_IN_PROGRESS, itemsOnCart, values))
         dispatch(ResetCart())
         history.push('/my-orders')
-        console.log('Form data', values)
     }
 
     return (

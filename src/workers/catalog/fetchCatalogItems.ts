@@ -4,10 +4,9 @@ import {put} from "redux-saga/effects";
 import {fetchArticles} from "../../store/reducers/catalog/actions";
 
 export function* fetchCatalogItems(payload: any) {
-    console.log(payload)
     try {
         const {data}: AxiosResponse = yield CatalogAPI.getItems(payload.page)
-        yield put(fetchArticles(data.content, data.totalCount))
+        yield put(fetchArticles(data.content, data.totalCount, data.page+1))
     } catch (e) {
         console.log(e)
     }

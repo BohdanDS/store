@@ -31,7 +31,6 @@ const Login = () => {
     })
 
     const onSubmit = (values: TLoginFormData) => {
-        console.log(values)
         dispatch({
             type: AuthActionTypes.START_LOGIN,
             login: values.login,

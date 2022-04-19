@@ -25,20 +25,17 @@ const ProducerFilter = () => {
             value,
         });
     }
-    console.log('options',options)
     const selectProps = {
         mode: 'multiple' as const,
         style: {width: '500px'},
         options,
         onChange: (newValue: string[]) => {
-            console.log(newValue)
             dispatch(SelectProducer(newValue))
         },
         placeholder: 'Select producer...',
         maxTagCount: 'responsive' as const,
     };
     const onSelect =(value:any) => {
-        console.log('onSelect', value)
     }
 
 

@@ -42,7 +42,6 @@ const RegistrationForm = ({onCancel}: RegistrationFormType) => {
         <div>
             <Formik initialValues={initialState} onSubmit={handleSubmit} validationSchema={validationSchema}>
                 {(formik) => {
-                    console.log(formik.errors)
                     return (
                         (
                             <Form>
