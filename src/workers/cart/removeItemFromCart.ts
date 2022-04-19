@@ -2,16 +2,15 @@ import {AxiosResponse} from "axios";
 import CartAPI from "../../api/cart";
 import {put} from "redux-saga/effects";
 import {ShowNotification} from "../../store/reducers/notification/actions";
-import {AddItemToCard} from "../../store/reducers/cart/actions";
+import {RemoveItemFromCard} from "../../store/reducers/cart/actions";
 
-export function* addItemToCart(payload: ReturnType<typeof AddItemToCard>) {
+export function* removeItemFromCart(payload: any) {
+    console.log('payload', payload)
     try {
-        const {data}: AxiosResponse = yield CartAPI.addItemToCart(payload.itemId)
-
-        yield put(AddItemToCard(payload.itemId))
+        yield CartAPI.removeItemToCart(payload.itemId)
         // yield put(ShowNotification({
         //     notificationType: "success",
-        //     message: "Items Added to Cart",
+        //     message: "Items was removed from cart",
         //     description: ``
         // }))
     } catch (e: any) {

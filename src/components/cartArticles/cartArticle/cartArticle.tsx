@@ -43,9 +43,7 @@ const CartArticle = ({itemId, checkboxHandler, values}: CartArticleType) => {
     }
 
     const decreaseItemHandler = () => {
-        if (itemOnCart > 0) {
-            dispatch(DecreaseItemCount(itemId))
-        }
+        dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: Number(itemId)})
     }
 
     return (

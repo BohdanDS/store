@@ -5,14 +5,11 @@ import CartArticle from "./cartArticle/cartArticle";
 import './index.less'
 import {Button, Checkbox} from "antd";
 import {isEmptyArray} from "formik";
-import {RemoveItemFromCard} from "../../store/reducers/cart/actions";
 import {TApplicationState} from "../../store/aplication-state";
+import {CardActionsType} from "../../store/reducers/cart/action-types";
 
 const CartArticles = () => {
-
-    // @ts-ignore
     const articlesInCart = (Object.keys(useSelector<TApplicationState, TCartState>(state => state.cart)))
-    console.log('111',articlesInCart)
     const dispatch = useDispatch()
 
     const defaultCheckedList: string[] = [];
@@ -30,7 +27,8 @@ const CartArticles = () => {
 
     const removeItemHandler = () => {
         checkItems.checkedList.forEach(article => {
-            dispatch(RemoveItemFromCard(Number(article)))
+            // dispatch(RemoveItemFromCard(Number(article)))
+            dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: Number(article)})
         })
     }
     console.log(articlesInCart)
@@ -38,19 +36,11 @@ const CartArticles = () => {
         <div className='cartArticles-container'>
             {isEmptyArray(articlesInCart) && <div><h4>Cart is empty</h4></div>}
             {!isEmptyArray(articlesInCart) && <div>
-                {/*{*/}
-                {/*    articlesInCart.map(id => (<CartArticle*/}
-                {/*            itemId={Number(id)} key={id}*/}
-                {/*                checkboxHandler={checkboxHandler}*/}
-                {/*                values={checkItems.checkedList}/>*/}
-                {/*        )*/}
-                {/*    )*/}
-                {/*}*/}
                 {
-                    articlesInCart.map(itemId=>{
-                        console.log('Item ID map',itemId)
+                    articlesInCart.map(itemId => {
                         return (
-                            <div><CartArticle itemId={Number(itemId)} checkboxHandler={checkboxHandler} values={checkItems.checkedList}/></div>
+                            <CartArticle key={itemId} itemId={Number(itemId)} checkboxHandler={checkboxHandler}
+                                         values={checkItems.checkedList}/>
                         )
                     })
                 }
