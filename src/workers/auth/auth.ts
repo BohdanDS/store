@@ -8,7 +8,7 @@ import {
     StartLogin,
     StartRegistration
 } from "../../store/reducers/auth/actions";
-import {ShowNotification} from "../../store/reducers/notification/actions";
+import {CloseNotification, ShowNotification} from "../../store/reducers/notification/actions";
 import {IUser, TUser} from "../../models/user";
 import {CloseModal} from "../../store/reducers/modals/actions";
 import AuthAPI from "../../api/auth";
@@ -26,6 +26,7 @@ export function* loginUser(payload:ReturnType<typeof StartLogin>) {
             description: 'Test message XXX'
         }))
         localStorage.setItem('token', data.token)
+        yield put(CloseNotification())
         yield put(CloseModal())
     } catch (e: any) {
         yield put(LoginFailed(e.response.data.message))
@@ -34,7 +35,6 @@ export function* loginUser(payload:ReturnType<typeof StartLogin>) {
             message: "Uuups!",
             description: e.response.data.message
         }))
-        yield put(CloseModal())
     }
 }
 
@@ -59,6 +59,7 @@ export function* registerUser(registrationData: ReturnType<typeof StartRegistrat
             description: 'Test message XXX'
         }))
         localStorage.setItem('token', data.token)
+        yield put(CloseNotification())
         yield put(CloseModal())
     } catch (e: any) {
         yield put(LoginFailed(e.response.data.message))

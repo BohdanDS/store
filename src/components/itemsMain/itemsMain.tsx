@@ -46,6 +46,7 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
                             return (
                                 <ArticleList key={item.id} title={item.title} price={item.price}
                                              id={item.id}
+                                             img={item.img}
                                              addToCart={addToCart} rating={5}/>
                             )
                         })
@@ -56,7 +57,7 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
                         return (
                             <div key={item.id} className='listArticle-container'>
                                 <div className='listArticle-container__image'>
-                                    <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>
+                                    <img src={item.img}/>
                                 </div>
                                 <div className='listArticle-container__textArea'>
                                     <Link to={`catalog/${item.id}`}>

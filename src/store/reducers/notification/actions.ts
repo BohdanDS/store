@@ -7,5 +7,5 @@ export const ShowNotification = (notification: TNotification) => ({
 })
 
 export const CloseNotification = () => ({
-    type: NotificationActionTypes.CLOSE_NOTIFICATION
+    type: NotificationActionTypes.CLOSE_NOTIFICATION_EVENT
 })

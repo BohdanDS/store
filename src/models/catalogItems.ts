@@ -15,7 +15,9 @@ export interface ICatalogItems {
 export interface IItem {
     id: number
     title: string,
-    img: any,
+    img: string,
     price: number
     categories: ICategory[]
 }
+
+export type TItem = Omit<Omit<IItem, 'categories'>, 'id'> & { categories: { id: number }[] }

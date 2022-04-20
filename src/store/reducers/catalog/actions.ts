@@ -1,6 +1,6 @@
 import {CatalogActionType} from './actions-types'
 import {CommentType} from "./index";
-import {IItem} from "../../../models/catalogItems";
+import {IItem, TItem} from "../../../models/catalogItems";
 
 
 export const fetchArticles = (articles: IItem[], totalCount: number, page: number) => ({
@@ -15,8 +15,8 @@ export const setArticleById = (article: IItem)=>({
     article
 })
 
-export const CreateNewArticle = (article: IItem) => ({
-    type: CatalogActionType.CREATE_NEW_ARTICLE,
+export const CreateNewArticle = (article: TItem) => ({
+    type: CatalogActionType.START_CREATE_NEW_ARTICLE,
     article,
 })
 

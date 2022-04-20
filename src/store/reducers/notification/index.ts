@@ -24,7 +24,7 @@ export default function reducer(state = initialState, action: ActionTypes): TNot
         case NotificationActionTypes.SHOW_NOTIFICATION: {
             return {...state, isShowing: true, notification: {...action.notification}}
         }
-        case NotificationActionTypes.CLOSE_NOTIFICATION: {
+        case NotificationActionTypes.CLOSE_NOTIFICATION_EVENT: {
             return {...state, isShowing: false, notification: null}
         }
         default:

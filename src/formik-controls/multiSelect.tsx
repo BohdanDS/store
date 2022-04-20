@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
 import {Select} from "antd";
 import {Field, FieldAttributes, useFormikContext} from "formik";
+import {ICategory} from "../models/category";
 
 const {Option} = Select;
 
 type Props = {
-    options: string[]
+    options:  ICategory[]
     name: string
     label: string
 }
@@ -36,7 +37,7 @@ const MultiSelect: FC<Props> = ({options, name, label}) => {
                         >
                             {options.map(item => {
                                 return (
-                                    <Option id={name} key={item}>{item}</Option>
+                                    <Option id={item.id} key={item.id}>{item.title}</Option>
                                 )
                             })}
                         </Select>

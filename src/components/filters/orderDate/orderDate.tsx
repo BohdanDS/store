@@ -12,7 +12,6 @@ const OrderDate = () => {
 
     // @ts-ignore
     const selectDateHandler = (values: RangeValue<Moment>, formatString: [string, string]) => {
-        console.log(values)
     }
 
 

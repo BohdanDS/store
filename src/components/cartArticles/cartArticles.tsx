@@ -6,14 +6,13 @@ import {Button, Checkbox} from "antd";
 import {isEmptyArray} from "formik";
 import {CardActionsType} from "../../store/reducers/cart/action-types";
 import CartArticle from "./cartArticle/cartArticle";
+import {arrayToObjArray} from "../../utils/arrayToObjArray";
 
 type Props = {
     items: cartProduct[]
 }
 
 const CartArticles: FC<Props> = ({items}) => {
-
-    console.log('Items', items)
 
     const dispatch = useDispatch()
 
@@ -29,17 +28,10 @@ const CartArticles: FC<Props> = ({items}) => {
     };
 
     const [checkItems, setCheckItems] = useState({checkedList: defaultCheckedList, checkAll: false})
-    console.log(checkItems)
 
     const removeItemHandler = () => {
-        const newArr = []
-        for (let i = 0; i < checkItems.checkedList.length; i++) {
-            let obj = {
-                id: Number(checkItems.checkedList[i])
-            }
-            newArr.push(obj)
-        }
-        dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: newArr})
+        const itemsIdsObj = arrayToObjArray(checkItems.checkedList)
+        dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: itemsIdsObj})
     }
     return (
         <div className='cartArticles-container'>

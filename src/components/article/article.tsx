@@ -12,9 +12,10 @@ type ArticlePropsType = {
     addToCart?: (id: number) => void
     removeFromCart?: (id: string) => void
     rating: number
+    img: string
 }
 
-const ArticleList = ({title, price, id, addToCart, rating}: ArticlePropsType) => {
+const ArticleList = ({title, price, id, addToCart, img, rating}: ArticlePropsType) => {
     const {viewOnHover, onFocus, onLooseFocus} = useHoverHandler()
 
     let history = useHistory()
@@ -42,7 +43,8 @@ const ArticleList = ({title, price, id, addToCart, rating}: ArticlePropsType) =>
                 <Card
                     hoverable
                     style={{width: 240}}
-                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}>
+                    cover={<img alt="example" style={{width:'100%', height:'280px'}}
+                                src={img ? img : "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"}/>}>
                     <Meta title={title} description={price + '$'}/>
                     {/*Запретить переход по ссылке*/}
                     <div onClick={ratingHandler}>
