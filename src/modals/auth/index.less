@@ -1,5 +1,14 @@
 @import "src/styles/vars";
 
+.dangerous_button {
+  background: #d4380d;
+  height: auto;
+  width: 150px;
+  &:hover{
+    background: #d4380d;
+    color: @main-color;
+  }
+}
 .ant-modal-root {
   .img-crop-modal{
     .ant-modal-footer {
@@ -15,8 +24,13 @@
   }
 
   .registrationLink {
-    a {
+    display: flex;
+    p{
+      padding-right: 0.3rem;
+    }
+    &__link{
       color: @secondary-color;
+      cursor: pointer;
     }
   }
 
@@ -29,5 +43,15 @@
     button {
       margin-left: 1rem;
     }
+  }
+}
+.dangerous_button {
+  background: #d4380d;
+  border-radius: 5px;
+  height: auto;
+  width: 150px;
+  &:hover{
+    background: #d4380d;
+    color: @main-color;
   }
 }

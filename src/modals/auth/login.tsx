@@ -42,7 +42,7 @@ const Login = () => {
         dispatch(CloseModal())
     }
 
-    const registerLinkHandler = ()=>{
+    const registerLinkHandler = () => {
         dispatch(CloseModal())
         dispatch(OpenModal(ModalsEnum.REGISTRATION_MODAL))
     }
@@ -50,19 +50,22 @@ const Login = () => {
     return (
         <div>
             <Modal visible={modalState} onCancel={onCancel}>
-                    <Formik initialValues={initialState} onSubmit={onSubmit} validationSchema={validationSchema}>
-                        {(formik) => (
-                            <Form>
-                                <InputComponent name={'login'} label={'Email'}/>
-                                <InputComponent type='password' name={'password'} label={'Password'}/>
-                                <p className='registrationLink'>Don't have account? <Link to={''} onClick={registerLinkHandler}>Register it here</Link></p>
-                                <div className='modal_controls'>
-                                    <Button type={'default'} onClick={onCancel}>Cancel</Button>
-                                    <Button htmlType="submit" type={'default'}>LogIn</Button>
-                                </div>
-                            </Form>
-                        )}
-                    </Formik>
+                <Formik initialValues={initialState} onSubmit={onSubmit} validationSchema={validationSchema}>
+                    {(formik) => (
+                        <Form>
+                            <InputComponent name={'login'} label={'Email'}/>
+                            <InputComponent type='password' name={'password'} label={'Password'}/>
+                            <div className='registrationLink'>
+                                <p>Don't have account? </p>
+                                <p className='registrationLink__link' onClick={registerLinkHandler}> Register it here</p>
+                            </div>
+                            <div className='modal_controls'>
+                                <Button type={'default'} onClick={onCancel}>Cancel</Button>
+                                <Button htmlType="submit" type={'default'}>LogIn</Button>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
             </Modal>
         </div>
     );

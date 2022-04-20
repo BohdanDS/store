@@ -31,3 +31,8 @@ export type TFilterState = {
     inMarket: boolean,
     searchQuery: string
 }
+
+export enum USER_ROLES {
+    ADMIN_ROLE = 'ADMIN',
+    USER_ROLE = 'USER'
+}

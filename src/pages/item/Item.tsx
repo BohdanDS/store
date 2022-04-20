@@ -1,21 +1,20 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useRouteMatch} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {ItemType} from "../../store/reducers/catalog";
 import './index.less'
 import {Button, Input} from "antd";
-import {AddItemToCard} from "../../store/reducers/cart/actions";
 import Rating from "../../components/rating/rating";
 import {AddCommentToArticle} from "../../store/reducers/catalog/actions";
-import Comments from "../../components/comment/comments";
 import {TApplicationState} from "../../store/aplication-state";
 import {IItem} from "../../models/catalogItems";
 import {CardActionsType} from "../../store/reducers/cart/action-types";
 import {CatalogActionType} from "../../store/reducers/catalog/actions-types";
+import {fakeDescription} from "../../models/fakeDescription";
+import {USER_ROLES} from "../../models/feels";
 
 const Item = () => {
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch({type: CatalogActionType.START_LOAD_ITEM_BY_ID, id: id})
     })
 
@@ -26,6 +25,7 @@ const Item = () => {
 
 
     const item = useSelector<TApplicationState, IItem | undefined>(state => state.catalog.items.find(item => item.id === Number(id)))
+    const role = useSelector<TApplicationState, string | null>(state => state.login.user.role)
     const dispatch = useDispatch()
 
     const [comment, setComment] = useState('')
@@ -46,6 +46,9 @@ const Item = () => {
         }))
         setComment('')
     }
+    const removeArticle = () => {
+        dispatch({type: CatalogActionType.START_REMOVE_ARTICLE, itemId: Number(id)})
+    }
 
 
     return (
@@ -54,11 +57,11 @@ const Item = () => {
                 <div className='item-container'>
                     <div>
                         <img className='item-image'
-                             src='https://image.shutterstock.com/z/stock-vector-vector-line-icon-for-img-2050481222.jpg'/>
+                             src={item.img ? item.img : 'https://image.shutterstock.com/z/stock-vector-vector-line-icon-for-img-2050481222.jpg'}/>
                     </div>
                     <div className='item-short-description'>
                         <h2>{item.title}</h2>
-                        {/*<Rating rating={item.rating} articleId={id || '1'}/>*/}
+                        <Rating rating={5} articleId={Number(id) || 1}/>
                         <div>
                             <div>
                                 <h3>Available in Market</h3>
@@ -67,6 +70,7 @@ const Item = () => {
                                 <p>Parameters:</p>
                                 <h3>Price: {item.price}$</h3>
                                 <Button onClick={() => addToCard(item.id)}>Add to Card</Button>
+
                             </div>
                         </div>
                     </div>
@@ -74,8 +78,11 @@ const Item = () => {
                 <div className='item-full-description'>
                     <h3>Full Description:</h3>
                     <p>
-                        {/*{item.description}*/}
+                        {fakeDescription}
                     </p>
+                    {role === USER_ROLES.ADMIN_ROLE &&
+                        <Button onClick={removeArticle} className='dangerous_button'>Remove Item</Button>
+                    }
                     {/*<p className='maker'>*/}
                     {/*    Maker: {item.maker}*/}
                     {/*</p>*/}
