@@ -19,5 +19,5 @@ export type TApplicationState = Readonly<{
     ordersFilter: TOrdersFilterState,
     login: TAuthState,
     notification: TNotificationState,
-    modals:TModalState,
+    modals: TModalState,
 }>

@@ -19,7 +19,7 @@ export type TCatalogState = {
     filterData: {
         searchString?: string | null
         category?: number[] | null,
-        price?: [number] | null
+        price?: [number, number]
     }
 }
 
@@ -31,7 +31,7 @@ const initialState: TCatalogState = {
     filterData: {
         searchString: null,
         category: null,
-        price: null
+        price: [0, 9999]
     }
 }
 
@@ -51,17 +51,20 @@ export default function reducer(state: TCatalogState = initialState, action: Act
             return {...state, items: [...state.items, action.article]}
         }
         case CatalogActionType.ADD_CATEGORY_FILTER_VALUE: {
-            console.log('CatalogActionType.ADD_CATEGORY_FILTER_VALUE')
             return {
                 ...state,
                 filterData: {...state.filterData, category: action.categoriesId.length ? action.categoriesId : null}
             }
         }
         case CatalogActionType.ADD_SEARCH_STRING_FILTER_VALUE: {
-            console.log('CatalogActionType.ADD_SEARCH_STRING_FILTER_VALUE')
             return {
                 ...state,
                 filterData: {...state.filterData, searchString: action.searchString.length ? action.searchString : null}
+            }
+        }
+        case CatalogActionType.ADD_PRICE_FILTER_VALUE: {
+            return {
+                ...state, filterData: {...state.filterData, price: [...action.prices]}
             }
         }
         default:

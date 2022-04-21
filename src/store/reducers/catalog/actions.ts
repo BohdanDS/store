@@ -38,12 +38,17 @@ export const AddCommentToArticle = (articleId: string, comment: CommentType) => 
 
 //Filters
 
-export const AddCategoryFilterValue = (categoriesId:number[])=>({
+export const AddCategoryFilterValue = (categoriesId: number[]) => ({
     type: CatalogActionType.ADD_CATEGORY_FILTER_VALUE,
     categoriesId
 })
 
-export const AddSearchStringFilterValue = (searchString: string)=>({
+export const AddSearchStringFilterValue = (searchString: string) => ({
     type: CatalogActionType.ADD_SEARCH_STRING_FILTER_VALUE,
     searchString
+})
+
+export const AddPriceFilterValue = (prices: [number, number]) => ({
+    type: CatalogActionType.ADD_PRICE_FILTER_VALUE,
+    prices
 })

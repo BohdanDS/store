@@ -1,27 +1,27 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {Slider} from "antd";
 import './index.less'
-import {useDispatch, useSelector} from "react-redux";
-import {SetMaxPriceFilterValue, SetMinPriceFilterValue} from "../../../store/reducers/filter/actions";
-import {TApplicationState} from "../../../store/aplication-state";
+import {useDispatch} from "react-redux";
+import {AddPriceFilterValue} from "../../../store/reducers/catalog/actions";
+import useDebounce from "../../../hooks/useDebounce";
 
 const PriceFilter = () => {
-
-    const minValue = useSelector<TApplicationState, number>(state => state.filter.minPrice)
-    const maxValue = useSelector<TApplicationState, number>(state => state.filter.maxPrice)
     const dispatch = useDispatch()
+    const debounceInput = useDebounce(dispatch, 500)
+
+    const [priceValues, setPriceValues] = useState<[number, number]>([0, 9999])
 
     const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(SetMinPriceFilterValue(Number(e.currentTarget.value)))
+        dispatch(AddPriceFilterValue([Number(e.currentTarget.value), priceValues[1]]))
     }
 
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(SetMaxPriceFilterValue(Number(e.currentTarget.value)))
+        dispatch(AddPriceFilterValue([priceValues[0], Number(e.currentTarget.value)]))
     }
 
     const sliderHandler = (value: [number, number]) => {
-        dispatch(SetMinPriceFilterValue(value[0]))
-        dispatch(SetMaxPriceFilterValue(value[1]))
+        setPriceValues(value)
+        debounceInput(AddPriceFilterValue(value))
     }
 
     return (
@@ -31,20 +31,23 @@ const PriceFilter = () => {
                 <input
                     type='number'
                     min={0}
-                    value={minValue}
+                    value={priceValues[0]}
                     onChange={minValueHandler}
                 />
                 <span className='priceFilter-container__span-2'>To:</span>
                 <input
                     type='number'
-                    max={100}
-                    value={maxValue}
+                    max={9999}
+                    value={priceValues[1]}
                     onChange={maxValueHandler}
                 />
                 <div>
-                    <Slider className='priceFilter-container__slider' range defaultValue={[minValue, maxValue]}
-                            value={[Number(minValue), Number(maxValue)]}
-                            onChange={sliderHandler}/>
+                    <Slider className='priceFilter-container__slider' range={true}
+                            defaultValue={[0, 9999]}
+                            value={priceValues}
+                            onChange={sliderHandler}
+                            max={9999}
+                            min={0}/>
                 </div>
             </div>
         </div>
