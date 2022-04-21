@@ -22,7 +22,8 @@ function App() {
         }
     }
     return (
-        checkRouting(userRole)
+        // checkRouting(userRole)
+        <AdminRouting/>
     )
 }
 

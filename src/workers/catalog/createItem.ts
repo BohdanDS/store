@@ -8,7 +8,7 @@ export function* createItem(payload: ReturnType<typeof CreateNewArticle>) {
     const {type, ...itemData} = payload
     try {
         yield CatalogAPI.createItem(itemData)
-        yield put({type: CatalogActionType.START_LOAD_ARTICLES, page: 2})
+        yield put({type: CatalogActionType.START_LOAD_ARTICLES, page: 1})
 
     } catch (e) {
         console.log(e)

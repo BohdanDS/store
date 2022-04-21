@@ -27,7 +27,7 @@ export enum USER_STATUSES {
 export type TFilterState = {
     minPrice: number
     maxPrice: number
-    producers: Array<string>
+    producers: Array<number>
     inMarket: boolean,
     searchQuery: string
 }

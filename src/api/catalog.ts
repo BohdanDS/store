@@ -1,10 +1,14 @@
 import {API, API_Auth} from "./index";
 import {ICatalogItems, IItem, TItem} from "../models/catalogItems";
+import {FilterDataType} from "../store/reducers/catalog";
 
 
 export default class CatalogAPI {
-    static async getItems(page: number) {
-        return API.post<ICatalogItems>('product/search', {page, pageSize: 5})
+    static async getItems(page: number, pageSize: number, filterData: FilterDataType) {
+        // console.log('filterDataQuery API', filterData)
+        return API.post<ICatalogItems>('product/search', {
+            page, pageSize, filterData
+        })
     }
 
     static async getItemByID(id: number) {

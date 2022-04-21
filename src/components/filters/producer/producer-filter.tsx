@@ -6,6 +6,10 @@ import './index.less'
 import {TApplicationState} from "../../../store/aplication-state";
 import {CategoryActionsType} from "../../../store/reducers/category/action-types";
 import {ICategory} from "../../../models/category";
+import {CatalogActionType} from "../../../store/reducers/catalog/actions-types";
+import {AddCategoryFilterValue} from "../../../store/reducers/catalog/actions";
+
+const {Option} = Select;
 
 const ProducerFilter = () => {
 
@@ -14,29 +18,19 @@ const ProducerFilter = () => {
     }, [])
 
     const categories = useSelector<TApplicationState, ICategory[]>(state => state.category)
-    const selectedProducers = useSelector<TApplicationState, Array<string>>(state => state.filter.producers)
     const dispatch = useDispatch()
 
-
-    const options = [];
-    for (let i = 0; i < categories.length; i++) {
-        const value = categories[i].title;
-        options.push({
-            value,
-        });
-    }
     const selectProps = {
         mode: 'multiple' as const,
         style: {width: '500px'},
-        options,
-        onChange: (newValue: string[]) => {
-            dispatch(SelectProducer(newValue))
+        onChange: (newValue: number[]) => {
+            const valueToNumber = newValue.map(id => Number(id))
+            dispatch(AddCategoryFilterValue(valueToNumber))
+            dispatch({type: CatalogActionType.START_LOAD_ARTICLES, page: 0})
         },
         placeholder: 'Select producer...',
         maxTagCount: 'responsive' as const,
     };
-    const onSelect =(value:any) => {
-    }
 
 
     return (
@@ -45,7 +39,13 @@ const ProducerFilter = () => {
             <div>
                 <span>Producer:</span>
             </div>
-            <Select {...selectProps} value={selectedProducers} className='producerFilter-container__select'/>
+            <Select {...selectProps} className='producerFilter-container__select'>
+                {categories.map(item => {
+                    return (
+                        <Option id={Number(item.id)} key={Number(item.id)}>{item.title}</Option>
+                    )
+                })}
+            </Select>
         </div>
     );
 };

@@ -10,7 +10,7 @@ export const SetMaxPriceFilterValue = (maxValue: number) =>({
     maxValue
 })
 
-export const SelectProducer = (producerName:string[]) =>({
+export const SelectProducer = (producerName:number[]) =>({
     type: FilterActionType.CHANGE_PRODUCER,
     producerName
 })
