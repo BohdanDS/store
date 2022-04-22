@@ -31,7 +31,7 @@ const initialState: TCatalogState = {
     filterData: {
         searchString: null,
         category: null,
-        price: [0, 9999]
+        // price: [0, 9999]
     }
 }
 

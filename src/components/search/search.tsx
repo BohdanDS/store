@@ -12,13 +12,18 @@ const Search = () => {
 
     const [inputValue, setInputValue] = useState<string>('')
     const dispatch = useDispatch()
-    const debounceInput = useDebounce(dispatch, 500)
-    const debounceRequest = useDebounce(dispatch, 501)
+
+
+    const searchDispatch = (value: string) => {
+        dispatch(AddSearchStringFilterValue(value))
+        dispatch({type: CatalogActionType.START_LOAD_ARTICLES, page: 0})
+    }
+
+    const searchDispatchDebounce = useDebounce(searchDispatch, 500)
 
     const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.currentTarget.value)
-        debounceInput(AddSearchStringFilterValue(e.currentTarget.value))
-        debounceRequest({type: CatalogActionType.START_LOAD_ARTICLES, page: 0})
+        searchDispatchDebounce(e.currentTarget.value)
     }
 
 
