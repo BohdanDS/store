@@ -78,8 +78,11 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
                     })}
                 </>
             }
-            <Pagination current={catalog.currentPage} total={catalog.totalCount} pageSize={catalog.pageSize}
-                        onChange={onChange}/>
+            <Pagination
+                current={catalog.currentPage}
+                total={catalog.totalCount}
+                pageSize={catalog.pageSize}
+                onChange={onChange}/>
         </>
     );
 };

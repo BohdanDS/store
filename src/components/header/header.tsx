@@ -15,7 +15,8 @@ import {ModalsEnum} from "../../models/modals";
 const Header = () => {
 
     const dispatch = useDispatch()
-    const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart.itemsLocal)).reduce((a, b) => a + b, 0)
+    const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart.itemsLocal))
+        .reduce((a, b) => a + b, 0)
     const authData = useSelector<TApplicationState, TAuthState>(state => state.login)
 
     const loginHandler = () => {
@@ -25,9 +26,7 @@ const Header = () => {
     return (
         <header className='header-container'>
             <div className='block-1'>
-                <Link to={'/'}>
-                    <AmazonOutlined/>
-                </Link>
+                <Link to={'/'}><AmazonOutlined/></Link>
             </div>
             <div className='block-2'>
                 <Search/>

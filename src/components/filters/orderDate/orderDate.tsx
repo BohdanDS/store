@@ -10,8 +10,8 @@ const dateFormat = 'YYYY-MM-DD';
 
 const OrderDate = () => {
 
-    // @ts-ignore
-    const selectDateHandler = (values: RangeValue<Moment>, formatString: [string, string]) => {
+
+    const selectDateHandler = (values: unknown, formatString: [string, string]) => {
     }
 
 
