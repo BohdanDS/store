@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from "../search";
+import SearchFilter from "../search";
 import './index.less'
 import {AmazonOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
@@ -14,35 +14,35 @@ import {ModalsEnum} from "../../models/modals";
 
 const Header = () => {
 
-    const dispatch = useDispatch()
-    const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart.itemsLocal))
-        .reduce((a, b) => a + b, 0)
-    const authData = useSelector<TApplicationState, TAuthState>(state => state.login)
+	const dispatch = useDispatch()
+	const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart.itemsLocal))
+		.reduce((a, b) => a + b, 0)
+	const authData = useSelector<TApplicationState, TAuthState>(state => state.login)
 
-    const loginHandler = () => {
-        dispatch(OpenModal(ModalsEnum.LOGIN_MODAL))
-    }
+	const loginHandler = () => {
+		dispatch(OpenModal(ModalsEnum.LOGIN_MODAL))
+	}
 
-    return (
-        <header className='header-container'>
-            <div className='block-1'>
-                <Link to={'/'}><AmazonOutlined/></Link>
-            </div>
-            <div className='block-2'>
-                <Search/>
-            </div>
-            <div className='block-3'>
-                {authData.isAuth ? <UserMenu/> : <LoginOutlined onClick={loginHandler}/>}
-                <Link to={'/cart'}>
-                    <div className='block-3__cart'>
-                        {itemsInCart !== 0 && <span className='cartItem'>{itemsInCart}</span>}
-                        <ShoppingCartOutlined/>
-                    </div>
-                </Link>
-            </div>
-        </header>
-    )
-        ;
+	return (
+		<header className='header-container'>
+			<div className='block-1'>
+				<Link to={'/'}><AmazonOutlined/></Link>
+			</div>
+			<div className='block-2'>
+				<SearchFilter/>
+			</div>
+			<div className='block-3'>
+				{authData.isAuth ? <UserMenu/> : <LoginOutlined onClick={loginHandler}/>}
+				<Link to={'/cart'}>
+					<div className='block-3__cart'>
+						{itemsInCart !== 0 && <span className='cartItem'>{itemsInCart}</span>}
+						<ShoppingCartOutlined/>
+					</div>
+				</Link>
+			</div>
+		</header>
+	)
+		;
 };
 
 export default Header;

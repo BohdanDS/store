@@ -1,12 +1,10 @@
 import {CatalogActionType} from './actions-types'
-import {CommentType, FilterDataType} from "./index";
+import {CommentType} from "./index";
 import {IItem, TItem} from "../../../models/catalogItems";
 
 
-export const StartFetchArticles = (page: number, pageSize: number) => ({
-    type: CatalogActionType.START_LOAD_ARTICLES,
-    page,
-    pageSize,
+export const StartFetchArticles = () => ({
+    type: CatalogActionType.LOAD_ARTICLES_START,
 })
 
 export const fetchArticles = (articles: IItem[], totalCount: number, page: number) => ({
@@ -16,22 +14,27 @@ export const fetchArticles = (articles: IItem[], totalCount: number, page: numbe
     page,
 })
 
-export const setArticleById = (article: IItem) => ({
+export const getArticleById = (id:string)=>({
+    type: CatalogActionType.LOAD_ITEM_BY_ID_START,
+    id
+})
+
+export const getArticleByIdSuccess = (article: IItem) => ({
     type: CatalogActionType.LOAD_ITEM_BY_ID_SUCCESS,
     article
 })
 export const StartRemovingArticle = (itemId: number) => ({
-    type: CatalogActionType.START_REMOVE_ARTICLE,
+    type: CatalogActionType.REMOVE_ARTICLE_START,
     itemId
 })
 
 export const CreateNewArticle = (article: TItem) => ({
-    type: CatalogActionType.START_CREATE_NEW_ARTICLE,
+    type: CatalogActionType.CREATE_NEW_ARTICLE_START,
     article,
 })
 
 export const AddCommentToArticle = (articleId: string, comment: CommentType) => ({
-    type: CatalogActionType.ADD_COMMENT,
+    type: CatalogActionType.ADD_COMMENT_START,
     articleId,
     comment,
 })
@@ -51,4 +54,9 @@ export const AddSearchStringFilterValue = (searchString: string) => ({
 export const AddPriceFilterValue = (prices: [number, number]) => ({
     type: CatalogActionType.ADD_PRICE_FILTER_VALUE,
     prices
+})
+
+export const ChangeCatalogPageAction = (pageNumber:number)=>({
+    type: CatalogActionType.CHANGE_CURRENT_PAGE,
+    pageNumber
 })

@@ -7,14 +7,15 @@ import {TApplicationState} from "../../../store/aplication-state";
 import {CategoryActionsType} from "../../../store/reducers/category/action-types";
 import {ICategory} from "../../../models/category";
 import {CatalogActionType} from "../../../store/reducers/catalog/actions-types";
-import {AddCategoryFilterValue} from "../../../store/reducers/catalog/actions";
+import {AddCategoryFilterValue, StartFetchArticles} from "../../../store/reducers/catalog/actions";
+import {StartCategoryFetching} from "../../../store/reducers/category/actions";
 
 const {Option} = Select;
 
 const ProducerFilter = () => {
 
     useEffect(() => {
-        dispatch({type: CategoryActionsType.START_FETCHING_CATEGORIES})
+        dispatch(StartCategoryFetching())
     }, [])
 
     const categories = useSelector<TApplicationState, ICategory[]>(state => state.category)
@@ -26,7 +27,7 @@ const ProducerFilter = () => {
         onChange: (newValue: number[]) => {
             const valueToNumber = newValue.map(id => Number(id))
             dispatch(AddCategoryFilterValue(valueToNumber))
-            dispatch({type: CatalogActionType.START_LOAD_ARTICLES, page: 0})
+            dispatch(StartFetchArticles())
         },
         placeholder: 'Select producer...',
         maxTagCount: 'responsive' as const,

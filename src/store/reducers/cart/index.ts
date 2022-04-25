@@ -44,7 +44,6 @@ export default function reducer(state = initialState, action: ActionTypes): TCar
             }
         }
         case CardActionsType.REMOVE_ITEM_FROM_CARD_SUCCESS: {
-            // @ts-ignore
             delete state.itemsLocal[action.itemId]
             return {...state, products: state.products.filter(item => item.id !== action.itemId)}
         }

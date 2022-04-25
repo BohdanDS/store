@@ -4,7 +4,7 @@ import {loginUser, logOutUser, registerUser} from "./auth";
 
 
 export function* Authorization() {
-    yield takeEvery(AuthActionTypes.START_LOGIN, loginUser)
+    yield takeEvery(AuthActionTypes.LOGIN_START, loginUser)
     yield takeEvery(AuthActionTypes.LOGOUT, logOutUser)
-    yield takeEvery(AuthActionTypes.START_REGISTRATION, registerUser)
+    yield takeEvery(AuthActionTypes.REGISTRATION_START, registerUser)
 }

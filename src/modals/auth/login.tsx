@@ -10,6 +10,7 @@ import {TApplicationState} from "../../store/aplication-state";
 import {ModalsEnum} from "../../models/modals";
 import './index.less'
 import {Link} from "react-router-dom";
+import {LoginStartAction} from "../../store/reducers/auth/actions";
 
 const Login = () => {
 
@@ -30,12 +31,8 @@ const Login = () => {
         password: Yup.string().required('Please enter password')
     })
 
-    const onSubmit = (values: TLoginFormData) => {
-        dispatch({
-            type: AuthActionTypes.START_LOGIN,
-            login: values.login,
-            password: values.password,
-        })
+    const onSubmit = (loginFormData: TLoginFormData) => {
+        dispatch(LoginStartAction(loginFormData.login, loginFormData.password))
     }
 
     const onCancel = () => {

@@ -1,8 +1,8 @@
 import {AuthActionTypes} from './actions-types'
 import {TUser} from "../../../models/user";
 
-export const StartLogin = (login:string, password:string) => ({
-    type: AuthActionTypes.START_LOGIN,
+export const LoginStartAction = (login: string, password: string) => ({
+    type: AuthActionTypes.LOGIN_START,
     login,
     password
 })
@@ -21,8 +21,8 @@ export const Logout = () => ({
     type: AuthActionTypes.LOGOUT
 })
 
-export const StartRegistration = (email:string, userName:string, password:string) => ({
-    type: AuthActionTypes.START_REGISTRATION,
+export const StartRegistration = (email: string, userName: string, password: string) => ({
+    type: AuthActionTypes.REGISTRATION_START,
     email,
     userName,
     password,

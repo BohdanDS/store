@@ -4,8 +4,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {TApplicationState} from "../../store/aplication-state";
 import {TNotificationState} from "../../store/reducers/notification";
 import {CloseNotification} from "../../store/reducers/notification/actions";
+import {NotificationType} from "../../models/notification";
 
-type NotificationType = 'success' | 'warning' | 'info' | 'error'
+
 
 const Notification = () => {
 
@@ -15,9 +16,9 @@ const Notification = () => {
     useEffect(() => {
         notificationData.isShowing &&
         notificationData.notification && openNotificationWithIcon(notificationData.notification.notificationType)
-        // return () => {
-        //     dispatch(CloseNotification())
-        // }
+        return () => {
+            dispatch(CloseNotification())
+        }
     }, [notificationData.isShowing])
 
     const openNotificationWithIcon = (type: NotificationType) => {

@@ -5,18 +5,17 @@ import {
     LoginSuccess,
     Logout,
     RegistrationSuccess,
-    StartLogin,
+    LoginStartAction,
     StartRegistration
 } from "../../store/reducers/auth/actions";
 import {CloseNotification, ShowNotification} from "../../store/reducers/notification/actions";
 import {IUser, TUser} from "../../models/user";
 import {CloseModal} from "../../store/reducers/modals/actions";
 import AuthAPI from "../../api/auth";
-import {AuthActionTypes} from "../../store/reducers/auth/actions-types";
 
 
-export function* loginUser(payload:ReturnType<typeof StartLogin>) {
-    put(StartLogin(payload.login, payload.password))
+export function* loginUser(payload:ReturnType<typeof LoginStartAction>) {
+    put(LoginStartAction(payload.login, payload.password))
     try {
         const {data}: AxiosResponse<IUser> = yield AuthAPI.login(payload.login, payload.password)
         yield put(LoginSuccess(data.user))

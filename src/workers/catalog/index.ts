@@ -5,8 +5,8 @@ import {createItem} from "./createItem";
 import {deleteItem} from "./deleteItem";
 
 export function* CatalogSaga() {
-    yield takeEvery(CatalogActionType.START_LOAD_ARTICLES, fetchCatalogItems)
-    yield takeEvery(CatalogActionType.START_LOAD_ITEM_BY_ID, getArticleById)
-    yield takeEvery(CatalogActionType.START_CREATE_NEW_ARTICLE, createItem)
-    yield takeEvery(CatalogActionType.START_REMOVE_ARTICLE, deleteItem)
+    yield takeEvery(CatalogActionType.LOAD_ARTICLES_START, fetchCatalogItems)
+    yield takeEvery(CatalogActionType.LOAD_ITEM_BY_ID_START, getArticleById)
+    yield takeEvery(CatalogActionType.CREATE_NEW_ARTICLE_START, createItem)
+    yield takeEvery(CatalogActionType.REMOVE_ARTICLE_START, deleteItem)
 }

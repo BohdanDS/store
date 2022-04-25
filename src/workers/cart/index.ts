@@ -4,6 +4,6 @@ import {addItemToCart} from "./addItemToCart";
 import {removeItemFromCart} from "./removeItemFromCart";
 
 export function* Cart() {
-    yield takeEvery(CardActionsType.START_ADDING_ITEM_TO_CARD, addItemToCart)
-    yield takeEvery(CardActionsType.START_REMOVING_ITEM_FROM_CARD, removeItemFromCart)
+    yield takeEvery(CardActionsType.ADDING_ITEM_TO_CARD_START, addItemToCart)
+    yield takeEvery(CardActionsType.REMOVING_ITEM_FROM_CARD_START, removeItemFromCart)
 }

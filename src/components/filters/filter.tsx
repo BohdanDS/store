@@ -5,19 +5,13 @@ import InMarketFilter from "./availiableInMarket/inMarket-filter";
 import ProducerFilter from "./producer/producer-filter";
 
 const Filter = () => {
-    return (
-        <div className='filter-container'>
-           <div>
-               <PriceFilter/>
-           </div>
-            <div>
-                <ProducerFilter/>
-            </div>
-            <div>
-                <InMarketFilter/>
-            </div>
-        </div>
-    );
+	return (
+		<div className='filter-container'>
+			<PriceFilter/>
+			<ProducerFilter/>
+			<InMarketFilter/>
+		</div>
+	);
 };
 
 export default Filter;

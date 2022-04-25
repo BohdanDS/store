@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button, Card} from "antd";
-import {useHistory} from "react-router-dom";
-import {useHoverHandler} from "./article.hook";
+import {Button, Card} from 'antd';
+import {useHistory} from 'react-router-dom';
+import {useHoverHandler} from './article.hook';
 import './index.less'
-import Rating from "../rating/rating";
+import Rating from '../rating/rating';
 
 const {Meta} = Card;
 
@@ -48,9 +48,8 @@ const ArticleList = ({title, price, id, addToCart, img, rating}: ArticlePropsTyp
                     hoverable
                     style={{width: 240}}
                     cover={<img alt="example" style={{width:'100%', height:'280px'}}
-                                src={img ? img : "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"}/>}>
+                                src={img ? img : 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'}/>}>
                     <Meta title={title} description={price + '$'}/>
-                    {/*Запретить переход по ссылке*/}
                     <div onClick={ratingHandler}>
                         <Rating rating={rating} articleId={id}/>
                     </div>

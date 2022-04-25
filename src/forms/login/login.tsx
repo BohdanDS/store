@@ -4,7 +4,7 @@ import {Form, Formik} from "formik";
 import {InputComponent} from "../../formik-controls";
 import {Button} from "antd";
 import {useDispatch} from "react-redux";
-import {AuthActionTypes} from "../../store/reducers/auth/actions-types";
+import {LoginStartAction} from "../../store/reducers/auth/actions";
 
 type LoginFormType = {
     onCancel: () => void
@@ -15,7 +15,6 @@ const LoginForm = ({onCancel}: LoginFormType) => {
     type TLoginFormData = typeof initialState
 
     const dispatch = useDispatch()
-    // const isLoggedIn = useSelector<TApplicationState, boolean>(state => state.login.isAuth)
 
     const initialState = {
         login: '',
@@ -28,11 +27,7 @@ const LoginForm = ({onCancel}: LoginFormType) => {
     })
 
     const onSubmit = (values: TLoginFormData) => {
-        dispatch({
-            type: AuthActionTypes.START_LOGIN,
-            login: values.login,
-            password: values.password,
-        })
+        dispatch(LoginStartAction(values.login, values.password))
     }
 
     return (

@@ -9,7 +9,6 @@ const { Option } = Select;
 
 const filterValues = Object.values(ORDER_STATUSES)
 
-
 const OrderStatus = () => {
 
     const dispatch = useDispatch()

@@ -7,7 +7,6 @@ import error from "../pages/404/error";
 import Error from "../pages/404/error";
 import OrderHistory from "../pages/ordersHistory/orderHistory";
 import admin from "../pages/admin/admin";
-import Article from "../forms/article/article";
 
 export enum PUBLIC_PATHS {
     APP = '/',
@@ -74,6 +73,6 @@ export const adminRoute: Routes[] = [
     {path: ADMIN_PATCH.NOT_FOUND, Component: Error},
     {path: ADMIN_PATCH.ORDER_HISTORY, Component: OrderHistory},
     {path: ADMIN_PATCH.ADMIN_PAGE, Component: admin},
-    {path: ADMIN_PATCH.ADD_ARTICLE, Component: Article}
+    // {path: ADMIN_PATCH.ADD_ARTICLE, Component: Article}
 ]
 

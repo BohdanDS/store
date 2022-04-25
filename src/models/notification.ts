@@ -1,5 +1,6 @@
 export type TNotification = {
-    notificationType: 'success' | 'warning' | 'info' | 'error'
+    notificationType: NotificationType
     message: string | null
     description: string | null
 }
+export type NotificationType = 'success' | 'warning' | 'info' | 'error'

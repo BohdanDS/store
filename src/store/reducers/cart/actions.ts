@@ -2,7 +2,12 @@ import {CardActionsType} from "./action-types";
 import {cartProduct} from "./index";
 
 export const DeleteFromCardStartAction = (itemId: {id: number}[]) => ({
-    type: CardActionsType.START_REMOVING_ITEM_FROM_CARD,
+    type: CardActionsType.REMOVING_ITEM_FROM_CARD_START,
+    itemId
+})
+
+export const AddItemToCartStartAction=(itemId:number)=>({
+    type:CardActionsType.ADDING_ITEM_TO_CARD_START,
     itemId
 })
 export const AddItemToCard = (itemId: number) => ({

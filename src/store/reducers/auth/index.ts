@@ -26,7 +26,7 @@ type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
 export default function reducer(state = initialState, action: ActionTypes): TAuthState {
     switch (action.type) {
-        case AuthActionTypes.START_LOGIN: {
+        case AuthActionTypes.LOGIN_START: {
             return {...state, isLoading: true}
         }
         case AuthActionTypes.LOGIN_SUCCESS: {
@@ -36,9 +36,9 @@ export default function reducer(state = initialState, action: ActionTypes): TAut
             return {...state, isAuth: false, isLoading: false, error: action.error}
         }
         case AuthActionTypes.LOGOUT: {
-            return {...state, user: {id:null, role: null, email: null, name: null}, isAuth: false, error:null}
+            return {...state, user: {id: null, role: null, email: null, name: null}, isAuth: false, error: null}
         }
-        case AuthActionTypes.START_REGISTRATION: {
+        case AuthActionTypes.REGISTRATION_START: {
             return {...state, isLoading: true}
         }
         case AuthActionTypes.REGISTRATION_SUCCESS: {

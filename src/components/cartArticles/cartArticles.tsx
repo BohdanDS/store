@@ -1,12 +1,12 @@
 import React, {FC, useState} from 'react';
-import {useDispatch} from "react-redux";
-import {cartProduct} from "../../store/reducers/cart";
+import {useDispatch} from 'react-redux';
+import {cartProduct} from '../../store/reducers/cart';
 import './index.less'
-import {Button, Checkbox} from "antd";
-import {isEmptyArray} from "formik";
-import CartArticle from "./cartArticle/cartArticle";
-import {arrayToObjArray} from "../../utils/arrayToObjArray";
-import {DeleteFromCardStartAction} from "../../store/reducers/cart/actions";
+import {Button, Checkbox} from 'antd';
+import {isEmptyArray} from 'formik';
+import CartArticle from './cartArticle/cartArticle';
+import {arrayToObjArray} from '../../utils/arrayToObjArray';
+import {DeleteFromCardStartAction} from '../../store/reducers/cart/actions';
 
 type Props = {
     items: cartProduct[]
