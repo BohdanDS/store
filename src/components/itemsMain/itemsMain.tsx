@@ -9,6 +9,7 @@ import './index.less'
 import Rating from "../rating/rating";
 import {TApplicationState} from "../../store/aplication-state";
 import {ChangeCatalogPageAction, StartFetchArticles} from "../../store/reducers/catalog/actions";
+import {SelectCatalog} from "../../store/reducers/catalog/selectors";
 
 
 type Props = {
@@ -23,7 +24,7 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
 		setListView(localStorage.getItem('ListView') === 'true')
 	}, [])
 
-	const catalog = useSelector<TApplicationState, TCatalogState>(state => state.catalog)
+	const catalog = useSelector(SelectCatalog())
 	const items = catalog.items
 
 	const [listView, setListView] = useState(false)

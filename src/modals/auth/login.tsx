@@ -9,13 +9,13 @@ import {CloseModal, OpenModal} from "../../store/reducers/modals/actions";
 import {TApplicationState} from "../../store/aplication-state";
 import {ModalsEnum} from "../../models/modals";
 import './index.less'
-import {Link} from "react-router-dom";
 import {LoginStartAction} from "../../store/reducers/auth/actions";
+import {SelectModalToShow} from "../../store/reducers/modals/selectors";
 
 const Login = () => {
 
     const dispatch = useDispatch()
-    const modalToShow = useSelector<TApplicationState, string | null>(state => state.modals.modalToShow)
+    const modalToShow = useSelector(SelectModalToShow())
     const modalState = modalToShow === ModalsEnum.LOGIN_MODAL
 
     const initialState = {

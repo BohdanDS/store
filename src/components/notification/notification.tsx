@@ -5,13 +5,14 @@ import {TApplicationState} from "../../store/aplication-state";
 import {TNotificationState} from "../../store/reducers/notification";
 import {CloseNotification} from "../../store/reducers/notification/actions";
 import {NotificationType} from "../../models/notification";
+import {SelectNotification} from "../../store/reducers/notification/selectors";
 
 
 
 const Notification = () => {
 
     const dispatch = useDispatch()
-    const notificationData = useSelector<TApplicationState, TNotificationState>(state => state.notification)
+    const notificationData = useSelector(SelectNotification())
 
     useEffect(() => {
         notificationData.isShowing &&

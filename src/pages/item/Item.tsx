@@ -12,6 +12,8 @@ import {CatalogActionType} from "../../store/reducers/catalog/actions-types";
 import {fakeDescription} from "../../models/fakeDescription";
 import {USER_ROLES} from "../../models/feels";
 import {AddItemToCartStartAction} from "../../store/reducers/cart/actions";
+import {SelectRole} from "../../store/reducers/auth/selector";
+import {SelectItemById} from "../../store/reducers/catalog/selectors";
 
 const Item = () => {
 
@@ -25,8 +27,8 @@ const Item = () => {
 	const id = useRouteMatch<{ id: string }>("/catalog/:id")?.params.id;
 
 
-	const item = useSelector<TApplicationState, IItem | undefined>(state => state.catalog.items.find(item => item.id === Number(id)))
-	const role = useSelector<TApplicationState, string | null>(state => state.login.user.role)
+	const item = useSelector(SelectItemById(Number(id)))
+	const role = useSelector(SelectRole())
 	const dispatch = useDispatch()
 
 	const [comment, setComment] = useState('')

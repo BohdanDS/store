@@ -4,11 +4,12 @@ import {TApplicationState} from "../store/aplication-state";
 import {ModalsEnum} from "../models/modals";
 import Login from "./auth/login";
 import Registration from "./auth/registration";
+import {SelectModalToShow} from "../store/reducers/modals/selectors";
 
 
 const Modals = () => {
 
-    const modalToShow = useSelector<TApplicationState, string | null>(state => state.modals.modalToShow)
+    const modalToShow = useSelector(SelectModalToShow())
     const modalToShowSwitcher = (modalToShow: string | null) => {
         switch (modalToShow) {
             case ModalsEnum.LOGIN_MODAL: {

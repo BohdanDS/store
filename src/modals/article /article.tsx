@@ -4,13 +4,11 @@ import {Form, Formik} from "formik";
 import {InputComponent} from "../../formik-controls";
 import ImageUploader from "../../formik-controls/imageUploader";
 import {useDispatch, useSelector} from "react-redux";
-import {TApplicationState} from "../../store/aplication-state";
-import {ICategory} from "../../models/category";
 import MultiSelect from "../../formik-controls/multiSelect";
 import {CloseModal} from "../../store/reducers/modals/actions";
-import {CatalogActionType} from "../../store/reducers/catalog/actions-types";
 import {arrayToObjArray} from "../../utils/arrayToObjArray";
 import {CreateNewArticle} from "../../store/reducers/catalog/actions";
+import {SelectCategories} from "../../store/reducers/category/selectors";
 
 
 type Props = {
@@ -21,7 +19,7 @@ type Props = {
 const Article: FC<Props> = ({visible, setIsModalVisible}) => {
 
 	const dispatch = useDispatch()
-	const categories = Object.values(useSelector<TApplicationState, ICategory[]>(state => state.category))
+	const categories = Object.values(useSelector(SelectCategories()))
 
 	const handleCancel = () => {
 		setIsModalVisible(false)

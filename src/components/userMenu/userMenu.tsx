@@ -6,12 +6,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {TApplicationState} from "../../store/aplication-state";
 import {TAuthState} from "../../store/reducers/auth";
 import {Logout} from "../../store/reducers/auth/actions";
+import {SelectAuthData} from "../../store/reducers/auth/selector";
 
 const UserMenu = () => {
 
 	const dispatch = useDispatch()
 	const [isMenuVisible, setIsMenuVisible] = useState(false)
-	const authData = useSelector<TApplicationState, TAuthState>(state => state.login)
+	const authData = useSelector(SelectAuthData())
 
 	const showMenuHandler = () => {
 		setIsMenuVisible(!isMenuVisible)

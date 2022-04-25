@@ -4,10 +4,11 @@ import './index.less'
 import {useSelector} from "react-redux";
 import {TApplicationState} from "../../store/aplication-state";
 import {cartProduct} from "../../store/reducers/cart";
+import {productOnCartSelections} from "../../store/reducers/cart/selectors";
 
 const Cart = () => {
 
-    const articlesInCart = useSelector<TApplicationState, cartProduct[]>(state => state.cart.products)
+    const articlesInCart = useSelector(productOnCartSelections())
 
     return (
         <div className='cartContainer'>

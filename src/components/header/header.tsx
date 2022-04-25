@@ -10,14 +10,16 @@ import {TAuthState} from "../../store/reducers/auth";
 import {LoginOutlined} from "@ant-design/icons";
 import {OpenModal} from "../../store/reducers/modals/actions";
 import {ModalsEnum} from "../../models/modals";
+import {itemsOnCartSelections} from "../../store/reducers/cart/selectors";
+import _ from "lodash";
+import {SelectAuthData} from "../../store/reducers/auth/selector";
 
 
 const Header = () => {
 
 	const dispatch = useDispatch()
-	const itemsInCart = useSelector<TApplicationState, number[]>(state => Object.values(state.cart.itemsLocal))
-		.reduce((a, b) => a + b, 0)
-	const authData = useSelector<TApplicationState, TAuthState>(state => state.login)
+	const itemsInCart = useSelector(itemsOnCartSelections())
+	const authData = useSelector(SelectAuthData())
 
 	const loginHandler = () => {
 		dispatch(OpenModal(ModalsEnum.LOGIN_MODAL))
@@ -35,7 +37,7 @@ const Header = () => {
 				{authData.isAuth ? <UserMenu/> : <LoginOutlined onClick={loginHandler}/>}
 				<Link to={'/cart'}>
 					<div className='block-3__cart'>
-						{itemsInCart !== 0 && <span className='cartItem'>{itemsInCart}</span>}
+						{_.isEmpty({itemsInCart}) && <span className='cartItem'>{itemsInCart}</span>}
 						<ShoppingCartOutlined/>
 					</div>
 				</Link>

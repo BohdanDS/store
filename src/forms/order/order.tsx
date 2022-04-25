@@ -12,12 +12,13 @@ import {ResetCart} from "../../store/reducers/cart/actions";
 import {ORDER_STATUSES} from "../../models/feels";
 import {useHistory} from "react-router-dom";
 import {TApplicationState} from "../../store/aplication-state";
+import {cartSelection, itemsOnCartSelections} from "../../store/reducers/cart/selectors";
 
 
 const Order = () => {
 
     const dispatch = useDispatch()
-    const itemsOnCart = useSelector<TApplicationState, TCartState>(state => state.cart)
+    const itemsOnCart = useSelector(cartSelection())
 
     const history = useHistory()
 

@@ -1,14 +1,10 @@
 import React, {useEffect} from 'react';
 import {Select} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
-import {SelectProducer} from "../../../store/reducers/filter/actions";
 import './index.less'
-import {TApplicationState} from "../../../store/aplication-state";
-import {CategoryActionsType} from "../../../store/reducers/category/action-types";
-import {ICategory} from "../../../models/category";
-import {CatalogActionType} from "../../../store/reducers/catalog/actions-types";
 import {AddCategoryFilterValue, StartFetchArticles} from "../../../store/reducers/catalog/actions";
 import {StartCategoryFetching} from "../../../store/reducers/category/actions";
+import {categoriesSelector} from "../../../store/reducers/category/selectors";
 
 const {Option} = Select;
 
@@ -18,7 +14,7 @@ const ProducerFilter = () => {
         dispatch(StartCategoryFetching())
     }, [])
 
-    const categories = useSelector<TApplicationState, ICategory[]>(state => state.category)
+    const categories = useSelector(categoriesSelector)
     const dispatch = useDispatch()
 
     const selectProps = {

@@ -9,11 +9,12 @@ import {Form, Formik} from "formik";
 import {InputComponent} from "../../formik-controls";
 import {CloseModal} from "../../store/reducers/modals/actions";
 import {StartRegistration} from "../../store/reducers/auth/actions";
+import {SelectModalToShow} from "../../store/reducers/modals/selectors";
 
 const Registration = () => {
 
 	const dispatch = useDispatch()
-	const modalToShow = useSelector<TApplicationState, string | null>(state => state.modals.modalToShow)
+	const modalToShow = useSelector(SelectModalToShow())
 	const modalState = modalToShow === ModalsEnum.REGISTRATION_MODAL
 
 	const initialState = {
