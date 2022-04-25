@@ -27,10 +27,7 @@ const Notification = () => {
         });
     };
 
-    return (
-        <>
-        </>
-    );
+    return null;
 };
 
 export default Notification;

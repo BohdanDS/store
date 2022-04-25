@@ -1,4 +1,4 @@
-import {AxiosResponse} from "axios";
+import {AxiosError, AxiosResponse} from "axios";
 import {put} from "redux-saga/effects";
 import {
     LoginFailed,

@@ -5,6 +5,8 @@ import {useHoverHandler} from "./article.hook";
 import './index.less'
 import Rating from "../rating/rating";
 
+const {Meta} = Card;
+
 type ArticlePropsType = {
     title: string,
     price: number
@@ -24,7 +26,7 @@ const ArticleList = ({title, price, id, addToCart, img, rating}: ArticlePropsTyp
         addToCart && addToCart(id)
     }
 
-    const linkNavigation = (event: any) => {
+    const linkNavigation = (_event: any) => {
         history.push(`catalog/${id}`)
     }
 
@@ -32,13 +34,15 @@ const ArticleList = ({title, price, id, addToCart, img, rating}: ArticlePropsTyp
         event.stopPropagation()
     }
 
-    const {Meta} = Card;
+
     return (
-        <div style={{margin: '15px', position: 'relative'}} onMouseEnter={onFocus} onMouseLeave={onLooseFocus}>
-            {viewOnHover && addToCart && <div className='button-container'
-                                              style={{position: 'absolute', top: '120px', right: '70px', zIndex: '10'}}>
-                <Button onClick={addItemToCard}>Add to Cart</Button>
-            </div>}
+        <div className='ArticleList' style={{margin: '15px', position: 'relative'}} onMouseEnter={onFocus} onMouseLeave={onLooseFocus}>
+            {viewOnHover && addToCart && (
+                <div className='button-container'
+                     style={{position: 'absolute', top: '120px', right: '70px', zIndex: '10'}}>
+                    <Button onClick={addItemToCard}>Add to Cart</Button>
+                </div>
+            )}
             <div onClick={linkNavigation}>
                 <Card
                     hoverable

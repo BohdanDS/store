@@ -1,24 +1,25 @@
 @import "src/styles/vars";
-
-.container {
-  display: flex;
-}
-
-.cardItem {
-  width: 200px;
-  height: 500px;
-}
-.ant-btn{
-  color: @main-color;
-  &:hover {
-    color: @secondary-color;
-    transform: scale(1.05)
+.ArticleList {
+  .container {
+    display: flex;
   }
-  &::after {
+
+  .cardItem {
+    width: 200px;
+    height: 500px;
+  }
+  .ant-btn{
     color: @main-color;
+    &:hover {
+      color: @secondary-color;
+      transform: scale(1.05)
+    }
+    &::after {
+      color: @main-color;
+    }
   }
-}
 
-.ant-click-animating-node {
-  display: none;
+  .ant-click-animating-node {
+    display: none;
+  }
 }

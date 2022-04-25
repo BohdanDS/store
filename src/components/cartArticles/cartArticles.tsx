@@ -4,9 +4,9 @@ import {cartProduct} from "../../store/reducers/cart";
 import './index.less'
 import {Button, Checkbox} from "antd";
 import {isEmptyArray} from "formik";
-import {CardActionsType} from "../../store/reducers/cart/action-types";
 import CartArticle from "./cartArticle/cartArticle";
 import {arrayToObjArray} from "../../utils/arrayToObjArray";
+import {DeleteFromCardStartAction} from "../../store/reducers/cart/actions";
 
 type Props = {
     items: cartProduct[]
@@ -31,26 +31,24 @@ const CartArticles: FC<Props> = ({items}) => {
 
     const removeItemHandler = () => {
         const itemsIdsObj = arrayToObjArray(checkItems.checkedList)
-        dispatch({type: CardActionsType.START_REMOVING_ITEM_FROM_CARD, itemId: itemsIdsObj})
+        dispatch(DeleteFromCardStartAction(itemsIdsObj))
     }
     return (
         <div className='cartArticles-container'>
             {isEmptyArray(items) && <div><h4>Cart is empty</h4></div>}
             {!isEmptyArray(items) && <div>
                 {
-                    items.map(item => {
-                        return (
-                            <CartArticle key={item.id}
-                                         itemId={item.id}
-                                         img={item.img}
-                                         price={item.price}
-                                         title={item.title}
-                                         checkboxHandler={checkboxHandler}
-                                         values={checkItems.checkedList}
-                                         itemOnCart={items.length}
-                            />
-                        )
-                    })
+                    items.map((item) => (
+                        <CartArticle key={item.id}
+                             itemId={item.id}
+                             img={item.img}
+                             price={item.price}
+                             title={item.title}
+                             checkboxHandler={checkboxHandler}
+                             values={checkItems.checkedList}
+                             itemOnCart={items.length}
+                        />
+                    ))
                 }
                 <div className='cartArticles-container__removeBlock'>
                     <Checkbox
