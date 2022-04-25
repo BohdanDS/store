@@ -37,6 +37,7 @@ const initialState: TCatalogState = {
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>
 
+
 export default function reducer(state: TCatalogState = initialState, action: ActionTypes): TCatalogState {
     switch (action.type) {
         case CatalogActionType.LOAD_ARTICLES_SUCCESS: {
