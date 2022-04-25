@@ -1,6 +1,6 @@
 import {TApplicationState} from "../../aplication-state";
 import {createSelector} from "reselect";
-import catalog from "../../../components/catalog/catalog";
+
 
 export const catalogPageSize = (state: TApplicationState) => state.catalog.pageSize
 export const catalogCurrentPage = (state: TApplicationState) => state.catalog.currentPage
@@ -17,6 +17,7 @@ export const SelectCurrentCatalogPage = () => createSelector(
 	catalogCurrentPage,
 	page => page
 )
+
 
 export const SelectFilterData = () => createSelector(
 	catalogFilterData,

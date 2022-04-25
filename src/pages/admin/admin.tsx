@@ -10,7 +10,6 @@ const {TabPane} = Tabs;
 
 const Admin = () => {
 
-
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const showModal = () => {
