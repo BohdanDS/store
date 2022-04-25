@@ -2,11 +2,9 @@ import React from 'react';
 import {Button, Modal} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import * as Yup from "yup";
-import {AuthActionTypes} from "../../store/reducers/auth/actions-types";
 import {Form, Formik} from "formik";
 import {InputComponent} from "../../formik-controls";
 import {CloseModal, OpenModal} from "../../store/reducers/modals/actions";
-import {TApplicationState} from "../../store/aplication-state";
 import {ModalsEnum} from "../../models/modals";
 import './index.less'
 import {LoginStartAction} from "../../store/reducers/auth/actions";

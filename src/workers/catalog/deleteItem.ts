@@ -3,7 +3,6 @@ import CatalogAPI from "../../api/catalog";
 import {put} from "redux-saga/effects";
 import {ShowNotification} from "../../store/reducers/notification/actions";
 import {history} from "../../index";
-import {CatalogActionType} from "../../store/reducers/catalog/actions-types";
 import {PUBLIC_PATHS} from "../../routing/paths";
 
 

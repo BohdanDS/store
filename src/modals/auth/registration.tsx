@@ -1,9 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import * as Yup from "yup";
-import {AuthActionTypes} from "../../store/reducers/auth/actions-types";
 import {Button, Modal} from "antd";
-import {TApplicationState} from "../../store/aplication-state";
 import {ModalsEnum} from "../../models/modals";
 import {Form, Formik} from "formik";
 import {InputComponent} from "../../formik-controls";

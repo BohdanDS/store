@@ -1,6 +1,5 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {TApplicationState} from "../store/aplication-state";
 import {ModalsEnum} from "../models/modals";
 import Login from "./auth/login";
 import Registration from "./auth/registration";

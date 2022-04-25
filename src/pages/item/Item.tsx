@@ -5,10 +5,6 @@ import './index.less'
 import {Button, Input} from "antd";
 import Rating from "../../components/rating/rating";
 import {AddCommentToArticle, getArticleById, StartRemovingArticle} from "../../store/reducers/catalog/actions";
-import {TApplicationState} from "../../store/aplication-state";
-import {IItem} from "../../models/catalogItems";
-import {CardActionsType} from "../../store/reducers/cart/action-types";
-import {CatalogActionType} from "../../store/reducers/catalog/actions-types";
 import {fakeDescription} from "../../models/fakeDescription";
 import {USER_ROLES} from "../../models/feels";
 import {AddItemToCartStartAction} from "../../store/reducers/cart/actions";
@@ -73,7 +69,6 @@ const Item = () => {
                                 <p>Parameters:</p>
                                 <h3>Price: {item.price}$</h3>
                                 <Button onClick={() => addToCard(item.id)}>Add to Card</Button>
-
                             </div>
                         </div>
                     </div>
@@ -86,9 +81,6 @@ const Item = () => {
 					{role === USER_ROLES.ADMIN_ROLE &&
                         <Button onClick={removeArticle} className='dangerous_button'>Remove Item</Button>
 					}
-					{/*<p className='maker'>*/}
-					{/*    Maker: {item.maker}*/}
-					{/*</p>*/}
                     <div className='comment-container'>
                         <h3>Leave a feedback:</h3>
                         <Input.TextArea value={comment} onChange={commentHandler}/>
@@ -96,7 +88,6 @@ const Item = () => {
                             <Button onClick={addCommentHandler}>Add</Button>
                         </div>
                     </div>
-					{/*<Comments comments={item.comment}/>*/}
                 </div>
             </>}
 		</div>

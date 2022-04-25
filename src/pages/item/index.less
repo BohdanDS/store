@@ -1,3 +1,5 @@
+@import "src/styles/vars";
+
 .wrapper {
   margin: 20px 200px;
 }
@@ -21,8 +23,12 @@
     flex-direction: column;
   }
 
-  button {
+  .ant-btn {
     width: 200px;
+
+    &:hover {
+      color: @secondary-color;
+    }
   }
 
   h3 {
@@ -46,7 +52,8 @@
     height: 3rem;
     margin-bottom: 1rem;
   }
-  &__btn{
+
+  &__btn {
     display: flex;
     justify-content: flex-end;
   }
