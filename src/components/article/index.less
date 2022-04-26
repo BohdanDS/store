@@ -1,5 +1,14 @@
 @import "src/styles/vars";
+
 .ArticleList {
+  margin: 15px;
+  position: relative;
+  .button-container{
+    position: absolute;
+    top: 120px;
+    right: 70px;
+    z-index:10;
+  }
   .container {
     display: flex;
   }
@@ -22,4 +31,10 @@
   .ant-click-animating-node {
     display: none;
   }
+}
+.button-container{
+  position: absolute;
+  top: 120px;
+  right: 70px;
+  zIndex:10;
 }

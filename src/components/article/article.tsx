@@ -34,12 +34,10 @@ const ArticleList = ({title, price, id, addToCart, img, rating}: ArticlePropsTyp
         event.stopPropagation()
     }
 
-
     return (
-        <div className='ArticleList' style={{margin: '15px', position: 'relative'}} onMouseEnter={onFocus} onMouseLeave={onLooseFocus}>
+        <div className='ArticleList' onMouseEnter={onFocus} onMouseLeave={onLooseFocus}>
             {viewOnHover && addToCart && (
-                <div className='button-container'
-                     style={{position: 'absolute', top: '120px', right: '70px', zIndex: '10'}}>
+                <div className='button-container'>
                     <Button onClick={addItemToCard}>Add to Cart</Button>
                 </div>
             )}
