@@ -1,4 +1,4 @@
-import {ICategory} from "./category";
+import {ICategory, TCategory} from "./category";
 
 export interface ICatalogItems {
     totalCount: number
@@ -20,4 +20,10 @@ export interface IItem {
     categories: ICategory[]
 }
 
-export type TItem = Omit<Omit<IItem, 'categories'>, 'id'> & { categories: { id: number }[] }
+export type TItem = Omit<Omit<IItem, 'categories'>, 'id'> & { categories: TCategory[] }
+const i:TItem={
+    title:'1',
+    img:'',
+    price:10,
+    categories:[{id:1}]
+}

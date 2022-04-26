@@ -3,7 +3,6 @@ import {Input} from 'antd';
 import './index.less';
 import {useDispatch} from "react-redux";
 import {AddSearchStringFilterValue, StartFetchArticles} from "../../store/reducers/catalog/actions";
-import {CatalogActionType} from "../../store/reducers/catalog/actions-types";
 import useDebounce from "../../hooks/useDebounce";
 
 const {Search} = Input;

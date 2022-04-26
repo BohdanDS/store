@@ -9,7 +9,7 @@ const dateFormat = 'YYYY-MM-DD';
 
 const OrderDate = () => {
 
-    const selectDateHandler = (values: unknown, formatString: [string, string]) => {
+    const selectDateHandler = (_values: unknown, _formatString: [string, string]) => {
     }
 
     return (

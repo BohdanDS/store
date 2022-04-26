@@ -1,8 +1,6 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
 import {Checkbox} from 'antd';
 import './index.less'
-import {CardActionsType} from '../../../store/reducers/cart/action-types';
 import {fakeDescription} from '../../../models/fakeDescription';
 
 type CartArticleType = {
@@ -17,8 +15,6 @@ type CartArticleType = {
 
 
 const CartArticle = ({itemId, checkboxHandler, values, title, price}: CartArticleType) => {
-
-    const dispatch = useDispatch()
 
     const checkboxValue = values.includes(String(itemId))
 

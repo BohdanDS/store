@@ -2,12 +2,10 @@ import React, {FC, useEffect, useState} from 'react';
 import ViewControls from "../viewControls /viewControls";
 import ArticleList from "../article/article";
 import {useDispatch, useSelector} from "react-redux";
-import {TCatalogState} from "../../store/reducers/catalog";
 import {Button, Pagination} from "antd";
 import {Link} from "react-router-dom";
 import './index.less'
 import Rating from "../rating/rating";
-import {TApplicationState} from "../../store/aplication-state";
 import {ChangeCatalogPageAction, StartFetchArticles} from "../../store/reducers/catalog/actions";
 import {SelectCatalog} from "../../store/reducers/catalog/selectors";
 
@@ -42,19 +40,21 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
 	return (
 		<>
 			<div className='viewControlsBlock'><ViewControls callback={changeView} value={listView}/></div>
-			{(!listView) ? <div style={{display: "flex", flexWrap: "wrap"}}>
+			{(!listView) ? (<div className='viewControlsBlock__List'>
 					{
 						items.map(item => {
 							return (
-								<ArticleList key={item.id} title={item.title} price={item.price}
+								<ArticleList key={item.id}
+								             title={item.title}
+								             price={item.price}
 								             id={item.id}
 								             img={item.img}
 								             addToCart={addToCart} rating={5}/>
 							)
 						})
 					}
-				</div>
-				: <>
+				</div>)
+				: (<>
 					{items.map(item => {
 						return (
 							<div key={item.id} className='listArticle-container'>
@@ -77,7 +77,7 @@ const ItemsMain: FC<Props> = ({addToCart}) => {
 							</div>
 						)
 					})}
-				</>
+				</>)
 			}
 			<Pagination
 				current={catalog.currentPage}

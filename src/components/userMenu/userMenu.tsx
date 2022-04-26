@@ -3,8 +3,6 @@ import {UserOutlined} from "@ant-design/icons";
 import './index.less'
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {TApplicationState} from "../../store/aplication-state";
-import {TAuthState} from "../../store/reducers/auth";
 import {Logout} from "../../store/reducers/auth/actions";
 import {SelectAuthData} from "../../store/reducers/auth/selector";
 

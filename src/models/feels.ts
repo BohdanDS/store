@@ -8,8 +8,6 @@ export type TFells = {
     handle?: Function
 }
 
-export type TInput = Required<Omit<TFells, 'placeholder'>>
-
 export enum ORDER_STATUSES {
     ALL_ORDERS = 'ALL',
     ORDER_IN_PROGRESS = 'In Progress',

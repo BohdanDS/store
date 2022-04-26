@@ -1,13 +1,10 @@
 import React from 'react';
 import SearchFilter from "../search";
 import './index.less'
-import {AmazonOutlined, ShoppingCartOutlined} from "@ant-design/icons";
+import {AmazonOutlined, LoginOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {TApplicationState} from "../../store/aplication-state";
 import UserMenu from "../userMenu/userMenu";
-import {TAuthState} from "../../store/reducers/auth";
-import {LoginOutlined} from "@ant-design/icons";
 import {OpenModal} from "../../store/reducers/modals/actions";
 import {ModalsEnum} from "../../models/modals";
 import {itemsOnCartSelections} from "../../store/reducers/cart/selectors";

@@ -8,27 +8,25 @@ import {SelectModalToShow} from "../store/reducers/modals/selectors";
 
 const Modals = () => {
 
-    const modalToShow = useSelector(SelectModalToShow())
-    const modalToShowSwitcher = (modalToShow: string | null) => {
-        switch (modalToShow) {
-            case ModalsEnum.LOGIN_MODAL: {
-                return <Login/>;
-            }
-            case ModalsEnum.REGISTRATION_MODAL: {
-                return <Registration/>
-            }
-            default:
-                return null
-        }
-    }
+	const modalToShow = useSelector(SelectModalToShow())
+	const modalToShowSwitcher = (modalToShow: string | null) => {
+		switch (modalToShow) {
+			case ModalsEnum.LOGIN_MODAL: {
+				return <Login/>;
+			}
+			case ModalsEnum.REGISTRATION_MODAL: {
+				return <Registration/>
+			}
+			default:
+				return null
+		}
+	}
 
-    return (
-        <>
-            <div>
-                {modalToShowSwitcher(modalToShow)}
-            </div>
-        </>
-    );
+	return (
+		<div>
+			{modalToShowSwitcher(modalToShow)}
+		</div>
+	);
 };
 
 export default Modals;

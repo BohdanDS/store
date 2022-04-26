@@ -2,7 +2,8 @@ import React, {FC, useState} from 'react';
 import {Field, FieldAttributes, useFormikContext} from "formik";
 import ImgCrop from "antd-img-crop";
 import {Upload} from "antd";
-import {getBase64} from "../models/common";
+import {getBase64} from "../utils/base64";
+
 
 type Props = {
     name: string,
