@@ -1,0 +1,22 @@
+@import "src/styles/vars";
+
+.cartArticles-container {
+  width: 65%;
+  margin: 20px;
+  &__removeBlock {
+    margin-top: 1rem;
+  }
+}
+
+.ant-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  &:hover{
+    color: @secondary-color;
+  }
+  .ant-pagination-item-active {
+    background: @secondary-color;
+  }
+}

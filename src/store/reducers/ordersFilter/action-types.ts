@@ -1,0 +1,6 @@
+export const OrdersFilterActionType = {
+    SET_FROM_DATE_VALUE: '[orderFILTER] SET_FROM_DATE_VALUE',
+    SET_TO_DATE_VALUE: '[orderFILTER] SET_TO_DATE_VALUE',
+    SET_ORDER_STATUS: '[orderFILTER] SET_ORDER_STATUS',
+    SET_SEARCH_BY_USER_QUERY: '[orderFILTER] SET_SEARCH_BY_USER_QUERY'
+} as const

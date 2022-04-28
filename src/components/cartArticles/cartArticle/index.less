@@ -1,0 +1,54 @@
+@import "src/styles/vars";
+
+.cartArticle-container {
+  &__titleBlock{
+    width: 90%;
+    display: flex;
+    line-height: 1.5rem;
+    justify-content: space-between;
+    h4{
+      font-size: 1rem;
+    }
+  }
+  &__dividerBlock {
+    width: 90%;
+    height: 2px;
+    background: @secondary-color;
+  }
+  &__description {
+    width: 90%;
+    font-size: 0.9rem;
+  }
+  .checkboxes label {
+    display: block;
+    padding-right: 10px;
+    padding-left: 22px;
+    text-indent: -22px;
+  }
+  .checkboxes input {
+    vertical-align: middle;
+  }
+  .checkboxes label span {
+    vertical-align: middle;
+  }
+  &__articleTitle{
+    font-size: 1.2rem;
+    margin-left: 1rem;
+  }
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: @secondary-color;
+  }
+  &__countBlock {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    p{
+      margin: 0 10px;
+    }
+    .ant-btn {
+      &:hover {
+        border: 1px solid @secondary-color;
+      }
+    }
+  }
+}
