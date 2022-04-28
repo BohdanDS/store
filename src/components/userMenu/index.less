@@ -1,0 +1,28 @@
+@import "src/styles/vars";
+
+.userMenu-container {
+  position: relative;
+
+  &__menu {
+    z-index: 10;
+    background: @secondary-white-color;
+    top: 3rem;
+    position: absolute;
+    border: 1px solid @main-color;
+    border-radius: 1rem;
+    width: 150px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-right: 1px;
+    padding-left: 0.5rem;
+    a{
+      color: @main-color;
+      &:hover{
+        color: @secondary-color;
+      }
+    }
+  }
+}
