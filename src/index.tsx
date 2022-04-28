@@ -1,27 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createBrowserHistory } from 'history';
-import { ConnectedRouter } from 'connected-react-router';
-import { Provider } from 'react-redux';
-import reportWebVitals from './reportWebVitals';
-import configureStore from './configureStore';
-import './App.less';
+import './index.less';
 import App from './App';
-import Notification from './components/notification/notification';
-import Modals from './modals/modals';
-
-export const history = createBrowserHistory(); // либа history
-const { store } = configureStore({}, history);
+import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css'
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-      <Notification />
-      <Modals />
-    </ConnectedRouter>
-  </Provider>,
-  document.getElementById('root'),
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
